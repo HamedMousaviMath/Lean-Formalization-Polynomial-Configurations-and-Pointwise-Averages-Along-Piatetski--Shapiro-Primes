@@ -1,0 +1,16 @@
+import PSPrimes.KMTTInterfaces
+#check Real.rpow_neg_natCast
+#check Real.rpow_natCast
+#check Real.mul_rpow
+#check Real.rpow_mul_natCast
+#check Real.rpow_natCast_mul
+#check Real.rpow_le_rpow_of_exponent_le
+#check Real.rpow_le_rpow_of_exponent_ge
+#check Nat.ceil_mono
+#check Nat.ceil_le
+#check Nat.le_ceil
+#check Real.rpow_neg
+#check Real.rpow_mul
+#check Real.rpow_sub
+#check one_div_pow
+#check inv_pow
