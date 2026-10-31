@@ -1,0 +1,5 @@
+⚠ [6658/6659] Replayed PSPrimes.Homogeneity
+warning: ././././PSPrimes/Homogeneity.lean:38:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6659/6659] Built PSPrimes.Lifting
+Build completed successfully.

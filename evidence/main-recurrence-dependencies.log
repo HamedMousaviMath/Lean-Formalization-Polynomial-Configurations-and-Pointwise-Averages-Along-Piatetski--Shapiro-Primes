@@ -1,0 +1,30 @@
+⚠ [6666/6682] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6678/6682] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6680/6682] Built PSPrimes.ConfigurationTransport
+✖ [6681/6682] Building PSPrimes.RecurrenceAlgebra
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /workspace/scratch/c84b5d813ddd/tooling/lean-4.19.0-linux/bin/lean ././././PSPrimes/RecurrenceAlgebra.lean -R ./././. -o ././.lake/build/lib/lean/PSPrimes/RecurrenceAlgebra.olean -i ././.lake/build/lib/lean/PSPrimes/RecurrenceAlgebra.ilean -c ././.lake/build/ir/PSPrimes/RecurrenceAlgebra.c --json
+error: ././././PSPrimes/RecurrenceAlgebra.lean:30:42: failed to synthesize
+  Zero ?m.11870
+
+Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: ././././PSPrimes/RecurrenceAlgebra.lean:30:6: type mismatch
+  Finset.single_le_sum (fun k x => ?m.11882) hj
+has type
+  ?m.11874 j ≤ ∑ x ∈ (P i).support, ?m.11874 x : Prop
+but is expected to have type
+  |↑((P i).coeff j)| ≤ ∑ k ∈ (P i).support, |↑((P i).coeff k)| : Prop
+error: Lean exited with code 1
+✔ [6682/6682] Built PSPrimes.FiniteIterationBounds
+Some required builds logged failures:
+- PSPrimes.RecurrenceAlgebra
+error: build failed

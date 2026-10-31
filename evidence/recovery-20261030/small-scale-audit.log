@@ -1,0 +1,7 @@
+'PSPrimes.eventually_const_log_rpow_lt_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.small_scale_alternative_excluded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.small_scale_alternative_excluded_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_floorScale_rpow_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.rpow_half_le_truncated_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_truncated_floorScale_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_not_small_scale_alternative' depends on axioms: [propext, Classical.choice, Quot.sound]

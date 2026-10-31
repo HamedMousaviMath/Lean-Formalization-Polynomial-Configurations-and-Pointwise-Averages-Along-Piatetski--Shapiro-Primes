@@ -1,0 +1,3 @@
+'PSPrimes.abs_eval_rescale_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.abs_eval_rescale_le_tenth_of_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.abs_eval_rescale_le_tenth_floorScale' depends on axioms: [propext, Classical.choice, Quot.sound]

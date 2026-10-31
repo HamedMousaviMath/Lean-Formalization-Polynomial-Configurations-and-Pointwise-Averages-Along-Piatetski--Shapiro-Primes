@@ -1,7 +1,0 @@
-import PSPrimes.MainRecurrence
-#print axioms PSPrimes.recurrenceState_next_of_increment
-#print axioms PSPrimes.recurrence_prefix_exists
-#print axioms PSPrimes.quantitative_recurrence_from_steps
-#print axioms PSPrimes.quantitative_recurrence_of_source_witnesses
-#print axioms PSPrimes.quantitative_recurrence
-#check PSPrimes.quantitative_recurrence

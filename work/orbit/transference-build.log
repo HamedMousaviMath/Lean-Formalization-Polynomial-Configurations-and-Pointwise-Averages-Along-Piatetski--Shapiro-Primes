@@ -1,0 +1,180 @@
+PSPrimes/OrbitTransference.lean:190:45: error: unsolved goals
+hVN : FiniteVNInput
+d : ℕ
+hd : 1 ≤ d
+K : ℕ
+hK : 1 ≤ K
+hFamily :
+  ∀ (ℓ : ℕ) (R : Fin ℓ → Polynomial ℤ),
+    0 < ℓ →
+      (StrictMono fun i => (R i).natDegree) →
+        (∀ (i : Fin ℓ), 1 ≤ (R i).natDegree) →
+          (∀ (i : Fin ℓ), (R i).natDegree ≤ d) →
+            (∃ i, (R i).natDegree = d) →
+              ∀ (C₀ : ℝ),
+                1 ≤ C₀ →
+                  ∃ C,
+                    0 < C ∧
+                      ∀ (M : ℕ),
+                        1 ≤ M →
+                          ∀ (θ : ℕ → ℂ) (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ) (E : ℝ),
+                            (∀ n ∈ initialInterval M, ‖θ n‖ ≤ 1) →
+                              (∀ (x : ℤ), ‖f₀ x‖ ≤ 1) →
+                                (∀ (i : Fin ℓ) (x : ℤ), ‖f i x‖ ≤ 1) →
+                                  (∀ (x : ℤ), C₀ * ↑M ^ d < |↑x| → f₀ x = 0) →
+                                    (∀ (i : Fin ℓ) (x : ℤ), C₀ * ↑M ^ d < |↑x| → f i x = 0) →
+                                      0 ≤ E →
+                                        PhaseBound d M θ (↑M * E) →
+                                          ‖polynomialForm M d R θ f₀ f‖ ≤ C * ((↑M)⁻¹ + E) ^ (1 / ↑K)
+ℓ : ℕ
+P : Fin ℓ → Polynomial ℤ
+hℓ : 0 < ℓ
+hmono : StrictMono fun i => (P i).natDegree
+hpos : ∀ (i : Fin ℓ), 1 ≤ (P i).natDegree
+hmax : ∀ (i : Fin ℓ), (P i).natDegree ≤ d
+htop : ∃ i, (P i).natDegree = d
+R : Fin ℓ → Polynomial ℤ := fun i => shiftedOrbitPolynomial (P i)
+hRmono : StrictMono fun i => (R i).natDegree
+hRpos : ∀ (i : Fin ℓ), 1 ≤ (R i).natDegree
+hRmax : ∀ (i : Fin ℓ), (R i).natDegree ≤ d
+hRtop : ∃ i, (R i).natDegree = d
+C₀ : ℝ := orbitSupportConstant P d
+C : ℝ
+hC : 0 < C
+hfinite :
+  ∀ (M : ℕ),
+    1 ≤ M →
+      ∀ (θ : ℕ → ℂ) (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ) (E : ℝ),
+        (∀ n ∈ initialInterval M, ‖θ n‖ ≤ 1) →
+          (∀ (x : ℤ), ‖f₀ x‖ ≤ 1) →
+            (∀ (i : Fin ℓ) (x : ℤ), ‖f i x‖ ≤ 1) →
+              (∀ (x : ℤ), C₀ * ↑M ^ d < |↑x| → f₀ x = 0) →
+                (∀ (i : Fin ℓ) (x : ℤ), C₀ * ↑M ^ d < |↑x| → f i x = 0) →
+                  0 ≤ E → PhaseBound d M θ (↑M * E) → ‖polynomialForm M d R θ f₀ f‖ ≤ C * ((↑M)⁻¹ + E) ^ (1 / ↑K)
+X : Type u
+inst✝ : MeasurableSpace X
+μ : Measure X
+hprob : IsProbabilityMeasure μ
+T : IntegerAction X μ
+f : Fin ℓ → X → ℂ
+hf : ∀ (i : Fin ℓ), AEStronglyMeasurable (f i) μ
+hb : ∀ (i : Fin ℓ), ∀ᵐ (x : X) ∂μ, ‖f i x‖ ≤ 1
+N : ℕ
+hN : 1 ≤ N
+g : ℕ → ℝ
+B E : ℝ
+hB : 0 < B
+hE : 0 ≤ E
+hg : ∀ n ∈ initialInterval N, |g n| ≤ B
+hp : PhaseBound d N (fun n => ↑(g n)) (↑N * E)
+this : IsProbabilityMeasure μ := hprob
+A : X → ℂ := fun x => weightedAverage g (fun n => orbitProduct P T f n x) N
+hA : Integrable A μ
+h : X → ℂ := fun x => orbitDualMultiplier (A x)
+s : Finset ℤ := Finset.Icc 1 (↑N ^ d)
+V : X → ℂ := fun x => (↑N ^ d)⁻¹ * ∑ a ∈ s, h (T.act a x) * A (T.act a x)
+hPair : Integrable (fun x => h x * A x) μ
+htrans : ∀ (a : ℤ), Integrable (fun x => h (T.act a x) * A (T.act a x)) μ
+⊢ ↑(↑N ^ d).toNat = ↑N ^ d
+PSPrimes/OrbitTransference.lean:201:61: error: unsolved goals
+case h.e'_3
+hVN : FiniteVNInput
+d : ℕ
+hd : 1 ≤ d
+K : ℕ
+hK : 1 ≤ K
+hFamily :
+  ∀ (ℓ : ℕ) (R : Fin ℓ → Polynomial ℤ),
+    0 < ℓ →
+      (StrictMono fun i => (R i).natDegree) →
+        (∀ (i : Fin ℓ), 1 ≤ (R i).natDegree) →
+          (∀ (i : Fin ℓ), (R i).natDegree ≤ d) →
+            (∃ i, (R i).natDegree = d) →
+              ∀ (C₀ : ℝ),
+                1 ≤ C₀ →
+                  ∃ C,
+                    0 < C ∧
+                      ∀ (M : ℕ),
+                        1 ≤ M →
+                          ∀ (θ : ℕ → ℂ) (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ) (E : ℝ),
+                            (∀ n ∈ initialInterval M, ‖θ n‖ ≤ 1) →
+                              (∀ (x : ℤ), ‖f₀ x‖ ≤ 1) →
+                                (∀ (i : Fin ℓ) (x : ℤ), ‖f i x‖ ≤ 1) →
+                                  (∀ (x : ℤ), C₀ * ↑M ^ d < |↑x| → f₀ x = 0) →
+                                    (∀ (i : Fin ℓ) (x : ℤ), C₀ * ↑M ^ d < |↑x| → f i x = 0) →
+                                      0 ≤ E →
+                                        PhaseBound d M θ (↑M * E) →
+                                          ‖polynomialForm M d R θ f₀ f‖ ≤ C * ((↑M)⁻¹ + E) ^ (1 / ↑K)
+ℓ : ℕ
+P : Fin ℓ → Polynomial ℤ
+hℓ : 0 < ℓ
+hmono : StrictMono fun i => (P i).natDegree
+hpos : ∀ (i : Fin ℓ), 1 ≤ (P i).natDegree
+hmax : ∀ (i : Fin ℓ), (P i).natDegree ≤ d
+htop : ∃ i, (P i).natDegree = d
+R : Fin ℓ → Polynomial ℤ := fun i => shiftedOrbitPolynomial (P i)
+hRmono : StrictMono fun i => (R i).natDegree
+hRpos : ∀ (i : Fin ℓ), 1 ≤ (R i).natDegree
+hRmax : ∀ (i : Fin ℓ), (R i).natDegree ≤ d
+hRtop : ∃ i, (R i).natDegree = d
+C₀ : ℝ := orbitSupportConstant P d
+C : ℝ
+hC : 0 < C
+hfinite :
+  ∀ (M : ℕ),
+    1 ≤ M →
+      ∀ (θ : ℕ → ℂ) (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ) (E : ℝ),
+        (∀ n ∈ initialInterval M, ‖θ n‖ ≤ 1) →
+          (∀ (x : ℤ), ‖f₀ x‖ ≤ 1) →
+            (∀ (i : Fin ℓ) (x : ℤ), ‖f i x‖ ≤ 1) →
+              (∀ (x : ℤ), C₀ * ↑M ^ d < |↑x| → f₀ x = 0) →
+                (∀ (i : Fin ℓ) (x : ℤ), C₀ * ↑M ^ d < |↑x| → f i x = 0) →
+                  0 ≤ E → PhaseBound d M θ (↑M * E) → ‖polynomialForm M d R θ f₀ f‖ ≤ C * ((↑M)⁻¹ + E) ^ (1 / ↑K)
+X : Type u
+inst✝ : MeasurableSpace X
+μ : Measure X
+hprob : IsProbabilityMeasure μ
+T : IntegerAction X μ
+f : Fin ℓ → X → ℂ
+hf : ∀ (i : Fin ℓ), AEStronglyMeasurable (f i) μ
+hb : ∀ (i : Fin ℓ), ∀ᵐ (x : X) ∂μ, ‖f i x‖ ≤ 1
+N : ℕ
+hN : 1 ≤ N
+g : ℕ → ℝ
+B E : ℝ
+hB : 0 < B
+hE : 0 ≤ E
+hg : ∀ n ∈ initialInterval N, |g n| ≤ B
+hp : PhaseBound d N (fun n => ↑(g n)) (↑N * E)
+this : IsProbabilityMeasure μ := hprob
+A : X → ℂ := fun x => weightedAverage g (fun n => orbitProduct P T f n x) N
+hA : Integrable A μ
+h : X → ℂ := fun x => orbitDualMultiplier (A x)
+s : Finset ℤ := Finset.Icc 1 (↑N ^ d)
+V : X → ℂ := fun x => (↑N ^ d)⁻¹ * ∑ a ∈ s, h (T.act a x) * A (T.act a x)
+hPair : Integrable (fun x => h x * A x) μ
+htrans : ∀ (a : ℤ), Integrable (fun x => h (T.act a x) * A (T.act a x)) μ
+hcard : ↑s.card = ↑N ^ d
+hNne : ↑N ≠ 0
+hIntegral : ∫ (x : X), V x ∂μ = ∫ (x : X), h x * A x ∂μ
+x : X
+hx : ∀ (n : ℤ) (i : Fin ℓ), ‖f i (T.act n x)‖ ≤ 1
+hSpatial :
+  ‖(↑N ^ d)⁻¹ *
+        ∑ a ∈ Finset.Icc 1 (↑N ^ d),
+          (fun a => h (T.act a x)) a *
+            ((↑N)⁻¹ *
+              ∑ n ∈ initialInterval N,
+                (fun n => ↑(g n)) n * ∏ i, (fun i a => f i (T.act a x)) i (a + Polynomial.eval (↑n) (R i)))‖ ≤
+    B * C * ((↑N)⁻¹ + E / B) ^ (1 / ↑K)
+⊢ ‖(↑N ^ d)⁻¹ *
+        ∑ x_1 ∈ Finset.Icc 1 (↑N ^ d),
+          h (T.act x_1 x) *
+            ((↑N)⁻¹ *
+              ∑ x_2 ∈ initialInterval N,
+                ↑(g x_2) * ∏ i, f i (T.act (x_1 + Polynomial.eval (↑x_2) (shiftedOrbitPolynomial (P i))) x))‖ =
+    ‖(↑N ^ d)⁻¹ *
+        ∑ x_1 ∈ Finset.Icc 1 (↑N ^ d),
+          h (T.act x_1 x) *
+            ((↑N)⁻¹ *
+              ∑ x_2 ∈ initialInterval N, ↑(g x_2) * ∏ x_3, f x_3 (T.act (x_1 + Polynomial.eval (↑x_2) (R x_3)) x))‖

@@ -1,0 +1,25 @@
+% Shared mathematical notation and theorem environments for both blueprints.
+\newcommand{\N}{\mathbb N}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\E}{\mathbb E}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\ee}{\mathrm e}
+\newcommand{\PS}{\mathcal S_c}
+\newcommand{\PP}{\mathbb P_c}
+\newcommand{\Tcount}{\mathcal T}
+\newcommand{\Lip}{\mathrm{Lip}}
+\newcommand{\Status}[1]{\par\smallskip\noindent\textbf{Status: #1.}\ }
+\newcommand{\Obligation}[1]{\par\smallskip\noindent\textbf{Lean obligation.}\ #1\par}
+\newcommand{\Declaration}[1]{\par\smallskip\noindent\textbf{Declaration:}\ \texttt{\detokenize{#1}}\par}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\renewcommand{\thedefinition}{D.\arabic{definition}}
+\newtheorem{inputthm}{External input}
+\renewcommand{\theinputthm}{E.\arabic{inputthm}}
+\newtheorem{auxlemma}{Auxiliary lemma}
+\renewcommand{\theauxlemma}{A.\arabic{auxlemma}}

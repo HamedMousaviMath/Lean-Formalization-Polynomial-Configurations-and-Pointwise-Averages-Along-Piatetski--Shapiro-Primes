@@ -1,0 +1,15 @@
+⚠ [6666/6685] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6682/6685] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6684/6685] Built PSPrimes.ConfigurationTransport
+✔ [6685/6685] Built PSPrimes.RecurrenceConstruction
+Build completed successfully.

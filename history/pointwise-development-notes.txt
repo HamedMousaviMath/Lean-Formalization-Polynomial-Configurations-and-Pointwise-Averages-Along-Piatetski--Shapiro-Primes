@@ -1,0 +1,228 @@
+POINTWISE DEVELOPMENT NOTES — RAW HISTORICAL RECORD
+
+This file was assembled retrospectively at the parent's request after the
+production sources had been frozen. It preserves substantive messages sent
+by the pointwise implementation agent in their original chronological order.
+Quoted messages retain their wording, including intermediate status claims
+and compressed notation. They describe evolving states and are not a
+replacement for the final statement map, assumption catalogue, restart file,
+source code, build evidence, or independent correspondence review.
+
+The ordering below is the actual order of the notes; no timestamps have been
+invented. The task concerned Section 4 of the unchanged uploaded Draft1.tex.
+
+1. Initial implementation design, before the Mathlib cache was ready
+
+"Pointwise draft prepared: a discrete Abel transformation, positive partial-sum
+domination, finite unweighting bound ‖Σ_{i<n} z_i‖ ≤ C/a₀+εn for positive
+nondecreasing a and all weighted partial centered sums bounded C+εW, plus
+Tonelli a.e. convergence from finite ∑lintegral norms. These are genuine
+generic Section4 steps; no arithmetic comparison conclusion assumed as an
+external theorem. Awaiting Mathlib cache to compile, then adding limiting
+unweighting theorem if practical."
+
+2. First checked module
+
+"Pointwise.lean now freshly kernel-compiled successfully (v4.19 Mathlib;
+evidence/pointwise-build.log). 5 proved theorems: sum_range_abel,
+abel_norm_bound, finite_unweighting_bound, unweighting_tendsto_zero (all
+weighted centered partial sums o(weight mass) => ordinary averages→0 for any
+positive nondecreasing weights),
+ae_tendsto_zero_of_tsum_lintegral_enorm_ne_top (Tonelli sparse-sequence
+convergence). No arithmetic hypotheses, no placeholders/axioms. Limit
+unweighting covers prime enumeration; enumeration/cutoff bridge and weight
+a(t) monotonicity still to establish for original theorem. I will add exact
+finite weighted interpolation estimate next unless you need another priority."
+
+3. Finite interpolation closure
+
+"Pointwise.lean now has 8 freshly checked declarations (file 240 lines): also
+ae_tendsto_zero_of_summable_integral_norm (real L1 formulation),
+norm_weighted_sum_le, weighted_average_interpolation_bound. Last proves
+precisely paper's finite gap estimate for 0<J≤N≤K, nonnegative w and
+1-bounded z: norm(A_N−A_J) ≤ (K−J)/J²·Σ_{i<J}w_i +
+J⁻¹Σ_{J≤i<K}w_i. Uses actual finite weighted sums. The Abel
+unweighting_tendsto_zero proof is complete incl. initial-error bound, no Abel
+bridge left other than applying prime enumeration and mass limits. Fresh
+compile exit 0; log evidence/pointwise-build.log."
+
+4. Full-sequence interpolation, including the bracket construction
+
+"Completed deterministic and a.e. full-sequence comparison in Pointwise.lean,
+364 lines, fresh compile exit 0. New checked names:
+exists_subsequence_bracket (no selector assumption),
+tendsto_of_subsequence_gap, initialWeightMass, weightedMean,
+interpolationError, interpolationError_tendsto_zero,
+weighted_comparison_of_sparse, ae_weighted_comparison_of_sparse. Last theorem
+takes actual nonnegative w,v with mass/N→1, StrictMono positive cutoffs m with
+m(j+1)/m j→1, 1-bounded z a.e., and sparse weighted difference→0 a.e.;
+concludes full weighted difference→0 a.e. This completely formalizes
+Section4's deterministic interpolation, including bracketing. Remaining
+original Prop4.1 specialization: arithmetic L1 estimate, summability along
+floor(j^A), cutoff strict-monotonic/ratio facts, and masses for Λγ/Λ."
+
+5. Exact selected-set bridge and removal weight
+
+"Pointwise.lean now freshly checked, 521 lines, imports Definitions.
+Arithmetic removal weight primeRemovalWeight γ t=γ⁻¹*t^(1−γ)*log t positive
+for γ>0,t≥2; monotoneOn Ici2 for 0<γ≤1; γ=1 reduces log. Exact enumeration
+bridge implemented (not assumed): enumeration_le_iff_lt_count,
+selected_sum_eq_enumeration, selected_count_tendsto_atTop,
+selectedAverage_eq_enumeration. Main selectedAverage_unweighting proves
+actual selected cutoff average→L from increasing positive exact enumeration
+e, positive monotone enumeration weights a, and centered weighted prefix
+sums=o(weight mass). It handles empty finite cutoffs correctly via eventual
+count>0. Remaining hsmall supply from the paper's weighted cutoff normalized
+limit/mass and construction of exact prime enumeration; no equality of sums
+or count divergence is now assumed."
+
+6. Removing the enumeration assumption; integer power cutoffs
+
+"Completed end-to-end actual selected-cutoff unweighting; Pointwise.lean now
+711 lines, fresh compile exit 0. Main theorem
+selectedAverage_tendsto_of_weighted_limits assumes S positive, w>0 and
+monotone on S, selectedWeightMass(S,w,N)/N→1 and
+N⁻¹ selectedWeightedSum(S,w,z,N)→L; proves actual selectedAverage S z N→L.
+Internally derives S infinite from mass, constructs Nat.nth S, proves exact
+prefix count/reindexing, derives centered sum/mass→0, then applies full Abel
+unweighting. No enumeration assumption remains. Also proved [1,N]→range
+shift weightedAverage_eq_weightedMean_shift and polynomialCutoff k j=(j+1)^k
+positivity, StrictMono(k≠0), successive ratio→1, summable decay when kη>1.
+Source agrees general mathematical lemma; original remaining specialization
+is weighted prime-only mass/sum after higher-primepower removal."
+
+7. Completing the analytic implication from L1 decay
+
+"Pointwise.lean fresh checked at 786 lines. Added
+ae_weighted_comparison_of_L1_decay and exact-manuscript
+ae_weightedAverage_comparison_of_L1_decay. They prove full a.e. comparison
+from integrable differences, C N^(−η) L1 bound (η>0), nonnegative weights,
+1-bounded orbit sequence a.e., and mass/N→1 for each weight. All choice of
+integer power cutoff exponent, summable decay, sparse Tonelli, ratio,
+bracketing, interpolation are internally proved. Thus no floor(j^A)
+obligation remains (choose integer A, allowed by proof). Original Prop4.1
+reduces only to establishing the arithmetic L1 rate and actual Λγ/Λ mass
+limits plus integrability/essential bound. Pointwise selected unweighting
+final theorem from previous message remains checked."
+
+8. Exact prime and higher-prime-power decomposition
+
+"Pointwise final prime additions now kernel-checked via lake build
+PSPrimes.Pointwise, 921 lines. Includes selected_primes_unweighting
+(S⊆primes, γ∈(0,1], actual aγ), sparse_prime_sum_eq_selected,
+sparse_weightedAverage_decomposition, ordinary_weightedAverage_decomposition,
+nonprimeWeightedMean_norm_le, and exact higher-prime-power support residual
+equations plus exists_higher_prime_power witness k≥2. Build log
+evidence/pointwise-build.log. No quantitative primepower rate assumed/proved
+here. I will now start OrbitComparison coordinated with OrbitInputs agent."
+
+9. Orbit comparison design
+
+"OrbitComparison plan: first generic finite discrepancy L1 bound by
+weighted_root_saving (B=(γ⁻¹+1)(N+1)^(1−γ)log(N+1), E=A N^(−σ), t=1/K,
+s=min1σ, condition8(1−γ)≤s/K), then extract gamma neighborhood using
+SS+OrbitVNInput. Also derive sparse Mangoldt mass/N→1 from zero-phase SS +
+PNT and exact weightedAverage discrepancy identity. This should close
+Prop4.1 from accepted external SS/OR/PNT without assuming any original
+conclusion."
+
+10. Proposition 4.1 closure
+
+"OrbitComparison.lean checked via lake build (exit0). Main
+ps_orbit_comparison_gamma now proves actual manuscript Prop4.1 from only
+ShaoSunPhaseInput, OrbitVNInput, PrimeNumberTheoremInput: degree-only gamma
+neighborhood, actual essential1bounded orbit products, actual [1,N] sparse/Λ
+weighted difference→0 a.e. It derives Eq38 ps_orbit_discrepancy_L1_gamma with
+explicit positive degree-only η and all-N power saving and integrability;
+sparse mass follows zero phase SS+PNT. No original L1 rate assumed. I will
+now integrate PrimePowers in MainPointwise for Theorem1.2, coordinating final
+generic normalization."
+
+"ps_orbit_comparison c-form now compiled checked in OrbitComparison.lean
+(actual gamma=1/c, cstar=1/(1−ε), source essential1bounded context).
+MainPointwise implementing remaining residual→selected mass/sum plus generic
+unweighting. Will provide stable source for independent review shortly."
+
+11. Theorem 1.2 closure
+
+"MAIN THEOREM 1.2 NOW CHECKED: MainPointwise.lean
+pointwiseErgodicTheorem_of_external_inputs proves full
+PointwiseErgodicTheorem.{u} P (actual selected prime averages/common limit,
+probability system, arbitrary essentially bounded measurable f) from only
+hSS:ShaoSunPhaseInput, hOR:OrbitVNInput.{u}, hPNT:PrimeNumberTheoremInput,
+hMW:OrdinaryPrimePointwiseInput.{u}. Fresh lake build PSPrimes.MainPointwise
+exit0, log evidence/main-pointwise-build.log. Uses actual higherPrimePowers
+mass→0, exact residual decomposition, derived sparse mass, full Nat.nth+Abel
+selected unweighting, and root pointwiseConclusion_of_oneBounded. No original
+theorem is assumed. Source hash
+fac67a29e673f92efe61def28746ff6cbcf9d2ecb6f9b57a2d7ef0ba38be368b.
+Main1.2 can be marked conditional checked pending independent
+correspondence/audit."
+
+12. Final proof-architecture clarification
+
+"Blueprint detail for my proofs: implementation uses finite discrete Abel
+summation along the increasing enumeration of selected primes, instead of
+formalizing the manuscript's real-variable integral partial summation.
+Proved finite inequality ‖Σ_{i<n}z_i‖≤C/a₀+εn whenever
+‖Σ_{i<k}a_i z_i‖≤C+εΣ_{i<k}a_i for allk≤n and a positive nondecreasing.
+Initial exceptional prefix absorbed into C; hence weighted centered
+little-o→unweighted means→0. Nat.nth existence/reindexing/count divergence
+all proved; selected weighted mass/N→1 implies infinitude. Actual weight aγ
+positive/monotone forγ∈(0,1],p≥2. This is an equivalent finite
+partial-summation implementation, not a weakened main statement.
+Mapping Eq37→sparse_mass_tendsto_of_phase;
+Eq38→ps_orbit_discrepancy_L1_gamma;
+Prop4.1→ps_orbit_comparison;
+Thm1.2→pointwiseErgodicTheorem_of_external_inputs."
+
+RETROSPECTIVE CONTEXT, NOT AN ORIGINAL CONTEMPORANEOUS NOTE
+
+The checked Theorem 1.2 relies on four explicit theorem parameters, not on
+new axioms: the polynomial-phase specialization of Shao–Sun, the
+arbitrary-real-weight orbit specialization of Mousavi Proposition 1.4,
+ordinary PNT in Mangoldt-mass form, and the ordinary-prime weighted
+pointwise specialization of Mirek–Wan–Wright. The exact external interface
+and unformalized source translations are documented separately in
+OrbitInputs.lean and the assumption catalogue. The L1 discrepancy rate and
+all of this paper's subsequent pointwise deductions are proved from those
+parameters.
+
+The prime-power estimate was implemented independently in PrimePowers.lean.
+Essential orbit bounds and general L∞ homogeneity were implemented by the
+parent in Representatives.lean. Their checked APIs were integrated rather
+than duplicated.
+
+The final production sources were frozen before this historical file was
+assembled. Recorded SHA256 hashes at the freeze:
+Pointwise.lean
+  965fc652b47f5480fbc0c85aa6882f7807806de7231acaf256f7f24c7ba3e308
+OrbitComparison.lean
+  ba571d4ca7b13651f5c65eee1e174c0a72a3390784d759fd85a2f2ac2f9e0346
+MainPointwise.lean
+  fac67a29e673f92efe61def28746ff6cbcf9d2ecb6f9b57a2d7ef0ba38be368b
+
+APPENDED CONTEMPORANEOUS RECOVERY / LOG-SCALE NOTES
+
+The transient workspace was reset after the earlier freeze. The three final
+pointwise modules were reconstructed from this agent's retained source-writing
+history. All three reconstructed SHA256 values matched the frozen values above
+byte for byte. A fresh lake build PSPrimes.MainPointwise passed after recovery.
+A new explicit dependency audit of the main theorem, Proposition 4.1, the
+actual L1 saving, full selected-set unweighting, and L1-decay-to-a.e. convergence
+reported only propext, Classical.choice and Quot.sound. See the recovery build
+and audit evidence; the earlier build claims are historical, while these are
+new runs against the recovered bytes.
+
+The parent then assigned LogScales.lean. The log-floor bounds were derived from
+rootScale < 2*floorScale and floorScale <= N. The exact logarithm of the actual
+finite increment retains log c and both exponents Aq and Aδ. For fixed d,r,Aq,
+Aδ,c, a uniform positive coefficient is chosen as
+  1 + (Aq+d) + Aδ + d + |log c| + r*log 2.
+The constant loss |log c|+r log 2 is absorbed using 1 <= log N, hence
+1 <= sqrt(log N). The final recursion therefore has exactly the requested
+error C*(log Q + log α^-1 + sqrt(log N)), with no additional +1 term and with
+C chosen before all stage variables and the initial density. Replacing the
+stage density δ by α uses 0 < α <= δ <= 1 and monotonicity of the logarithm.
+The proof takes the actual finite lower bound as input, rather than assuming
+a logarithmic length recursion. lake build PSPrimes.LogScales passed.

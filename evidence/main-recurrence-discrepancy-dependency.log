@@ -1,0 +1,14 @@
+⚠ [6677/6679] Built PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6678/6679] Built PSPrimes.DiscrepancySaving
+⚠ [6679/6679] Built PSPrimes.FinalPrimeDiscrepancy
+warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.

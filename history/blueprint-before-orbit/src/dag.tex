@@ -1,0 +1,36 @@
+\subsection*{Dependency graph}
+\begin{center}
+\resizebox{0.94\linewidth}{!}{%
+\begin{tikzpicture}[>=Stealth, node distance=7mm and 10mm,
+ n/.style={draw,rounded corners,align=center,font=\small,inner sep=4pt},
+ e/.style={draw,dashed,align=center,font=\small,inner sep=4pt}]
+\node[e] (ss) {SS: quoted phase bound};
+\node[n,right=of ss] (tv) {Thm. 1.3: TV};
+\node[e,right=of tv] (or) {OR: orbit bound};
+\node[n,below=of ss] (phase) {Thm. 2.1\\polynomial phases};
+\node[n,below=of phase] (prog) {Lemma 2.2\\progression phases};
+\node[n,below=of prog] (comp) {Prop. 2.3\\finite comparison};
+\node[n,right=of prog] (ae) {Prop. 4.1\\pointwise comparison};
+\node[e,right=of ae] (mw) {MW and PNT};
+\node[n,below=of comp] (disc) {Lemma 3.2\\prime discrepancy};
+\node[e,left=of disc] (km) {KM-U, KM-R\\KM-M and KM-J};
+\node[n,below=of disc] (inc) {Prop. 3.1\\density increment};
+\node[n,below=of inc] (sz) {Thm. 1.1\\recurrence};
+\node[n,right=of inc] (pt) {Thm. 1.2\\common a.e. limit};
+\draw[->] (ss)--(phase);
+\draw[->] (phase)--(prog);
+\draw[->] (prog)--(comp);
+\draw[->] (tv)--(comp);
+\draw[->] (phase)--(ae);
+\draw[->] (or)--(ae);
+\draw[->] (comp)--(disc);
+\draw[->] (km)--(disc);
+\draw[->] (km)--(inc);
+\draw[->] (disc)--(sz);
+\draw[->] (inc)--(sz);
+\draw[->] (ae)--(pt);
+\draw[->] (mw)--node[above,font=\scriptsize]{PNT}(ae);
+\draw[->] (mw)--node[right,font=\scriptsize]{MW}(pt);
+\end{tikzpicture}}
+\end{center}
+Dashed boxes are external inputs; solid boxes are manuscript nodes. Borders do not encode proof status. All original deductions are checked conditionally on the catalogued premises. The web graph is generated from the \texttt{uses/proves} metadata.

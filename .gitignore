@@ -11,8 +11,3 @@ __pycache__/
 *.dvi
 *.nav
 *.snm
-.lake/
-lake-packages/
-.lake/
-lake-packages/
-*.log

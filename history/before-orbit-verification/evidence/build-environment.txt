@@ -1,0 +1,4 @@
+2026-10-30T10:58:10Z
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+Mathlib revision: c44e0c8ee63ca166450922a373c7409c5d26b00b

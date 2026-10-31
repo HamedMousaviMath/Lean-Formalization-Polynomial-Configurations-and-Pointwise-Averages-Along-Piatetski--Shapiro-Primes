@@ -1,0 +1,579 @@
+\section*{Reading and verification contract}
+\ifDetailed
+The project concerns \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}, by Hamed Mousavi. \versionnote\ The supplied source is authoritative and is preserved unchanged. Its PDF was generated locally to check the numbering; no independently supplied PDF was available for comparison.
+
+\textbf{State of this blueprint.} All seven original numbered deductions have checked conditional Lean proofs: Theorems 1.1 and 1.2, Lemmas 2.2 and 3.2, and Propositions 2.3, 3.1 and 4.1. Theorems 1.3 and 2.1 are quoted externally. The substantial analytic inputs and the explicitly named source-formulation bridges remain unproved; no unconditional formalization of those ingredients is claimed. No \texttt{leanok} tag is attached to a quoted external theorem.
+
+Four milestones follow the actual dependencies: (i) exact objects, rescaling and Fourier restriction; (ii) the fixed-family finite comparison; (iii) discrepancy, local factors and the quantitative recurrence iteration; (iv) orbit comparison, passage to all scales and unweighting. Both branches share the first milestone. This avoids a separate blueprint node for each routine algebraic step.
+
+\else
+This is the primary reading guide for Hamed Mousavi's \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}. \versionnote\ The source is preserved unchanged; its locally compiled PDF supplies the numbering. No independent supplied PDF was available.
+
+\textbf{Verified boundary.} The seven original numbered deductions are checked conditionally. Theorems 1.3 and 2.1 remain quoted external inputs. The external predicates are uninstantiated, and their source-formulation bridges are stated explicitly. Neither an axiom audit nor this blueprint proves those premises true.
+
+Four milestones organize the dependencies: exact objects and algebra; finite comparison; density increment and recurrence; pointwise comparison and unweighting. The longer companion explains the substantive steps and the remaining external obligations.
+\fi
+
+\ifDetailed
+This full version records the finite and limiting statements, their proof mechanisms, and every substantive bridge still required in Lean. It supplements the compact version, whose role is navigation. The two versions use this same content source, correspondence table and catalogue, so the status boundaries cannot diverge silently.
+
+\subsection*{How to read the Lean references}
+Existing declaration names appear in \verb|\lean{...}| metadata and in visible monospace text where helpful. Such a reference identifies a declaration; it does not assert that the whole parent argument is formalized. Every declaration name shown is an actual checked project declaration; conditional proof status is distinguished from truth of its external premises. The implementation uses noncomputable definitions where needed and explicit hypothesis structures for external estimates. Proposition-valued definitions of main conclusions are specifications and are never used as a replacement for a proof.
+
+The ambient finite interval is positive, $[N]=\{1,\ldots,N\}$. Sums written $\sum_{n\leq N}$ start at $1$; unrestricted spatial sums run over $\Z$. Lean finite sums may restrict $x$ to the support of $f_0$, which is exactly equivalent to the unrestricted expression because every omitted summand contains a zero factor. This convention is part of the statement correspondence, not an extra support restriction on the mathematical claim.
+\fi
+
+\ifdefined\WebVersion
+The interactive dependency graph is generated from the actual \texttt{uses/proves} tags in this document.\else\input{dag}\fi
+
+\section{Main statements and common objects}
+\begin{definition}[The polynomial family and the two prime weights]\label{def:objects}
+\lean{PSPrimes.PolynomialFamily, PSPrimes.IsPS, PSPrimes.IsPSPrime, PSPrimes.sparseMangoldt, PSPrimes.discrepancyWeight}
+Fix $\ell\geq1$ and $P_0=0$, $P_i\in\Z[y]$, with $P_i(0)=0$ and
+\[
+ 1\leq\deg P_1<\cdots<\deg P_\ell=d.
+\]
+For $c>1$, $\gamma=1/c$, put
+\[
+ \PS=\{\lfloor n^c\rfloor:n\in\N_{>0}\},\quad
+ \PP=\PS\cap\mathbb P,\quad
+ \Lambda_\gamma(n)=\gamma^{-1}n^{1-\gamma}\Lambda(n)\1_{\PS}(n),\quad
+ D_\gamma=\Lambda_\gamma-\Lambda.
+\]
+Weights are zero at nonpositive integer arguments. Set
+\[
+ \|w\|_{u^s[M]}=
+ \sup_{\substack{\phi\in\R[y]\\\deg\phi<s}}
+ \left|M^{-1}\sum_{m=1}^M w(m)\ee(-\phi(m))\right|,
+ \qquad\ee(t)=\exp(2\pi it).
+\]
+\end{definition}
+\Status{prime and polynomial objects implemented; the displayed $u^s$ supremum is manuscript notation only}
+\ifDetailed
+The use of positive indices for $\PS$ agrees with the manuscript's $\N$ convention. Adding $n=0$ would add only $0$ and would not change its primes, but the implementation avoids relying on that observation. Natural floor is used only for a nonnegative real power. Polynomial evaluation is integer-valued, allowing negative coefficients and negative iterates. The family is nonempty, so its largest degree and all exponent choices are meaningful.
+
+The two weights are real and nonnegative for $\gamma>0$, while their difference is signed. The support of $\Lambda_\gamma$ includes prime powers in $\PS$, not only primes. The manuscript explicitly removes those powers later; replacing this weight at definition time by a prime-only weight would change the proof obligation. In particular $D_\gamma(1)=0$ follows from $\Lambda(1)=0$, with no arithmetic sampling hypothesis. The equality at a prime $p$ is
+\[
+ \Lambda_\gamma(p)=\gamma^{-1}p^{1-\gamma}\log p\,\1_{\PP}(p).
+\]
+These elementary identities are prerequisites for the progression and unweighting arguments.
+
+Lean currently uses universal polynomial correlation bounds, \texttt{PhaseBound}; the displayed supremum and its equivalence with this interface are not implemented. This formulation bridge TV-B is external. Mathematically the supremum defining $u^s$ is finite. Each polynomial-phase correlation is at most
+\[M^{-1}\sum_{m\leq M}|w(m)|.\] The set of admissible phases contains the zero polynomial. For $M\geq1$, homogeneity gives $\|w/B\|_{u^s[M]}=B^{-1}\|w\|_{u^s[M]}$ for positive real $B$. Closure under negation shows that the sign in $\ee(\pm\phi)$ is irrelevant. These facts must be proved when replacing universal phase bounds by a supremum interface.
+\fi
+
+\begin{theorem}[Quantitative recurrence; manuscript Theorem 1.1]\label{t:szemeredi}
+\uses{def:objects,def:rescaling,l:PS-discrepancy,p:KMTT}
+\lean{PSPrimes.QuantitativeRecurrence, PSPrimes.quantitative_recurrence}\leanok
+For every fixed family above there exist $c_*>1$ and $\kappa>0$ such that, for every $1<c<c_*$, there is $N_0(\mathbf P,c)$ with the following property. If $N\geq N_0$ and $A\subset[N]$ satisfies
+\[
+ |A|\geq N/(\log N)^\kappa,
+\]
+then, for some $p\in\PP$ and $x\in\Z$, all the elements
+\[
+ x,\ x+P_1(p-1),\ldots,x+P_\ell(p-1)
+\]
+belong to $A$ and are pairwise distinct.
+\end{theorem}
+\Status{checked conditional proof from SS, TV, KM-R and KM-Compatible}
+\ifDetailed
+The order of quantifiers matters: $\kappa$ and $c_*$ are chosen before $c$, whereas the size threshold can depend on $c$. They also precede the choice of $A$. The main Lean specification uses a finite set of integers, subset of the integer interval $[1,N]$, and an injective function on $\ell+1$ indices to encode distinctness. It does not restrict the signs of the $P_i$ or assume that the prime is larger than a fixed constant. The presence of $x\in A$ forces $x\geq1$ automatically.
+
+The checked proof constructs a finite chain of genuine sets. Its numerical bounds give one size threshold for every permitted initial density and every stage of that chain.
+\fi
+
+\begin{theorem}[Pointwise prime averages; manuscript Theorem 1.2]\label{t:pointwise}
+\uses{def:objects,def:averages,p:pointwise-comparison,input:MW,input:PNT}
+\lean{PSPrimes.PointwiseErgodicTheorem, PSPrimes.PointwiseConclusion, PSPrimes.pointwiseErgodicTheorem_of_external_inputs}\leanok
+After decreasing $c_*>1$ if needed, for every $1<c<c_*$, every invertible probability measure-preserving system $(X,\nu,T)$ and every $f_1,\ldots,f_\ell\in L^\infty(X)$, the averages
+\[
+ \frac1{\pi_c(N)}\sum_{\substack{p\leq N\\p\in\PP}}
+ \prod_{i=1}^{\ell}f_i(T^{P_i(p-1)}x)
+\]
+converge a.e. to the same limit as the analogous average over all primes, normalized by $\pi(N)$. Here $\pi_c(N)=|\PP\cap[N]|$.
+\end{theorem}
+\Status{checked conditional proof from SS, OR, PNT and MW; full uniform $c_*$ specification}
+\ifDetailed
+A field convention at scales where the counting denominator is zero is harmless only after proving that the selected primes are infinite. That eventual positivity is a later consequence, not an implicit hypothesis. The conclusion requires a common a.e. limit; equality of two unrelated existence statements is insufficient.
+
+The checked theorem establishes \texttt{PointwiseErgodicTheorem}, choosing a common $c_*$ before the probability system, its bounded inputs and $c$. It is not merely a fixed-$c$ conclusion specification. An invertible measure-preserving integer action encodes all $T^m$, $m\in\Z$. Its group law gives inverses for negative iterates, and measure preservation is required for every integer iterate. To connect pointwise representatives to $L^\infty$ classes, choose bounded measurable representatives. A countable union of exceptional sets over the finitely many inputs and all integer shifts is null. Outside it all orbit values satisfy the pointwise bounds used below. The checked representative lemmas in \texttt{Representatives.lean} prove simultaneous boundedness and congruence over all integer iterates and transfer the common-limit conclusion through a.e. changes. Normalization and rescaling of arbitrary essentially bounded inputs are discharged in the final assembly.
+\fi
+
+\begin{theorem}[Finite polynomial estimate; manuscript Theorem 1.3]\label{t:teravainen}
+\uses{def:objects}\lean{PSPrimes.FiniteVNInput}
+For fixed integer polynomials $R_1,\ldots,R_\ell$ of distinct increasing degrees, largest degree $d$, and $C_0\geq1$, there are $K\geq1$, $K\ll_d1$, and a constant $C=C(C_0,\mathbf R)$ such that, for all $M\geq1$, $1$-bounded $F_i$ supported on $[-C_0M^d,C_0M^d]$ and $1$-bounded $\theta$ on $[M]$,
+\[
+ \left|M^{-d-1}\sum_{x\in\Z}\sum_{m=1}^M
+ \theta(m)F_0(x)\prod_{i=1}^{\ell}F_i(x+R_i(m))\right|
+ \leq C\bigl(M^{-1}+\|\theta\|_{u^{d+1}[M]}\bigr)^{1/K}.
+\]
+\end{theorem}
+\Status{external input TV, not a proved project theorem}
+The actual \texttt{FiniteVNInput} uses universal phase bounds and integer scales, with positive degree. Its source-to-interface bridge TV-B (supremum, sign and monotonicity) is explicitly unformalized. Its constant depends on the fixed family. Scaling $\theta=g/B$ gives the bound $CB(M^{-1}+B^{-1}\|g\|_u)^{1/K}$ when $|g|\leq B$ and $B>0$. This scaling is an elementary deduction, not a strengthened external input.
+
+\section{Arithmetic and finite comparison}
+\begin{theorem}[Polynomial-phase saving; manuscript Theorem 2.1]\label{t:shao-sun}
+\uses{def:objects}\lean{PSPrimes.ShaoSunPhaseInput}
+For every integer $r\geq1$ there are $\varepsilon_r,\sigma_r>0$ such that, whenever $1-\varepsilon_r<\gamma<1$,
+\[
+ \sup_{\deg\phi\leq r}\left|\sum_{n=1}^{X}D_\gamma(n)\ee(\phi(n))\right|
+ \ll_{r,\gamma}X^{1-\sigma_r}.
+\]
+The implied constant is uniform over all real polynomial coefficients.
+\end{theorem}
+\Status{external input SS: directly quoted polynomial-phase consequence}
+\begin{proof}[Mathematical derivation and formalization boundary]
+\proves{t:shao-sun}
+Take $G=\R$, $\Gamma=\Z$, $G_0=\cdots=G_r=\R$ and $G_j=\{0\}$ for $j>r$. Set $F(t+\Z)=\ee(t)$. The filtered nilmanifold and Lipschitz bounds depend only on $r$. Expand $\phi(n)=\sum_{j=0}^{r}a_j\binom nj$. This is an adapted polynomial sequence, so SS gives the estimate with constants independent of the $a_j$. No quantitative Gowers-uniformity statement for $D_\gamma$ is used.
+\end{proof}
+\ifDetailed
+The published source itself states the polynomial-phase consequence. The current external interface \texttt{ShaoSunPhaseInput} quotes that consequence directly. The nilmanifold explanation above is not an additional required specialization bridge for that interface. Its general formalization, including filtration, lattice, metric and binomial adaptedness, remains outside the project. Integer-scale restriction and the finite extension from the published $X\geq3$ to $X=1,2$ are included in the external translation; the finite extension has not separately been checked in Lean.
+
+Fix $r$ before choosing the admissible interval of $\gamma$. The saving $\sigma_r$ is common throughout that interval; an interface providing only a positive saving depending on each $\gamma$ is weaker and does not immediately justify the uniform choice of $c_*$ and $\xi$ later. One may decrease $\sigma_r$ to lie in $(0,1]$. Bounds stated for $X\geq3$ extend to the finitely many smaller positive integer scales after increasing a $\gamma$-dependent constant.
+\fi
+
+\begin{lemma}[Restriction to progressions; manuscript Lemma 2.2]\label{l:progression-phase}
+\uses{t:shao-sun}
+\lean{PSPrimes.progressionPhase_of_shaoSun}\leanok
+With the same admissible $\gamma$ range and some positive saving $\sigma_r$, for all integers $Q,M\geq1$,
+\[
+ \sup_{\deg\psi\leq r}
+ \left|\sum_{y=1}^{M}D_\gamma(Qy+1)\ee(\psi(y))\right|
+ \ll_{r,\gamma}(QM)^{1-\sigma_r}.
+\]
+\end{lemma}
+\Status{checked conditional proof from \texttt{ShaoSunPhaseInput}; saving may be decreased}
+\begin{proof}[Restriction argument]
+\proves{l:progression-phase}\uses{t:shao-sun}\leanok
+Write $L=QM$ and reindex by $n=Qy+1$. Insert
+\[
+ \1_{n\equiv1\pmod Q}=Q^{-1}\sum_{a=0}^{Q-1}\ee(a(n-1)/Q).
+\]
+For each $a$ the phase $\psi((n-1)/Q)+a(n-1)/Q$ has degree at most $r$, because $r\geq1$. Including $n=1$ causes no error since $D_\gamma(1)=0$. Apply Theorem 2.1 at $L+1$ to each character and average; the factor $Q$ cancels exactly.
+\end{proof}
+\ifDetailed
+The reindexed range is $2\leq n\leq QM+1$, not $n\leq QM$. Omitting the final $+1$ would drop a possibly nonzero summand. The shift is handled by applying the external sum estimate to $L+1$, then using $L+1\leq2L$. The polynomial composition has real coefficients and is allowed without denominator-size restrictions. Averaging absolute values costs no power of $Q$.
+
+The implementation proves character orthogonality using the primitive standard additive character of $\Z/Q\Z$, then exact reindexing and polynomial composition. It identifies that character with $\ee(a(n-1)/Q)$ and proves the degree bound, including $Q=1$. The generic result \texttt{PhaseBound.progression} retains the endpoint $QM+1$. The final theorem \texttt{progressionPhase\_\allowbreak{}of\_\allowbreak{}shaoSun} decreases the supplied saving to $\min(\sigma,1/2)$ and replaces its bound constant by twice the original constant. The endpoint real-power inequality is thereby checked without assuming the original saving is below $1$. All quantifiers remain uniform in $Q,M$ and phase coefficients. The directly quoted polynomial-phase input itself remains external.
+\fi
+
+\begin{definition}[Rescaling and the finite counting form]\label{def:rescaling}
+\uses{def:objects}
+\lean{PSPrimes.rescale, PSPrimes.countingForm}
+For $P(0)=0$ and integer $Q\geq1$, define the integer polynomial
+\[
+ P_Q(y)=P(Qy)/Q=\sum_{j=1}^{\deg P}a_jQ^{j-1}y^j,
+ \qquad P(y)=\sum_{j\geq1}a_jy^j.
+\]
+For finitely supported $f_i:\Z\to\C$ set
+\[
+ \Tcount_{N,M,Q}(w;\mathbf f)=\frac1{NM}\sum_x\sum_{y=1}^M
+ w(Qy+1)f_0(x)\prod_{i=1}^{\ell}f_i(x+P_{i,Q}(y)).
+\]
+\end{definition}
+\Status{exact algebra checked; parent Proposition 2.3 conditionally checked}
+\ifDetailed
+The coefficientwise definition avoids introducing rational coefficients or an incorrect truncated integer quotient. Its fundamental identity is $Q P_Q(y)=P(Qy)$. The constant coefficient is zero, and positive degree is retained when $Q\neq0$. These imply the exact affine transport
+\[
+ (r+Qx)+P_i(Qy)=r+Q(x+P_{i,Q}(y)).
+\]
+Multiplication by nonzero $Q$ is injective on $\Z$, so this identity also preserves pairwise distinctness. An auxiliary with arbitrary finite index type can include $P_0=0$ uniformly.
+
+The nested identity needed by the iteration is
+\[
+ kP_{Qk}(y)=P_Q(ky),\qquad Qk\,y+1=Q(ky)+1.
+\]
+The proof cancels a nonzero factor $Q$ after applying the fundamental identity twice. It does not assume $k\neq0$ for the equality itself; preserving configurations needs the progression step to be positive.
+
+Linearity of the counting form in its weight gives exactly
+\[
+ \Tcount(D_\gamma;\mathbf f)
+ =\Tcount(\Lambda_\gamma;\mathbf f)-\Tcount(\Lambda;\mathbf f).
+\]
+Thus solving for the ordinary-prime count introduces a minus sign, harmless under an absolute error estimate but relevant to a literal identity. The implementation keeps this equality explicit.
+\fi
+
+\begin{proposition}[Finite comparison; manuscript Proposition 2.3]\label{p:comparison}
+\uses{t:teravainen,l:progression-phase,def:rescaling}
+\lean{PSPrimes.ps_counting_comparison}\leanok
+Fix $C_0\geq1$, $0<a<1$ and the original family. There are $c_*(d)>1$ and $\xi(d)>0$ such that, for $1<c<c_*$,
+\[
+ Q\leq\exp((\log N)^a),\qquad
+ M=\left\lfloor(N/Q^{d-1})^{1/d}\right\rfloor
+\]
+imply, for sufficiently large $M$ in terms of $c,\mathbf P,C_0,a$ and $1$-bounded inputs supported on $[-C_0N,C_0N]$,
+\[
+ |\Tcount_{N,M,Q}(D_\gamma;\mathbf f)|\ll_{c,\mathbf P,C_0}N^{-\xi}.
+\]
+\end{proposition}
+\Status{checked conditional proof from SS and TV; TV-B remains external}
+\begin{proof}[Fixed-family lift]
+\proves{p:comparison}\uses{t:teravainen,l:progression-phase,def:rescaling}\leanok
+Set $L=QM$. Lift $f_i$ by $F_i(Qx)=f_i(x)$ and $F_i(z)=0$ otherwise. Set
+\[
+ B=C_\gamma L^{1-\gamma}\log(2L),\qquad
+ \Theta(n)=B^{-1}D_\gamma(n+1)\1_{Q\mid n}.
+\]
+Then $|\Theta|\leq1$ and
+\[
+ \|\Theta\|_{u^{d+1}[L]}\ll B^{-1}L^{-\sigma_d}.
+\]
+The lifted count uses the original fixed $P_i$ and has normalization loss
+\[
+ \frac{L^{d+1}}{NM}\asymp Q^2.
+\]
+TV therefore bounds the original count by
+\[
+ \ll BQ^2\bigl(L^{-1}+B^{-1}L^{-\sigma_d}\bigr)^{1/K}.
+\]
+Choose $1-\gamma<\min(1,\sigma_d)/(8K)$; use $B\ll_\gamma L^{2(1-\gamma)}$ and absorb $Q^2=L^{o(1)}$. The remaining negative power of $L=N^{1/d+o(1)}$ gives the claimed saving.
+\end{proof}
+\ifDetailed
+\subsection*{The exact scale and support bookkeeping}
+Put $t=(N/Q^{d-1})^{1/d}$. For $t\geq2$, the floor satisfies $t/2\leq M\leq t$, hence
+\[
+ 2^{-d}QN\leq L^d\leq QN,\qquad
+ 2^{-d}Q^2\leq\frac{L^{d+1}}{NM}\leq Q^2.
+\]
+A lifted support point has $|z|\leq C_0QN\leq2^dC_0L^d$. Thus TV is applied with a support constant depending only on $C_0,d$, never on $Q$. The integer identity
+\[
+ F_i(Qx+P_i(Qy))=f_i(x+P_{i,Q}(y))
+\]
+uses $Q\mid P_i(Qy)$, which follows from zero constant coefficient. In the lifted double sum $F_0$ forces $z=Qx$, and $\Theta$ forces $n=Qy$ with $1\leq y\leq M$. This proves the exact identity before applying TV; there are no multiplicity factors beyond its normalization.
+
+The helper \texttt{discrepancyWeight\_\allowbreak{}le\_\allowbreak{}envelope} bounds the actual discrepancy on a positive integer interval. For $1\leq n\leq L$, one has $|D_\gamma(n+1)|\ll_\gamma L^{1-\gamma}\log(2L)$, using $0<\gamma<1$ and $\Lambda(n)\leq\log n$. This establishes the 1-boundedness required by TV. A phase in $n$ restricts to $\phi(Qy)$, and conversely every polynomial $\psi(y)$ occurs by taking $\phi(t)=\psi(t/Q)$. Thus the displayed $u$-norm identity in manuscript (16) loses no phases.
+
+Let $m=\min(1,\sigma_d)$ and $\rho=m/(4K)$. If $e=1-\gamma<m/(8K)$, the two exponents after splitting the concave power obey
+\[
+ 2e-1/K\leq-3\rho,\qquad
+ 2e(1-1/K)-\sigma_d/K\leq-3\rho.
+\]
+Eventually $Q^2\leq L^\rho$, uniformly in the allowed modulus range for fixed $a<1$. The bound is therefore $O(L^{-2\rho})$, and $L\geq\frac12N^{1/d}$ gives a fixed negative power of $N$. One can choose a smaller $\xi$, for example $\rho/d$, without changing the original conclusion. The cutoff may depend on $a$ and $c$; the saving can be chosen using $d$ alone. These are inequalities with quantified thresholds, not informal replacements of finite statements by $o(1)$.
+
+The checked implementation separates exact scale bounds (\texttt{Scales.lean}), the actual discrepancy lift and raw estimate (\texttt{ps\_\allowbreak{}counting\_\allowbreak{}comparison\_\allowbreak{}raw}), exponent inequalities (\texttt{PowerSaving.lean}), and quantified subpower-modulus absorption (\texttt{AsymptoticScales.lean}). The final \texttt{ps\_\allowbreak{}counting\_\allowbreak{}comparison} chooses $c_*(d),\xi(d)$ before the family, and its constant before $a$; only the sufficiently-large-$M$ threshold depends on $a$. The checked bounded-support-to-finitely-supported representation preserves the manuscript domain of arbitrary supported functions.
+\fi
+
+\section{Density increment and recurrence}
+\begin{definition}[Coefficient and modulus conditions]\label{def:coefficients}
+\uses{def:rescaling}\lean{PSPrimes.HasCQCoefficients, PSPrimes.smoothModulus, PSPrimes.SmoothUpTo}
+Write $\mathcal L(s)=\operatorname{lcm}(1,\ldots,s)$ and $P^+(1)=1$. A positive-degree polynomial $R(y)=\sum_{j=1}^e a_jy^j$ has $(C,Q)$-coefficients if
+\[
+ a_e=a'_eQ^{e-1},\quad0<|a'_e|\leq C,\quad
+ |a_j|\leq C|a_e|\quad(1\leq j<e).
+\]
+A single $C$ bounding all coefficients of the original family works for every rescaling $P_{i,Q}$ and every positive $Q$.
+\end{definition}
+\ifDetailed
+Indeed, its leading coefficient is $a_{i,d_i}Q^{d_i-1}$ with $1\leq|a_{i,d_i}|\leq C$. For $j<d_i$, $|a_{i,j}|Q^{j-1}\leq C Q^{d_i-1}\leq C|a_{i,d_i}|Q^{d_i-1}$. The normalized leading coefficient bound is part of the definition; dropping it would create a stronger and possibly false uniform interface.
+\fi
+
+\begin{proposition}[Discrepancy gives an increment; manuscript Proposition 3.1]\label{p:KMTT}
+\uses{def:coefficients,input:KM}
+\lean{PSPrimes.kmtt_density_increment_normalized, PSPrimes.ArithmeticLocalFactor, PSPrimes.IsLocalProjection}\leanok
+For fixed $C,d,\ell$ there are $C_1,K_1\geq2$, $0<c_0<1/2$ and $c_1,c_2>0$ such that the following holds for sufficiently large $N$. Suppose
+\[
+ (\log N)^{-1/C_1^2}<\delta\leq1,\quad
+ \lceil K_1\delta^{-C_1}\rceil\leq s\leq(\log N)^{c_0},
+\]
+\[
+ Q\leq\exp((\log N)^{2c_0}),\quad P^+(Q)\leq s,\quad \mathcal L(s)\mid Q.
+\]
+Let $R_i$ have the specified distinct degrees and $(C,Q)$-coefficients, $R_0=0$, and put $M=\lfloor(N/Q^{d-1})^{1/d}\rfloor$. If $|A|=\delta N$ and the absolute prime-weighted discrepancy between $\1_A$ and $\delta\1_{[N]}$ is at least
+\[
+ c_1\delta^{\ell+1}\E_{y\leq M}\Lambda(Qy+1),
+\]
+then an atom $a+Q^b[N']\subset[N]$, with $1\leq b\ll_d1$, has density at least $(1+c_2)\delta$ and length
+\[
+ N'\geq Q^{-O_{d,\ell}(1)}\delta^{O_{d,\ell}(1)}
+ M^r\exp(-d\sqrt{\log M}),\qquad r=\deg R_1.
+\]
+\end{proposition}
+\Status{checked conditional proof from KM-U and KM-R, including literal length normalization}
+\begin{proof}[The original local-factor deduction]
+\proves{p:KMTT}\uses{input:KM}\leanok
+KM-U gives $M e^{-\sqrt{\log M}}\leq M_0\leq M$ and unweighted discrepancy at least $(c_1/4)\delta^{\ell+1}$. Apply KM-R with $\varepsilon=(c_1/16)\delta^{3(\ell+1)}$. Its small-scale alternative contradicts $\log M_0\gg_d\log N$. Otherwise let $F_i$ be the densities on its progression partitions. They preserve mass, and the approximation leaves discrepancy at least $(c_1/8)\delta^{\ell+1}$.
+
+If every $F_i\leq(1+c_2)\delta$, equality of masses gives
+\[
+ \sum_x|F_i(x)-\delta\1_{[N]}(x)|\leq2c_2\delta N.
+\]
+Telescoping the products bounds the discrepancy by
+$2(\ell+1)c_2(1+c_2)^\ell\delta^{\ell+1}$, a contradiction when $c_2$ is small. Some atom therefore has the required density. KM-R's resolution and the bound on $M_0$ give the length estimate.
+\end{proof}
+\ifDetailed
+\subsection*{Constants, divisibility and the small alternative}
+KM-U and KM-R must be supplied with compatible constants. The lower bound on $s$ is chosen so that $\mathcal L(\lceil\varepsilon^{-A'}\rceil)\mid\mathcal L(s)\mid Q$. Increasing $C_1,K_1$ makes this hold for every allowed density. This is a uniform arithmetic implication, not a separate choice of modulus after seeing the regularity partition.
+
+The small alternative is $M_0\ll(Q/\varepsilon)^{O(1)}$. Taking logarithms gives an upper bound $O((\log N)^{2c_0}+\log\log N)$, because $\delta^{-1}$ is polylogarithmic. From the definition of $M$ and the lower bound for $M_0$, one has $\log M_0\geq(3d)^{-1}\log N$ eventually. Since $2c_0<1$, the two bounds conflict for a uniform size threshold.
+
+The local factors partition all of $[N]$. On an atom $B$, $F_i=|A\cap B|/|B|$; extending by zero gives $0\leq F_i\leq1$ and $\sum_xF_i=|A|=\delta N$. Approximation with error at most $\varepsilon$ leaves at least $c_1\delta^{\ell+1}/8$, since $0<\delta\leq1$ implies $\delta^{3(\ell+1)}\leq\delta^{\ell+1}$.
+
+For the equal-mass inequality, put $H=F_i-\delta\1_{[N]}$. Its total sum is zero. The positive part is at most $c_2\delta$ pointwise on $[N]$, so it has mass at most $c_2\delta N$, and the negative part has the same mass. This proves the displayed $\ell^1$ bound. The implementation's finite version only needs equality of sums and the upper bound.
+
+In the product telescoping, each term has one difference factor and $\ell$ other factors. Both $F_i$ and $\delta\1_{[N]}$ are bounded by $(1+c_2)\delta$. For each fixed $y$, translation $x\mapsto x+R_i(y)$ preserves the entire integer sum of the absolute difference. Finite support makes the change of variable exact. Summing in $y$ and dividing by $NM_0$ proves the advertised bound with no factor depending on $R_i$.
+
+An atom with $F_i>(1+c_2)\delta$ is nonempty and is an actual integer progression, so its count is at least the weak inequality in the proposition. The resolution is at least $Q^{-O(1)}\delta^{O(1)}M_0^r$. Since $M_0\geq M e^{-\sqrt{\log M}}$ and $r\leq d$, this implies the manuscript's weaker exponential factor $e^{-d\sqrt{\log M}}$.
+
+The direct regularity calculation first gives a positive prefactor $c_{\rm len}$ in the length bound. This factor may depend on the fixed coefficient parameter $C$; it must not be silently absorbed into an exponent claimed to depend only on $d,\ell$. The literal normalization increases only $K_1$ to $\max(K_1,c_{\rm len}^{-1})$. On the restricted admissible range, saturation gives $Q\geq s\geq K_1\delta^{-C_1}\geq c_{\rm len}^{-1}$, so
+\[
+ Q^{-(A_q+1)}\leq c_{\rm len}Q^{-A_q}.
+\]
+One additional inverse-modulus power removes the prefactor with no $C$ dependence in the exponent. The same unweighted and mass witnesses restrict to these parameters; neither $c_1$ nor the mass cutoff is changed. The actual iteration may retain the explicit prefactor instead, because the logarithmic length lemma accounts for it in a fixed additive constant.
+
+\fi
+
+\begin{lemma}[Sparse-prime absence forces discrepancy; manuscript Lemma 3.2]\label{l:PS-discrepancy}
+\uses{p:comparison,def:coefficients,input:KM}
+\lean{PSPrimes.ps_prime_discrepancy}\leanok
+Fix the original family and the constants of Proposition 3.1. There is a degree-dependent $c_*>1$ such that, for $1<c<c_*$ and sufficiently large $N$, the parameter hypotheses of Proposition 3.1 imply the following. If $A\subset[N]$ contains no pairwise-distinct configuration
+\[
+ x,\ x+P_{1,Q}(y),\ldots,x+P_{\ell,Q}(y),
+ \quad y\geq1,\quad Qy+1\in\PP,
+\]
+then its prime-weighted discrepancy satisfies the hypothesis of Proposition 3.1.
+\end{lemma}
+\Status{checked conditional proof from SS, TV and compatible same-parameter prime-mass data}
+\begin{proof}[Main term and the three errors]
+\proves{l:PS-discrepancy}\uses{p:comparison,input:KM}\leanok
+Choose small fixed $\tau>0$. For $y\leq\lfloor\tau M\rfloor$, all shifts have absolute value at most $N/10$, so at least $N/2$ base points survive. The ordinary-prime model count is therefore $\gg_{\mathbf P}\delta^{\ell+1}\E_{y\leq M}\Lambda(Qy+1)$, by the prime-mass truncation comparison.
+
+Comparison changes the count in $A$ to the $\Lambda_\gamma$ count with error $O(N^{-\xi})$. Its noncollision prime terms vanish by hypothesis. Collisions occur at $O_{d,\ell}(1)$ roots of nonzero difference polynomials, contributing
+\[
+ \ll (QM)^{1-\gamma}\log(2QM)/M.
+\]
+Higher prime powers contribute
+\[
+ \ll Q^{3/2-\gamma}M^{1/2-\gamma}(\log(2QM))^2.
+\]
+All three errors are $O(N^{-\eta})$ for a positive $\eta$. The lower prime-mass bound $\E\Lambda(Qy+1)\gg\exp(-O((\log N)^{2c_0}))$ and the density range make the errors negligible compared with the model. Subtracting the actual count from that model proves the discrepancy.
+\end{proof}
+\ifDetailed
+The checked auxiliary \texttt{card\_\allowbreak{}rescaled\_\allowbreak{}collisions\_\allowbreak{}le} establishes the actual root-count subclaim for the rescaled family, including $P_0=0$. There are at most $d\binom{\ell+1}{2}$ collision parameters: for each pair of distinct indices, the corresponding difference is a nonzero polynomial of degree at most $d$. Distinct degrees guarantee nonzero differences even when some evaluations coincide. The argument is over integer roots and includes collisions with $P_0=0$. A root-count bound is enough; a bound on where the roots occur is unnecessary.
+
+The checked \texttt{norm\_\allowbreak{}collisionDoubleSum\_\allowbreak{}normalized\_\allowbreak{}le} handles the finite normalized collision sum, with explicit spatial-cardinality and term bounds. For every exceptional $y$, the normalized spatial count is at most $1$, because $f_0=\1_A$ is supported in $[N]$. Bounding the remaining weight pointwise gives the collision term. For higher powers the checked \texttt{PrimePowers.lean} gives the actual filtered cardinality bound and combined weighted mass estimate below. Use
+\[
+ \sum_{\substack{n\leq L+1\\n=p^j,\ j\geq2}}\Lambda(n)
+ \ll L^{1/2}(\log(2L))^2.
+\]
+This follows by summing over $j\leq\log_2(L+1)$, counting at most $(L+1)^{1/j}$ possible prime bases and using $\Lambda(n)\leq\log(L+1)$. It is an elementary upper bound, not a PNT. Multiplying by $L^{1-\gamma}/M$ gives the claimed contribution. Restricting to $Qy+1$ only decreases this nonnegative sum.
+
+The checked \texttt{DiscrepancySaving.lean} makes the comparison quantitative. For $L=QM\geq1$ and $\gamma\geq3/4$, use $\log(L+1)\leq32(L+1)^{1/32}$, so its square is at most $1024(L+1)^{1/16}$. Both error numerators are bounded by a fixed multiple of $(L+1)^{13/16}$. Since $L+1\leq2L$ and $1/M=Q/L$, the error is at most a fixed multiple of $QL^{-3/16}$. The uniform subpower estimate gives $Q\leq L^{1/16}$ eventually; thus it is $O(L^{-1/8})=O(N^{-1/(8d)})$. All constants are explicit in Lean. The separate comparison error is $O(N^{-\xi})$.
+
+The checked \texttt{eventually\_\allowbreak{}powerSaving\_\allowbreak{}le\_\allowbreak{}density\_\allowbreak{}mass} proves, for fixed positive constants and any $a<1$, that $CN^{-\eta}\leq c\delta^k b e^{-B(\log N)^a}$ uniformly in $\delta>(\log N)^{-\nu}$. Its threshold precedes $\delta$. The proof absorbs one half of the power using a logarithmic-power estimate and the other using $e^{B(\log N)^a}=N^{o(1)}$. Applied separately to the two actual errors with coefficient $c_1/2$, it proves precisely the finite subtraction premise.
+
+The subpower modulus bound is essential twice. It makes $Q=M^{o(1)}$, so the collision and prime-power terms decay for $\gamma>1/2$ sufficiently near $1$. It also ensures that the prime mass, which can be small due to an exceptional zero, is still much larger than a fixed negative power of $N$. The polylogarithmic density factor $\delta^{\ell+1}$ does not change that comparison.
+
+The checked density auxiliaries express the equal-mass bound and the telescoping norm bound independently of the regularity input; they are collected in \texttt{Density.lean}. They do not construct progression atoms.
+
+The exact last step is elementary: if the model is at least $2c_1\delta^{\ell+1}\mathfrak m$ and the actual count is at most $c_1\delta^{\ell+1}\mathfrak m$, their difference is at least $c_1\delta^{\ell+1}\mathfrak m$. Both premises are now proved for the actual counts. The checked \texttt{ps\_\allowbreak{}prime\_\allowbreak{}discrepancy} combines them with uniform error absorption; its mass witness uses exactly the same source parameter record as the later unweighted comparison.
+\fi
+
+\subsection*{Iteration proving Theorem 1.1}
+\ifDetailed
+Let $\alpha=|A|/N$ and suppose the required configuration is absent. Fix
+\[
+ s=\lceil K_1\alpha^{-C_1}\rceil,\qquad Q_0=\mathcal L(s).
+\]
+The integer inequality $\mathcal L(s)\leq s!$ gives $\log Q_0\ll\alpha^{-O(1)}$. Choosing $\kappa$ sufficiently small and using $\alpha\geq(\log N)^{-\kappa}$ gives $Q_0=N^{o(1)}$.
+
+Choose the residue class modulo $Q_0$ having maximal relative density on its full intersection with $[N]$. Write its representative as $r_0\in\{1-Q_0,\ldots,0\}$ and set
+\[
+ N_0=\left\lfloor\frac{N-r_0}{Q_0}\right\rfloor,\quad
+ A_0=\{u\in[N_0]:r_0+Q_0u\in A\}.
+\]
+The checked \texttt{exists\_initial\_residue} in \texttt{InitialProgression.lean} constructs exactly this full-class pullback. These intervals have unequal sizes; the averaging argument is weighted by their actual cardinalities. Hence $|A_0|/N_0\geq\alpha$, and $N_0\geq N/(2Q_0)$ eventually. The affine identity transports any forbidden rescaled configuration back into $A$ and preserves distinctness.
+
+At stage $j$, apply Lemma 3.2 and Proposition 3.1, obtaining
+\[
+ A_{j+1}=\{u\in[N_{j+1}]:a_j+Q_j^{b_j}u\in A_j\},\quad
+ \delta_{j+1}\geq(1+c_2)\delta_j,\quad Q_{j+1}=Q_j^{b_j+1}.
+\]
+The checked \texttt{NoRescaledConfiguration.\allowbreak{}progression\_\allowbreak{}pullback} preserves absence, using the literal prime-parameter equality $Q_j(Q_j^{b_j}y)+1=Q_j^{b_j+1}y+1$ and injectivity of positive affine maps.
+
+All $Q_j$ are positive powers of $Q_0$, so $P^+(Q_j)\leq s$ and $\mathcal L(s)\mid Q_j$. Since densities increase, the same fixed $s$ satisfies $s\geq\lceil K_1\delta_j^{-C_1}\rceil$ at every stage.
+
+Put $r=\deg P_1$ and $\vartheta=r/d\in(0,1]$. If $b_j+1\leq B_*$ uniformly, then
+\[
+ \log Q_j\leq B_*^j\log Q_0\leq\alpha^{-O(1)}
+ \quad\text{for }j=O(\log\alpha^{-1}+1).
+\]
+The length estimate gives the finite recursion
+\[
+ \log N_{j+1}\geq\vartheta\log N_j
+ -C\bigl(\log Q_j+\log\alpha^{-1}+\sqrt{\log N_j}\bigr).
+\]
+Progression inclusion implies $N_j\leq N$, and induction yields
+\[
+ \log N_j\geq\vartheta^j\log N_0
+ -C\bigl(j\alpha^{-C'}+j\log\alpha^{-1}+j\sqrt{\log N}\bigr).
+\]
+Using $\vartheta^j\geq\alpha^{O(1)}$ on the permitted horizon gives precisely the type of bound (35) in the manuscript. With small enough $\kappa$, the leading positive term dominates both the power-of-density error and the $\sqrt{\log N}\log\alpha^{-1}$ error, uniformly over all such stages. Consequently there is $\eta_0>0$ such that
+\[
+ \log N_j\geq(\log N)^{\eta_0},\quad
+ Q_j\leq e^{(\log N_j)^{2c_0}},\quad
+ s\leq(\log N_j)^{c_0},\quad
+ \delta_j>(\log N_j)^{-1/C_1^2}.
+\]
+Proposition 2.3 also applies, choosing any fixed $a$ with $2c_0<a<1$. All cutoffs must hold at these current lengths, not only at the initial length.
+
+The implementation proves the accumulated inequalities from the actual one-step bounds. In \texttt{FiniteIterationBounds.lean}, let $X=\log N$, $q_j=\log Q_j$ and $L_j=\log N_j$. The input data are $q_{j+1}\leq B_*q_j$, $L_j\leq X$ and the displayed lower recursion for $L_{j+1}$, together with the actual initial residue-class bound. For a horizon $H\leq J(\log\alpha^{-1}+1)$, its finite induction produces constants $A,b>0$ and $H_1,H_q,C_1'\geq0$, fixed before $\alpha,N,H,j$, with
+\[
+ q_j\leq H_q\alpha^{-A},\qquad
+ L_j\geq b\alpha^A X-H_1\alpha^{-A}
+       -C_1'(\log\alpha^{-1}+1)\sqrt X\quad(j\leq H).
+\]
+The first bound uses $B_*^H\leq e^{J\log B_*}\alpha^{-J\log B_*}$; the leading length term uses the corresponding lower bound for $\vartheta^H$. The error sum is bounded using $\log\alpha^{-1}+1\leq\alpha^{-1}$ and fixed larger reciprocal-density powers. These are proved finite statements, not assumed estimates for an already admissible infinite iteration.
+
+The checked \texttt{quantitative\_\allowbreak{}prefix\_\allowbreak{}admissibility} then chooses $\kappa>0$ and an eventual threshold before $\alpha$, the stage sequences and the stage index. Whenever $\alpha\geq(\log N)^{-\kappa}$, it obtains $L_j\geq(\log N)^{3/4}$ and all four current-stage admissibility inequalities above. The positive gaps in logarithmic exponents dominate the reciprocal-density and square-root errors. This gives one threshold valid for every permitted initial density and every already constructed prefix. The fixed source size thresholds are met because this lower bound tends to infinity uniformly.
+
+The set-level construction retains a state $(N_j,Q_j,A_j)$, positivity, inclusion $A_j\subset[N_j]$, smoothness, saturation and the exact forbidden configuration. A transition stores the genuine affine pullback, density growth, length bound and nonincrease of size. A finite prefix contains transitions only at indices already constructed. At its last state, numerical admissibility licenses Lemma 3.2 and the increment theorem, which construct the next actual progression and set. Its logarithmic length inequality follows from \texttt{LogScales.lean}, retaining the positive length prefactor. Extending the prefix changes only its next entry. No future stages or completed iteration are assumed as an external input.
+
+Finally
+\[
+ T=\left\lfloor\frac{\log\alpha^{-1}}{\log(1+c_2)}\right\rfloor+1
+\]
+satisfies $(1+c_2)^T\alpha>1$. Admissibility permits $T$ increments, contradicting $\delta_T\leq1$.
+\else
+Fix $s=\lceil K_1\alpha^{-C_1}\rceil$ and $Q_0=\mathcal L(s)$, and start on a densest full residue-class intersection. At every increment set $Q_{j+1}=Q_j^{b_j+1}$ and pull $A_j$ back to the selected progression. Exact nested rescaling preserves absence and distinctness. The modulus remains a power of $Q_0$; $s$ remains fixed. Quantitative length recursion and $\log Q_j\leq\alpha^{-O(1)}$ show that every step is admissible when $\alpha\geq(\log N)^{-\kappa}$ and $\kappa$ is small enough. After $O(\log\alpha^{-1}+1)$ increments, the density exceeds $1$. The actual finite-prefix construction and uniform admissibility proof are checked; the increment provider is discharged using the quoted source estimates and the original discrepancy argument.
+\fi
+\begin{proof}[Checked assembly of Theorem 1.1]
+\proves{t:szemeredi}\uses{l:PS-discrepancy,p:KMTT,def:rescaling,input:KM}\leanok
+\texttt{quantitative\_\allowbreak{}recurrence} chooses the maximum degree and a coefficient bound, then the regularity data and a compatible pair of comparison/mass witnesses. It proves the full \texttt{QuantitativeRecurrence} specification. Its only substantial external predicates are SS, TV, KM-R and KM-Compatible. The same-parameter source selection includes the explicitly unformalized bridge KM-J. The generic finite construction's transition-provider premise is discharged internally, rather than assumed as an original conclusion.
+\end{proof}
+
+\section{Pointwise comparison and unweighting}
+\begin{definition}[Orbit products and averages]\label{def:averages}
+\uses{def:objects}
+\lean{PSPrimes.IntegerAction, PSPrimes.orbitProduct, PSPrimes.weightedAverage, PSPrimes.selectedAverage}
+After choosing bounded representatives and scaling, suppose $|f_i|\leq1$. Define
+\[
+ z_n(x)=\prod_{i=1}^{\ell}f_i(T^{P_i(n-1)}x),\quad
+ B_N^\gamma=N^{-1}\sum_{n=1}^N\Lambda_\gamma(n)z_n,\quad
+ B_N=N^{-1}\sum_{n=1}^N\Lambda(n)z_n.
+\]
+Then $|z_n|\leq1$.
+\end{definition}
+The zero phase and PNT give
+\[
+ N^{-1}\sum_{n\leq N}\Lambda_\gamma(n)
+ =N^{-1}\sum_{n\leq N}\Lambda(n)+O(N^{-\sigma_d})\longrightarrow1.
+\]
+
+\begin{proposition}[Weighted pointwise comparison; manuscript Proposition 4.1]\label{p:pointwise-comparison}
+\uses{t:shao-sun,def:averages,input:OR,input:PNT}
+\lean{PSPrimes.ps_orbit_comparison}\leanok
+After decreasing $c_*>1$, for every $1<c<c_*$ one has
+$B_N^\gamma-B_N\to0$ almost everywhere.
+\end{proposition}
+\Status{checked conditional proof from SS, OR and PNT}
+\begin{proof}[Power saving, subsequence and interpolation]
+\proves{p:pointwise-comparison}\uses{t:shao-sun,input:OR,input:PNT}\leanok
+Apply the orbit estimate with $g=D_\gamma$ and
+\[B=C_cN^{1-\gamma}\log(2N).\]
+Theorem 2.1 then gives
+\[
+ \|B_N^\gamma-B_N\|_1\ll\log(2N)
+ \left[N^{1-\gamma-1/K}
+ +N^{(1-\gamma)(1-1/K)-\sigma_d/K}\right]\ll N^{-\eta}.
+\]
+It suffices that $1-\gamma\leq\min(1,\sigma_d)/(2K)$; one can take $\eta=\min(1,\sigma_d)/(4K)$ after absorbing the logarithm. Choose $A>\max(1,\eta^{-1})$, $N_j=\lfloor j^A\rfloor$. The $L^1$ norms are summable on this subsequence, so Tonelli gives a.e. convergence to zero there. For either nonnegative weight $w$, if $N_j\leq N<N_{j+1}$,
+\[
+ |B_N^w-B_{N_j}^w|
+ \leq\frac{N_{j+1}-N_j}{N_j^2}\sum_{n\leq N_j}w(n)
+ +\frac1{N_j}\sum_{N_j<n\leq N_{j+1}}w(n)=o(1).
+\]
+The last step uses only the full mass asymptotic and $N_{j+1}/N_j\to1$. Apply it to both weights.
+\end{proof}
+\ifDetailed
+\subsection*{A precise account of the limiting steps}
+Let $h_N=B_N^\gamma-B_N$. The $L^1$ estimate makes each $h_{N_j}$ integrable. Tonelli, applied to the nonnegative functions $|h_{N_j}|$, implies $\int\sum_j|h_{N_j}|<\infty$, hence the series is finite almost everywhere. Its terms tend to zero. This is stronger than convergence in $L^1$ along that subsequence and is what supports the pointwise conclusion.
+
+For integer $j\geq1$, $N_j$ is eventually positive, unbounded and increasing; the floor error is bounded by $1$. Comparison with $j^A$ proves both summability of $N_j^{-\eta}$ and ratio convergence. These independent facts, including the integer polynomial cutoff construction and summability, are checked in Lean; they are not extra hypotheses in the final proposition.
+
+Write $W_w(t)=\sum_{n\leq t}w(n)$. The second interpolation term equals $(W_w(N_{j+1})-W_w(N_j))/N_j$. Since $W_w(n)=n+o(n)$ and $N_{j+1}/N_j\to1$, it tends to zero. The first term is the product of $(N_{j+1}-N_j)/N_j\to0$ and $W_w(N_j)/N_j\to1$. These bounds are uniform in $x$. No short-interval PNT is assumed, and no cancellation is required in the gap between consecutive scales.
+
+For $N$ large choose the unique bracketing index $j$ with $N_j\leq N<N_{j+1}$. The triangle inequality bounds $|h_N|$ by the two interpolation errors plus $|h_{N_j}|$. Since the bracketing index tends to infinity with $N$, this proves full-sequence convergence on the intersection of the two relevant conull sets.
+\fi
+
+\subsection*{From weighted to prime-counting averages}
+By MW the ordinary weighted averages $B_N$ converge a.e.; thus Proposition 4.1 gives a common limit $L(x)$ for $B_N^\gamma$. Higher prime powers satisfy
+\[
+ \sum_{\substack{p^k\leq N\\k\geq2}}
+ \bigl(\Lambda_\gamma(p^k)+\Lambda(p^k)\bigr)
+ \ll_\gamma N^{3/2-\gamma}(\log(2N))^2=o(N)
+\]
+when $1/2<\gamma\leq1$. The checked cardinality bound is $\sqrt N\,\log_2N$, and the combined mass bound has coefficient $(\gamma^{-1}+1)/\log2$. The actual normalized mass tends to zero in \texttt{PrimePowers.lean}. Removing it leaves primes exactly.
+\ifDetailed
+Fix a point where both weighted limits hold. With
+\[
+ a(t)=\gamma^{-1}t^{1-\gamma}\log t\quad(t\geq2),\qquad
+ W(t)=\sum_{\substack{p\leq t\\p\in\PP}}a(p),
+\]
+we have $W(N)=N+o(N)$ and
+\[
+ S(N):=\sum_{\substack{p\leq N\\p\in\PP}}a(p)(z_p(x)-L(x))=o_x(N)=o_x(W(N)).
+\]
+The first equality uses the mass asymptotic, not pointwise convergence; the second uses both. For real $t$, $S(t)=S(\lfloor t\rfloor)$ and $W(t)=W(\lfloor t\rfloor)$, so the small-o bound extends from integers to all real $t$.
+
+For every $\varepsilon>0$, choose $t_0\geq2$ such that $|S(t)|\leq\varepsilon W(t)$ for all $t\geq t_0$. The weight is positive and increasing, since
+\[
+ a'(t)=\gamma^{-1}t^{-\gamma}\bigl(1+(1-\gamma)\log t\bigr)\geq0.
+\]
+Summation by parts with the step function $S$ gives
+\[
+ \sum_{\substack{p\leq N\\p\in\PP}}(z_p(x)-L(x))
+ =\frac{S(N)}{a(N)}+\int_2^N S(t)\frac{a'(t)}{a(t)^2}\,dt.
+\]
+The endpoint $p=2$ is included by the usual step-function convention; no value below $2$ contributes. Bounding the initial integral by a finite constant and using the same formula for $W$ yields
+\[
+ \left|\sum_{\substack{p\leq N\\p\in\PP}}(z_p(x)-L(x))\right|
+ \leq C_{x,\varepsilon}+\varepsilon\pi_c(N).
+\]
+Here the bracket $W(N)/a(N)+\int_2^N W(t)a'(t)/a(t)^2\,dt$ is exactly $\pi_c(N)$. It is important that the comparison is to the actual counting function, not to an incorrectly normalized continuous approximation.
+
+Since $W(N)\sim N$, the selected primes cannot be finite: a finite set would give an eventually constant $W$. Consequently $\pi_c(N)\to\infty$. Divide by it, take the limsup, and let $\varepsilon\downarrow0$ to obtain the selected-prime average limit $L(x)$. Repeat the same argument over all primes with $a(t)=\log t$ and $W(t)=\sum_{p\leq t}\log p\sim t$. This proves Theorem 1.2 as stated, including equality of limits.
+
+The implementation follows a discrete route. \texttt{sum\_\allowbreak{}range\_\allowbreak{}abel} and \texttt{finite\_\allowbreak{}unweighting\_\allowbreak{}bound} prove the finite summation identity and estimate. The abstract theorem \texttt{unweighting\_\allowbreak{}tendsto\_\allowbreak{}zero} removes a positive monotone weight when all sufficiently long centered weighted partial sums are small relative to their weighted mass. The checked \texttt{selectedAverage\_\allowbreak{}tendsto\_\allowbreak{}of\_\allowbreak{}weighted\_\allowbreak{}limits} supplies the end-to-end cutoff application: it proves infinitude from the positive mass limit, uses the increasing \texttt{Nat.nth} enumeration, and transfers convergence back to actual cutoffs. No externally supplied enumeration is required.
+
+The Tonelli deduction is represented by \texttt{ae\_\allowbreak{}tendsto\_\allowbreak{}zero\_\allowbreak{}of\_\allowbreak{}summable\_\allowbreak{}integral\_\allowbreak{}norm}. The checked \texttt{ae\_\allowbreak{}weightedAverage\_\allowbreak{}comparison\_\allowbreak{}of\_\allowbreak{}L1\_\allowbreak{}decay} constructs the integer cutoff sequence and combines a.e. subsequence convergence, both mass limits, and ratio convergence to pass to all scales. It requires those premises explicitly; none is silently provided by a desired pointwise conclusion. The endpoint shifts between positive manuscript sums and Lean ranges are discharged in its actual weighted-average application.
+
+The checked final assembly removes the actual higher-prime-power residuals, supplies the sparse and ordinary mass limits, proves positivity and monotonicity of both prime weights, and applies this discrete Abel theorem twice. It obtains exactly the common limit in Theorem 1.2. The arithmetic mass limit uses SS and PNT, and ordinary weighted convergence uses MW; none is assumed to be the desired sparse-prime conclusion.
+\else
+Center at $L(x)$ and use $a(t)=\gamma^{-1}t^{1-\gamma}\log t$. Then $W(t)=\sum_{p\leq t,p\in\PP}a(p)\sim t$ and the centered weighted sum is $o_x(W(t))$. Summation by parts, $a'>0$, and the same identity for $W$ bound the unweighted centered sum by $C_{x,\varepsilon}+\varepsilon\pi_c(N)$. The mass asymptotic forces $\pi_c(N)\to\infty$, so division gives convergence to $L(x)$. The ordinary-prime calculation uses $a(t)=\log t$. The actual mass, prime-power residual, a.e. assembly and cutoff unweighting applications are checked.
+\fi
+\begin{proof}[Checked assembly of Theorem 1.2]
+\proves{t:pointwise}\uses{p:pointwise-comparison,input:MW,input:PNT,t:shao-sun}\leanok
+\texttt{pointwiseErgodicTheorem\_\allowbreak{}of\_\allowbreak{}external\_\allowbreak{}inputs} combines the preceding arithmetic, interpolation and unweighting steps and the bounded-representative transfer. Its only substantial external premises are SS, OR, PNT and MW. The source-to-interface bridges OR-B and MW-B remain external and are catalogued separately.
+\end{proof}
+
+\section*{External dependencies and manuscript correspondence}
+\begin{inputthm}[KMTT comparison and weak regularity]\label{input:KM}
+\uses{def:coefficients}\lean{PSPrimes.KMTTUnweightedInput, PSPrimes.KMTTRegularityInput, PSPrimes.KMTTCompatibleInput, PSPrimes.PrimeProgressionMassWitness}
+KM-U and KM-R are separate external finite estimates with the parameter ranges recorded in Proposition 3.1 and the shared catalogue. The compatible input also selects the prime-mass data with the same comparison parameters, including the external bridge KM-J. None assumes a PS-prime configuration or the conclusion of Theorem 1.1.
+\end{inputthm}
+\begin{inputthm}[Orbit estimate]\label{input:OR}
+\uses{def:averages}\lean{PSPrimes.OrbitVNInput}
+The earlier orbit estimate OR bounds the $L^1$ norm by the scaled TV expression for any weight with the specified size and phase correlations.
+\end{inputthm}
+\begin{inputthm}[Ordinary weighted pointwise convergence]\label{input:MW}
+\uses{def:averages}\lean{PSPrimes.OrdinaryPrimePointwiseInput}
+MW gives a.e. convergence of the ordinary von Mangoldt-weighted averages under the finite-$L^q$ hypotheses; the probability-space bounded-input specialization is a bridge.
+\end{inputthm}
+\begin{inputthm}[Prime number theorem]\label{input:PNT}
+\uses{def:objects}\lean{PSPrimes.PrimeNumberTheoremInput}
+$N^{-1}\sum_{n\leq N}\Lambda(n)\to1$. A pinned-Mathlib theorem can replace this external entry only after its exact normalization and hypotheses are checked.
+\end{inputthm}
+
+\ifDetailed\else\small\fi
+\input{correspondence}
+\input{catalogue}
+\normalsize
+
+\subsection*{Verified scope and limitations}
+\ifDetailed
+Both main theorems and all five other original numbered deductions are proved conditionally. Theorem 1.1 uses SS, TV, KM-R and KM-Compatible; Theorem 1.2 uses SS, OR, PNT and MW. Proposition 3.1 separately uses the standalone KM-U and KM-R inputs; Lemma 3.2 takes explicit compatible prime-mass data. The eight named external predicates are uninstantiated. The source bridges SS-finiteX, TV-B, OR-B, MW-B, KM-U-B, KM-R-B and KM-J remain external. Theorems 1.3 and 2.1 are quoted, not proved in the project. No original numbered deduction remains open under these precise premises; this does not prove every analytic ingredient or its source-to-interface formulation unconditionally.
+\else
+All seven original numbered deductions are checked conditionally; Theorems 1.3 and 2.1 remain external. The eight named external predicates are uninstantiated. Their source-formulation bridges, including joint KMTT parameter selection KM-J, remain external. Full unconditional formalization of the quoted analytic ingredients is outside the verified scope.
+\fi
+
+\ifDetailed No necessary manuscript correction was identified. The preserved original is unchanged.\fi

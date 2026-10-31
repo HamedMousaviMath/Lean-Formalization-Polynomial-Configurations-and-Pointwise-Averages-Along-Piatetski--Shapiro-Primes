@@ -1,0 +1,3 @@
+Polynomial.eval_comp.{u} {R : Type u} [CommSemiring R] {p q : Polynomial R} {x : R} :
+  Polynomial.eval x (p.comp q) = Polynomial.eval (Polynomial.eval x q) p
+ArithmeticFunction.vonMangoldt : ArithmeticFunction ℝ

@@ -1,0 +1,8 @@
+'PSPrimes.realConfigurationForm_sub_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.dense_progression_of_local_discrepancy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.regularity_cutoff_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.regularity_divisibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.regularity_resolution_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.densityIncrement_of_unweighted_discrepancy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.kmtt_density_increment_of_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.kmtt_density_increment' depends on axioms: [propext, Classical.choice, Quot.sound]

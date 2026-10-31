@@ -1,0 +1,1 @@
+The redundant isolated checkpoint clean build was stopped or allowed to finish while reducing competition with final recurrence proof elaboration. It is not claimed as a successful clean build. The incremental integrated build and 427-declaration audit passed earlier. A final clean build will run after source freeze.

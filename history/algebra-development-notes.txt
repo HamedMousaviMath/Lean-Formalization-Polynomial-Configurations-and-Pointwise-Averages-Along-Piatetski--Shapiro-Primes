@@ -1,0 +1,200 @@
+Algebra and comparison development history
+
+The historical entries below retain the chronological implementation notes,
+including obligations that were open at the time and were discharged later.
+The initial notes and their follow-ups were reconstructed from the
+exact authored tool-call text after the workspace reset. No pre-reset hash of
+that notes file was recorded, so byte identity of the notes file is not claimed.
+The current corrected mathematical account is in the two blueprints and the
+statement map; historical status sentences are not current scope claims.
+
+--- Initial polynomial/lifting handoff ---
+
+Polynomial/lifting development notes (provisional agent record, current version)
+
+Source: untouched manuscript /workspace/scratch/c84b5d813ddd/upload/Draft1.tex.
+Target modules: PSPrimes/Rescaling.lean, PSPrimes/Lifting.lean, PSPrimes/Comparison.lean.
+
+Rescaling implements P(QY)/Q by the integer coefficient formula, with no division
+in the definition and zero constant term. Checked: coefficient formula; same
+positive degree when Q is nonzero; (C,Q) lower-coefficient bound; exact evaluation
+and integer quotient identities; nested rescaling; affine preservation of all
+configuration memberships and injectivity/distinctness. It applies to integer
+spatial/parameter variables, including negative spatial arguments and negative
+polynomial values.
+
+Lifting uses Finsupp.embDomain for F0 and zero extension on Q-multiples for the
+remaining Fi. It proves exact equality of these definitions, boundedness and
+integer/real support-radius dilation, reindexing of the positive multiples of Q
+in [QM], the full double-sum change z=Qx and n=Qy, the normalized factor
+L^(d+1)/(NM), and the polynomial-phase pullback without an extra factor Q.
+
+Comparison deduces the finite quantitative bound from the all-weight fixed-family
+von Neumann interface. Its FiniteVNInput.comparison wrapper chooses K,C before
+N,Q,M and the spatial functions. ps_counting_comparison_raw then specializes to
+the actual discrepancyWeight gamma, using checked progressionPhase_of_shaoSun
+and discrepancyWeight_le_envelope. External assumptions are exactly
+ShaoSunPhaseInput and FiniteVNInput, both explicit theorem parameters; no
+original target comparison is assumed. The theorem keeps the original finite
+support radius R and exact finite scale inequality Q*R <= C0 L^d explicit.
+It sets B=(gamma^-1+1)(L+1)^(1-gamma)log(L+1) and
+E=A L^(1-sigma)/L and proves the corresponding bound with no hidden constants.
+
+Scope limit: these files do NOT assert Proposition 2.3's N^-xi conclusion.
+Remaining: concrete floor-scale comparisons for M, the subpower Q range and the
+asymptotic absorption of B, Q and logarithmic factors. They do not assert the
+main recurrence or pointwise theorem.
+
+Actual commands (sandbox environment prefix omitted here for readability):
+  lake env lean PSPrimes/Rescaling.lean  -- exit 0
+  lake build PSPrimes.Rescaling         -- exit 0
+  lake env lean PSPrimes/Lifting.lean   -- exit 0
+  lake env lean PSPrimes/Comparison.lean -- exit 0
+  lake build PSPrimes.Comparison        -- succeeded; repeated after integration
+  lake env lean /workspace/scratch/c84b5d813ddd/rescaling-audit.lean -- exit 0
+  lake env lean /workspace/scratch/c84b5d813ddd/lifting-comparison-audit.lean -- exit 0 before final raw theorem audit
+
+Environment prefix used:
+PATH=/workspace/scratch/c84b5d813ddd/tooling/lean-4.19.0-linux/bin:$PATH
+LD_PRELOAD=/workspace/scratch/c84b5d813ddd/tooling/proc_exe_compat.so
+
+The audit outputs for the earlier and final generic comparison declarations
+contain only propext, Classical.choice and Quot.sound. The raw PS specialization
+is being included in the final repeat audit. No sorry/admit/axiom/native_decide
+has been used. Imported Mathlib artifacts were reused; these commands freshly
+compiled the project modules. Root will perform the whole-source clean build.
+
+--- First follow-up ---
+
+Final integration repeat: lake build PSPrimes.Comparison succeeded, including
+all current dependencies. Final raw specialization audit also exited 0 and
+reported only propext/Classical.choice/Quot.sound. See evidence/comparison-lake-build.log
+and evidence/lifting-comparison-axioms.log. A transient build failure while
+ExceptionalTerms.lean was concurrently extended was fixed by its owning agent;
+the next build above passed. The final source differs afterwards only by one
+prose-comment line avoiding a declaration-like line in a documentation comment.
+
+--- Second follow-up ---
+
+Subsequent substantial milestone: Proposition 2.3 completed conditionally.
+
+New PowerSaving.lean proves the sublinear-root splitting, two explicit exponent
+inequalities, power bounds with retained constants, absorption of the Q^2 lift
+loss, a global logarithmic envelope bound, exact phase normalization, the exact
+root lower bound N^(1/d)<=2L, and transfer of negative powers back to N. Its
+ps_counting_comparison_power_bound retains fixed K explicitly rather than hiding
+it in a family-dependent existential witness.
+
+New FinalComparison.lean unpacks K from FiniteVNInput at degree d BEFORE all
+families, and epsilon/sigma from ShaoSunPhaseInput BEFORE gamma or families.
+It proves ps_counting_comparison_gamma uniformly over all families of maximum
+degree d. The constant is chosen before a, and the threshold is uniform over
+all Q in the source subpower range. It invokes AsymptoticScales (environment
+agent) for M>=1 and Q<=L^delta, and proves original spatial support dilation.
+
+The final declaration PSPrimes.ps_counting_comparison converts gamma to 1/c,
+chooses cstar=1/(1-epsilon)>1 and transfers the eventual N threshold to a
+sufficiently-large-M threshold using floorScale_le_length. This is Proposition
+2.3 with the exact actual counting form, original supports/boundedness,
+source Q range, and degree-only cstar and xi. No original conclusion or
+substantially equivalent counting comparison is an assumed external input.
+Only ShaoSunPhaseInput and FiniteVNInput are explicit analytic parameters.
+
+Quantifier order of final theorem:
+  for every positive d, there exist cstar(d)>1 and xi(d)>0;
+  for every family P of maximum degree d and C0>=1, and 1<c<cstar;
+  there exists C(c,P,C0)>0 before choosing a;
+  for every 0<a<1 there exists M0(c,P,C0,a);
+  for every N,Q>=1, Q<=exp((logN)^a), M=floorScale N Q d >=M0;
+  for every 1-bounded tuple supported in [-C0N,C0N], the original
+  discrepancy counting form is <= C N^(-xi) in norm.
+
+Actual checks:
+  lake env lean PSPrimes/PowerSaving.lean -- exit0
+  lake build PSPrimes.PowerSaving -- exit0
+  lake env lean PSPrimes/FinalComparison.lean -- exit0, no warnings
+  lake build PSPrimes.FinalComparison -- running final repeat before audit
+The previous outstanding p2.3 asymptotic obligation is now DISCHARGED in the
+new modules, not retained as a hypothesis. This does not close Proposition3.1,
+Lemma3.2 or either main theorem; their original remaining obligations are
+unchanged by this counting-comparison milestone.
+
+--- Third follow-up ---
+
+Final milestone verification repeat: lake build PSPrimes.FinalComparison PASSED
+with all five modules freshly rebuilt and no warnings/info suggestions.
+FinalComparison axiom audit PASSED before the cosmetic proof normalization;
+repeating the same audit after that normalization. Complete outputs remain in
+evidence/finalcomparison-lake-build.log and evidence/finalcomparison-axioms.log.
+Independent statement-correspondence review requested from the math-review agent.
+
+--- Recovery and recurrence continuation, 30 October 2026 ---
+
+The next user turn found the scratch project and runtime absent. The saved M1
+archive restored Rescaling (188 lines), Lifting (243 lines), Comparison (187
+lines), and the other saved sources. Missing PowerSaving (307 lines) and
+FinalComparison (180 lines) were reconstructed from the exact preceding authored
+patch contents. No pre-reset hashes for those two files had been recorded, so
+their equality to the lost files was not asserted from a hash. Their recovered
+source was freshly compiled and audited before recurrence work resumed.
+
+Recovered source identities:
+  PowerSaving.lean
+  6722ae033ea08a0b92efe5ef3162b9c728de0d47a96ba805e859499e0769e282
+  FinalComparison.lean
+  2fd2cd12a5785b11066d143057661632a514114a5860bcbf232bcc9d927b64c3
+
+Actual recovery checks:
+  lake build PSPrimes.FinalComparison -- passed, all project dependencies freshly rebuilt
+  recovery-audit.lean -- passed for 12 selected declarations, only the three standard logical axioms
+Evidence: finalcomparison-recovery-build.log and finalcomparison-recovery-axioms.log.
+
+RecurrenceIteration.lean then proved a uniform numerical admissibility bridge.
+The threshold is selected before alpha and every stage. With X=logN, small
+kappa gives a leading power at least X^(7/8), while the finite length errors
+are at most a constant times X^(5/8). Consequently logN_j>=X^(3/4).
+This supplies the source modulus, smoothness and strict density inequalities.
+The explicit positive leading constant and all error coefficients are retained.
+
+FiniteIterationBounds.lean derives the accumulated bounds from the actual
+one-step logarithmic recurrences and a logarithmic density horizon; it does not
+assume the paper's accumulated estimate or its admissibility conclusion.
+With E_B=JlogB and E_theta=-Jlogtheta, the common exponent is
+A=max(2,E_theta,E_B+A0+1). It also proves the initial ceiling/LCM polynomial
+bounds, initial logarithmic length bound, the eventual uniform inequality
+2Q0<=N, and the precise floor-defined density horizon from the manuscript.
+quantitative_prefix_admissibility applies these results to natural size and
+modulus sequences, with all constants before alpha, H and n.
+
+Actual recurrence checks:
+  lake env lean PSPrimes/RecurrenceIteration.lean -- passed, no warnings
+  lake build PSPrimes.RecurrenceIteration -- passed
+  lake env lean PSPrimes/FiniteIterationBounds.lean -- passed, no warnings
+  lake build PSPrimes.FiniteIterationBounds -- passed
+  8-declaration RecurrenceIteration audit -- passed
+  14-declaration FiniteIterationBounds audit -- passed
+All audited dependencies were propext, Classical.choice and Quot.sound.
+The production-source forbidden-token scan was clean.
+
+Recurrence source identities at that handoff:
+  RecurrenceIteration.lean
+  2d3783b39e18400cdcf2ba56dcb82ae286f2d0737ea2ea6421c075fee1111900
+  FiniteIterationBounds.lean
+  9346ef5ca891ec9beebc2607fec5d08063a90301179b5631c4b1f8c1c6f76ef4
+
+The actual finite-set state construction and main-theorem assembly were handed
+to the recurrence agent. Their later completion and independent review are
+recorded separately in recurrence-completion-notes.md and correspondence-review.md.
+Those later results supersede the earlier open-status notes above.
+
+--- Final documentation review, 30 October 2026 ---
+
+Created docs/MATHLIB_REUSE.md from direct inspection of the pinned Mathlib
+source and the project's actual calls. Ordinary von Mangoldt infrastructure,
+polynomial roots, primitive ZMod characters, floors, real powers/logarithms,
+Tonelli, a.e. transport and Nat.nth are distinguished from the externally
+assumed analytic inputs. No Chebyshev-function or PNT theorem reuse is claimed.
+Created docs/MODULES.md as a four-milestone conceptual reading guide; helper
+files are grouped instead of being promoted to separate blueprint nodes.
+This documentation task ran no Lean build or audit. The final whole-project
+serial build and audit remain the authoritative final verification evidence.

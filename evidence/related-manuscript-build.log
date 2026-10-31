@@ -1,0 +1,581 @@
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+Latexmk: making output directory '/workspace/scratch/c84b5d813ddd/related-paper-build'
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="/workspace/scratch/c84b5d813ddd/related-paper-build"  "manuscript/related-original/PSSequences.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./manuscript/related-original/PSSequences.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+
+LaTeX Warning: Citation `BergelsonLeibman' on page 1 undefined on input line 53
+.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+
+LaTeX Warning: Citation `Peluse' on page 1 undefined on input line 53.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 1 undefined on input line 53.
+
+
+LaTeX Warning: Citation `SarkozySquares' on page 1 undefined on input line 57.
+
+
+LaTeX Warning: Citation `SarkozyShiftedPrimes' on page 1 undefined on input lin
+e 57.
+
+
+LaTeX Warning: Citation `FrantzikinakisWierdl' on page 1 undefined on input lin
+e 63.
+
+
+LaTeX Warning: Citation `RivatSarkozy' on page 1 undefined on input line 65.
+
+
+LaTeX Warning: Citation `OKeeffe' on page 1 undefined on input line 66.
+
+
+LaTeX Warning: Citation `BoshernitzanWierdl' on page 1 undefined on input line 
+68.
+
+
+LaTeX Warning: Citation `Daskalakis' on page 1 undefined on input line 73.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 1 undefined on input line 91.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 1 undefined on input line 95.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Citation `Furstenberg' on page 2 undefined on input line 130.
+
+
+LaTeX Warning: Citation `BergelsonLeibman' on page 2 undefined on input line 13
+0.
+
+
+LaTeX Warning: Reference `t:szemeredi' on page 2 undefined on input line 130.
+
+
+LaTeX Warning: Citation `FrantzikinakisHardy' on page 2 undefined on input line
+ 131.
+
+
+LaTeX Warning: Citation `Daskalakis' on page 2 undefined on input line 134.
+
+
+LaTeX Warning: Citation `DaskalakisPointwise' on page 2 undefined on input line
+ 137.
+
+
+LaTeX Warning: Citation `FornalKrause' on page 2 undefined on input line 140.
+
+
+LaTeX Warning: Reference `e:sparse-average' on page 2 undefined on input line 1
+54.
+
+
+LaTeX Warning: Citation `Teravainen' on page 2 undefined on input line 167.
+
+
+LaTeX Warning: Citation `Teravainen' on page 2 undefined on input line 180.
+
+[2]
+
+LaTeX Warning: Reference `e:generalized-vn' on page 3 undefined on input line 1
+99.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 3 undefined on input line 204.
+
+
+LaTeX Warning: Reference `e:phase-hypothesis' on page 3 undefined on input line
+ 206.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 3 undefined on input line 213.
+
+
+LaTeX Warning: Reference `t:szemeredi' on page 3 undefined on input line 214.
+
+
+LaTeX Warning: Citation `KMPWW' on page 3 undefined on input line 216.
+
+
+LaTeX Warning: Reference `t:pointwise' on page 3 undefined on input line 216.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 3 undefined on input line 223.
+
+
+LaTeX Warning: Reference `e:phase-hypothesis' on page 3 undefined on input line
+ 224.
+
+
+LaTeX Warning: Reference `e:phase-hypothesis' on page 3 undefined on input line
+ 236.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 3 undefined on input line 263.
+
+
+LaTeX Warning: Reference `e:scaled-vn' on page 3 undefined on input line 264.
+
+
+LaTeX Warning: Reference `e:orbit-transfer' on page 3 undefined on input line 2
+70.
+
+[3]
+
+LaTeX Warning: Citation `Vaaler' on page 4 undefined on input line 308.
+
+
+LaTeX Warning: Citation `Vaaler' on page 4 undefined on input line 338.
+
+
+LaTeX Warning: Citation `Vaaler' on page 4 undefined on input line 343.
+
+
+LaTeX Warning: Citation `Vaaler' on page 4 undefined on input line 354.
+
+
+LaTeX Warning: Citation `ChanKumchevWierdl' on page 4 undefined on input line 3
+73.
+
+[4]
+
+LaTeX Warning: Reference `l:derivative-test' on page 5 undefined on input line 
+418.
+
+
+LaTeX Warning: Reference `e:fractional-sum' on page 5 undefined on input line 4
+35.
+
+
+LaTeX Warning: Reference `e:fractional-sum' on page 5 undefined on input line 4
+39.
+
+
+LaTeX Warning: Reference `e:weights' on page 5 undefined on input line 453.
+
+
+LaTeX Warning: Reference `l:vaaler' on page 5 undefined on input line 457.
+
+
+LaTeX Warning: Reference `e:sawtooth' on page 5 undefined on input line 458.
+
+
+LaTeX Warning: Reference `l:fractional-phase' on page 5 undefined on input line
+ 459.
+
+[5]
+
+LaTeX Warning: Reference `l:fractional-phase' on page 6 undefined on input line
+ 485.
+
+
+LaTeX Warning: Reference `e:rcmopen' on page 6 undefined on input line 487.
+
+
+LaTeX Warning: Reference `l:fractional-phase' on page 6 undefined on input line
+ 503.
+
+
+LaTeX Warning: Reference `p:phase' on page 6 undefined on input line 508.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 6 undefined on input line 508.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 6 undefined on input line 512.
+
+
+
+LaTeX Warning: Reference `e:phase-cancellation' on page 6 undefined on input li
+ne 533.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 6 undefined on input line 534.
+
+
+LaTeX Warning: Reference `p:orbit' on page 6 undefined on input line 534.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 6 undefined on input line 543.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 6 undefined on input line 558.
+
+[6]
+
+LaTeX Warning: Citation `ShaoWang' on page 7 undefined on input line 576.
+
+
+LaTeX Warning: Reference `e:shao-wang-size' on page 7 undefined on input line 5
+82.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 7 undefined on input line 585.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 7 undefined on input line 592.
+
+
+pdfTeX warning (font expansion): font should be expanded before its first use
+
+LaTeX Warning: Citation `ShaoWang' on page 7 undefined on input line 649.
+
+
+LaTeX Warning: Reference `e:shao-wang-regularity' on page 7 undefined on input 
+line 652.
+
+
+LaTeX Warning: Reference `e:shao-wang-size' on page 7 undefined on input line 6
+61.
+
+
+LaTeX Warning: Reference `e:popular-average' on page 7 undefined on input line 
+669.
+
+[7]
+
+LaTeX Warning: Reference `e:shao-wang-parameters' on page 8 undefined on input 
+line 683.
+
+
+LaTeX Warning: Reference `e:shao-wang-count' on page 8 undefined on input line 
+688.
+
+
+LaTeX Warning: Reference `t:szemeredi' on page 8 undefined on input line 692.
+
+
+LaTeX Warning: Reference `p:transfer' on page 8 undefined on input line 703.
+
+
+LaTeX Warning: Reference `e:weights' on page 8 undefined on input line 704.
+
+
+LaTeX Warning: Reference `l:shao-wang' on page 8 undefined on input line 715.
+
+
+LaTeX Warning: Reference `e:c-choice' on page 8 undefined on input line 722.
+
+
+LaTeX Warning: Reference `e:count-decomposition' on page 8 undefined on input l
+ine 722.
+
+
+LaTeX Warning: Reference `e:quantitative-count' on page 8 undefined on input li
+ne 725.
+
+
+LaTeX Warning: Reference `e:quantitative-count' on page 8 undefined on input li
+ne 733.
+
+
+LaTeX Warning: Reference `e:count-reindex' on page 8 undefined on input line 74
+9.
+
+
+LaTeX Warning: Citation `KMPWW' on page 8 undefined on input line 757.
+
+
+LaTeX Warning: Reference `e:integer-average' on page 8 undefined on input line 
+758.
+
+[8]
+
+LaTeX Warning: Citation `DaskalakisPointwise' on page 9 undefined on input line
+ 797.
+
+
+LaTeX Warning: Reference `e:riesz-limit' on page 9 undefined on input line 798.
+
+
+
+LaTeX Warning: Reference `t:pointwise' on page 9 undefined on input line 802.
+
+
+LaTeX Warning: Reference `e:weights' on page 9 undefined on input line 812.
+
+
+LaTeX Warning: Reference `e:c-choice' on page 9 undefined on input line 812.
+
+
+LaTeX Warning: Reference `e:ergodic-transfer' on page 9 undefined on input line
+ 812.
+
+
+LaTeX Warning: Citation `KMPWW' on page 9 undefined on input line 821.
+
+
+LaTeX Warning: Reference `l:riesz' on page 9 undefined on input line 823.
+
+
+LaTeX Warning: Reference `e:smooth-limit' on page 9 undefined on input line 832
+.
+
+
+LaTeX Warning: Reference `e:normalization' on page 9 undefined on input line 83
+3.
+
+
+LaTeX Warning: Reference `e:l1-power' on page 9 undefined on input line 847.
+
+[9]
+
+LaTeX Warning: Reference `e:integer-average' on page 10 undefined on input line
+ 903.
+
+[10] [11] (/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `PSSequences.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on /workspace/scratch/c84b5d813ddd/related-paper-build/PSSequenc
+es.pdf (11 pages, 367306 bytes).
+Transcript written on /workspace/scratch/c84b5d813ddd/related-paper-build/PSSeq
+uences.log.
+Latexmk: Getting log file '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.log'
+Latexmk: Examining '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.fls'
+Latexmk: Examining '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.log'
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: Log file says output to '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  /workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.aux
+  /workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="/workspace/scratch/c84b5d813ddd/related-paper-build"  "manuscript/related-original/PSSequences.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./manuscript/related-original/PSSequences.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.out)
+(/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+pdfTeX warning (font expansion): font should be expanded before its first use
+[7] [8] [9] [10] [11]
+(/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.aux) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx7.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi
+5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on /workspace/scratch/c84b5d813ddd/related-paper-build/PSSequenc
+es.pdf (11 pages, 371023 bytes).
+Transcript written on /workspace/scratch/c84b5d813ddd/related-paper-build/PSSeq
+uences.log.
+Latexmk: Getting log file '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.log'
+Latexmk: Examining '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.fls'
+Latexmk: Examining '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.log'
+Latexmk: Log file says output to '/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.pdf'
+Latexmk: All targets (/workspace/scratch/c84b5d813ddd/related-paper-build/PSSequences.pdf) are up-to-date
+

@@ -1,0 +1,74 @@
+Independent mathematical review of Draft1.tex
+Reviewer task: full source read; no changes to the supplied manuscript.
+Date: 30 October 2026.
+Status: mathematical review, not a Lean verification certificate.
+
+The full 1,273-line source has been read. The main conclusions are the finite quantitative configuration theorem (t:szemeredi) and almost-everywhere convergence with equality of limits (t:pointwise). I have not found a demonstrated mathematical error requiring replacement in the supplied argument. Several transitions need explicit proofs and careful interface design in Lean; they must not be hidden in assumptions that amount to the original conclusions.
+
+1. Arithmetic input and progression restriction
+
+The phase estimate in t:shao-sun is coefficient-uniform, not a bound only for phases with coefficients of controlled size. This uniformity is essential for l:progression-phase. The progression argument is sound: n=Qy+1 ranges exactly over 2<=n<=QM+1 with n congruent to 1 modulo Q; the only added n=1 term vanishes because the von Mangoldt function is zero at 1. An average of Q character sums costs no Q factor. Substitution psi((n-1)/Q)+a(n-1)/Q preserves degree <=r since r>=1. Replacing (QM+1)^(1-sigma) by a constant times (QM)^(1-sigma) is valid for QM>=1, with a fixed constant for the chosen sigma; one may shrink sigma into (0,1] for convenient exponent arithmetic.
+
+The source's torus specialization (lines 332ff.) is mathematically correct. A transparent formalization can instead quote the explicitly published polynomial-phase corollary of Shao--Sun, if it labels that node as quoted externally rather than claiming that nilmanifold definitions and their specialization have been formalized. Do not assume an unrestricted nilsequence interface and then silently identify it with a Lean phase interface without implementing or recording the bridge.
+
+2. Polynomial rescaling and lift (lines 425--505)
+
+Define P_Q in Z[y] coefficientwise as sum a_j Q^(j-1) X^j for j>=1, and prove Q*P_Q(y)=P(Q*y). Defining it only by integer division is possible but creates an unnecessary divisibility proof at every use. Q must be a positive integer. Preserve arbitrary signs of coefficients and integer x,y domains.
+
+The lift F_i(Qx)=f_i(x), F_i(z)=0 off QZ, is valid and gives precisely the displayed identity. Its double sum has nonzero terms only with z=Qx and n=Qy, 1<=y<=M. The normalization is exactly B/(N*M), hence the comparison theorem costs L^(d+1)/(N*M), which is comparable to Q^2. There is no missing factor Q in the displayed lift.
+
+If t=(N/Q^(d-1))^(1/d) and M=floor(t)>=1, then M<=t<M+1<=2M. Thus Q^(d-1)*M^d<=N<2^d*Q^(d-1)*M^d and Q*N/2^d<L^d<=Q*N. This gives explicit support and normalization bounds and avoids relying on informal o(1) notation in finite Lean identities.
+
+The equality involving the supremum in e:theta-u needs both directions, via phi(X)->phi(QX) and psi(X)->psi(X/Q), with Q nonzero. The upper bound alone needs only one direction; if only that direction is formalized, state an inequality rather than claiming the equality checked.
+
+The exponent saving is valid uniformly in the allowed c interval. Put m=min(1,sigma)>0 and choose h=1-gamma<m/(8K), K>=1. Replacing B by O_c(L^(2h)) leaves both exponents at most -3m/(4K). Absorb Q^2 using Q<=exp((log N)^a), fixed a<1, and L^d comparable to QN. The implied constant can be independent of a while the sufficiently-large threshold depends on a, exactly as the proposition says. Do not let a or Q enter the external Teravainen constant.
+
+3. Coefficients and density increment (lines 521--663)
+
+The (C,Q)-coefficient claim is valid: nonzero integer leading coefficients have absolute value at least 1, and Q^(j-1)<=Q^(d_i-1). The zero polynomial R_0 is a separate fixed offset: the (C,Q)-condition is intended for R_1,...,R_l only. Encode that explicitly to avoid a literal reading that applies the positive-degree condition to R_0=0.
+
+The substantive external ingredients in the proof of p:KMTT are prime-to-unweighted discrepancy and weak regularity. Keep those as named external hypotheses, with exact scale restrictions, divisibility and atom resolution. The elementary passage from the regularity approximation to a density increment is an original explicit argument here and should be proved, not assumed through an interface equivalent to p:KMTT.
+
+For each nonnegative F_i, equality of mass with delta*1_[N], support in [N], and bound F_i<=(1+c2)*delta imply sum |F_i-delta*1_[N]|<=2*c2*delta*N. The product telescoping bound uses that every factor, including the reference factors, is at most (1+c2)*delta; this follows from c2>=0. Translation invariance lets the sum of the ith difference be moved from x+R_i(y) back to x. The strict constant inequality then forces an atom of density greater than the desired factor. All of these are finite statements; a proof using only named real parameters is useful but does not by itself establish the actual counting-form bound or the atom extraction.
+
+4. Forbidden configurations and discrepancy (lines 669--805)
+
+The small-parameter reference lower bound is correct even for negative coefficients: each offset lies in [-N/10,N/10], so the common intersection with [N] contains at least N/2 points. The prime mass comparison must be uniform over the stated smooth-modulus range, not merely a fixed-modulus PNT.
+
+The ordinary-prime count equals the sparse weighted count plus a power-saving error. A nonzero sparse contribution at a prime has prime in S_c, hence is a forbidden configuration unless some offsets collide. Every collision is a root of a nonzero integer polynomial, and the number of roots is at most its degree; consequently the total number of exceptional y is bounded in terms of d,l independently of Q. The normalization of their contribution is B/M, because for each y at most N spatial x values can contribute.
+
+Higher prime powers can be bounded by an elementary overcount over n<=QM+1, with no congruence restriction. At most sqrt(L) choices arise for a fixed exponent and at most O(log L) exponents occur, and Lambda(n)<=log n. This yields the displayed logarithmic-square bound. Its weighted exponent is 3/2-gamma in L before division by M; gamma>1/2 and subpower Q make it negligible. This elementary estimate should not be declared a deep external theorem.
+
+The final discrepancy lower bound follows because delta is at least a negative power of log N and ordinary-prime mass has a subpower lower bound. An abstract real inequality comparing 'reference', 'count' and 'error' is only an auxiliary: the actual N,Q,delta-uniform estimates and their eventual thresholds remain obligations until connected.
+
+5. Iteration and finite/infinite distinction (lines 807--936)
+
+The choice of the densest FULL residue-class intersection is correct; one must weight residue-class densities by their lengths, not average them equally. The representatives r_0 in {1-Q_0,...,0} give exactly r_0+Q_0[ floor((N-r_0)/Q_0) ] = [N] intersect (r_0+Q_0 Z). For N large relative to Q_0 these intersections are nonempty.
+
+Configuration preservation under restriction follows from Q^b P_{Q^(b+1)}(y)=P_Q(Q^b y), and prime arguments satisfy Q^(b+1)y+1=Q*(Q^b y)+1. Multiplication by positive Q^b is injective, so pairwise distinctness is preserved. Fixed s remains admissible as density increases, and every new modulus is a positive power of Q_0, retaining its prime factors and lcm divisibility.
+
+The main substantial remaining formal obligation is the quantitative finite recursion: prove a uniform positive logarithmic scale lower bound at all admissible stages, then verify each external hypothesis, and only then use density growth to force a contradiction. A theorem assuming admissibility of every stage is a useful finite auxiliary but is not the manuscript's quantitative Szemeredi theorem. The constants hidden in the recursion can be fixed existentially in advance, and kappa subsequently chosen in terms of them. Do not quote t:szemeredi, or the entire iteration conclusion, as an external assumption.
+
+6. Pointwise comparison and weight removal (lines 940--1125)
+
+The orbit L1 estimate, Shao--Sun estimate and size bound on D_gamma give a genuine power-saving L1 rate after shrinking the c interval. Selecting A>max(1,1/eta) makes sum_j ||error_floor(j^A)||_1 finite. Tonelli then gives absolute summability and convergence to zero almost everywhere along that subsequence. Taking j>=1 avoids N_0=0; alternatively ignore the first finite indices.
+
+Interpolation to all N is sound. It uses nonnegativity of both weights, |z_n|<=1, their mass asymptotics W_w(N)=N+o(N), and N_(j+1)/N_j->1. No short-interval PNT is needed: the difference of cumulative mass asymptotics and the ratio-one property suffice. A Lean result whose hypotheses include already-vanishing interpolation errors must be connected to these actual weight masses before marking p:pointwise-comparison complete.
+
+The summation-by-parts argument is correct, including its lower endpoint 2. The fixed initial integral is finite. The centered weighted sum is o(W(N)); monotonicity and positivity of a allow its unweighted sum to be bounded by C_epsilon+epsilon*pi_c(N). W(N)~N implies infinitude of P_c and hence pi_c(N)->infinity, so division and epsilon->0 give the result. The same argument applies to all primes with weight log t. The proof does not need a separate PS-prime-count asymptotic.
+
+L-infinity norms are essential bounds, not pointwise bounds. The source's homogeneity reduction is standard but a faithful Lean theorem must either use bounded representatives and prove independence under a.e. equality for all countably many integer iterates, or formulate its main theorem for essentially bounded measurable functions and discharge that bridge. A result only for pointwise 1-bounded functions must be labelled as an auxiliary until the general L-infinity statement is recovered. Invertibility must support negative integer iterates and measure preservation of those iterates.
+
+At finite N, pi_c(N) may be zero; define reciprocal averages with Lean's total division or state that finite convention explicitly. Eventual positivity then removes any concern for the limit. Never silently restrict the claimed finite average's domain to large N without documenting the convention.
+
+7. Verified primary references (retrieved using web search)
+
+https://arxiv.org/html/2605.18676v1 : Shao--Sun Theorem 2.1 and its immediately following polynomial-phase corollary explicitly cover the required coefficient-uniform input. The source's cited version is v1; a later v2 exists but is not needed to justify this interface.
+https://arxiv.org/html/2401.03174v2 : Teravainen Theorem 4.1 matches the support scale and normalization stated in the manuscript.
+https://arxiv.org/html/2609.01847v1 : Mousavi Proposition 1.4 matches the orbit L1 interface.
+https://arxiv.org/pdf/2608.19525v1 : KMTT Proposition 5.2, Lemma 5.3, equations (5.2), (5.15), and the proof of Lemma 5.4 match the cited building blocks. The draft's p:KMTT is a composition and should not be represented as a verbatim numbered theorem in that source.
+https://arxiv.org/pdf/2505.15549 : served the June 2026 v2 PDF; Theorem 1.1(ii) is already a von-Mangoldt-weighted pointwise theorem. Its stated finite exponents 1<q_i<infinity include bounded functions on a probability space by choosing, e.g., q_i=2*l. This routine L-infinity-to-finite-Lq bridge remains to be proved or explicitly included in a specialized external interface. The abstract page https://arxiv.org/abs/2505.15549v2 confirms version and title.
+
+The footnote on the exclusion of Siegel zeros is not used by the supplied proof, which retains classical bounds. It should not enter the project's assumption catalogue as a dependency merely because it appears in the bibliography. This review did not verify that optional claim.
+
+No numerical experiment was run, because no concrete suspected counterexample or uncertain finite constant arose that would be clarified by computation. This is not a claim of independent expert validation of all external theorems.

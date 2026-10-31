@@ -1,0 +1,3 @@
+Audited 481 named declarations; Lean exit 0; axioms observed: Classical.choice, Quot.sound, propext.
+No additional mathematical axioms; source forbidden-token scan passed.
+This does not establish manuscript correspondence or truth of external hypotheses.

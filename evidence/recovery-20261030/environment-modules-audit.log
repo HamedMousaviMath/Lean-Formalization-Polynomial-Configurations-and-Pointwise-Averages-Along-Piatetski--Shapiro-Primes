@@ -1,0 +1,7 @@
+'PSPrimes.length_lower_finite_horizon' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.liftedScale_normalization_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.OrbitVNInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.PrimeNumberTheoremInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.OrdinaryPrimePointwiseInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_liftedScale_parameters' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_floorScale_ge' depends on axioms: [propext, Classical.choice, Quot.sound]

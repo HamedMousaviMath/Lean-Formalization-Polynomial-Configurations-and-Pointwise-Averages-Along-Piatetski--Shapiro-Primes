@@ -1,0 +1,20 @@
+{
+  "clean_check_exit_code": 0,
+  "project_modules": 45,
+  "entry_points": 1,
+  "named_declarations_audited": 455,
+  "unexpected_axioms": [],
+  "axioms_observed": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "public_interfaces_exit_code": 0,
+  "blueprint_declarations_exit_code": 0,
+  "blueprint_declaration_count": 35,
+  "manuscript_labels": 48,
+  "blueprint_pages": {
+    "compact": 8,
+    "full": 17
+  }
+}

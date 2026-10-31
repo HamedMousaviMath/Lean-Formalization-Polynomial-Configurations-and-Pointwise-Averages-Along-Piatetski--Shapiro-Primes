@@ -1,0 +1,34 @@
+KMTT development notes — chronological raw message facts, 30 October 2026
+These notes preserve development statements. They are not a proof-status catalogue.
+
+Primary source bytes retrieved with ordinary curl from https://arxiv.org/src/2608.19525v1.
+Archive outside project: reference-work/kmtt-src.tar.
+Extracted source: reference-work/Main__17_.tex and refs.bib.
+Archive SHA256 b7da309294a475b3fbfc8ff60ca39e3c42701fed0d40146a7dca560f2576ca45.
+Main LaTeX SHA256 9d1cc58cabb0c80a883959548c9307f27d8b1ec2d8e056ef3ac9b88de3b61e6d.
+
+Source inspection facts:
+Lemma5.3 ν0=degP1, not0. Other νi=degPi. Resolutions count points in AP atoms; common modulus q^B with B=O_d(1). A small-scale alternative must be retained. Source constants Cbold,Kbold dependC,d,k despite dk subscript. c1 is selected from sourceLemma5.1. Source5.2 fixes a smallκ; it is not uniform asκ tends0.
+
+Message to parent after PolynomialBounds:
+PolynomialBounds DONE CHECKED: lake build PSPrimes.PolynomialBounds exit0, no warnings; source production PSPrimes/PolynomialBounds.lean imports onlyRescaling+Scales. Three theorem APIs as advertised: abs_eval_rescale_le, abs_eval_rescale_le_tenth_of_scale, abs_eval_rescale_le_tenth_floorScale. Exactτ=1/(10*C*(d+1)), floor≤root proof internal; noexternalhypotheses. Logs evidence/polynomial-bounds-build.log;3decl axiom audit running. Please importnewmodulewhereModelOverlapneeded; I didnotedit entrypoint or otherfiles.
+
+Later actual PolynomialBounds audit:
+Three theorem audit exit0, only[propext,Classical.choice,Quot.sound]; evidence/polynomial-bounds-audit.log.
+Source SHA2560fe3aea8612d5a5ae0d4e987c85e97fdf721a387adce1c2834f07c1fc5ab5fc9.
+
+Message to parent after DiscrepancySaving:
+DiscrepancySaving FINISHED actual lake build PSPrimes.DiscrepancySaving exit0. Both desired uniform original estimates proved: actual sparseCountError≤Cerr N^{-(1/8)/d} uniformly allsubpowermoduli; genericdominator C N^-η≤cδ^k b exp(-B(logN)^a), thresholdbeforeδ,Q. γuppernotneededforerrorabsorption (γ≥3/4positive sufficient); actualfinitelemma stillγ≤1. Sentmath_reviewexactAPIsforL3.2assembly. Noextraexternalassumptions. Newmodulelinterclean, dependencyPrimeDiscrepancyreplaywarningsonly. Axiom audit now.
+
+Later actual DiscrepancySaving audit:
+Six theorem audit exit0; allstandard[propext,Classical.choice,Quot.sound], evidence/discrepancy-saving-audit.log.
+Source SHA d0224d02472b7ff4d692790d8d571ae83a00080484d46398fe8020d20349a2bc.
+
+Independent FinalPrimeDiscrepancy review message:
+Independentreview FinalPrimeDiscrepancy.ps_prime_discrepancy PASSED mathematicalstatement/correspondence. cstar chosenfromd beforeℓ/P/C/p/mass, cap4/3correctγ≥3/4; N0 after fixedc,P,C,p,mass but beforeN,Q,s,δ,A; densityexactAcardδN; KMTTAdmissible retainsallranges; NoRescaledConfiguration usespositivey,IsPSPrimec(Qy+1),allℓ+1patternentries,injectivity; actualrescaledrealcounts andnormalization correctlyidentified bysupport. Massdataexplicitly compatible samep. ConditionaltranslationvsmanuscriptneedsjointKM-J catalogue (rootrequested): sourcepconstantselection remains external, no∀p existenceclaimed. Noerrorpremiseinfinaltheorem.
+
+KM-J verification message to parent:
+KM-J source review: YES jointexistential selection supported at proof level; NOT derivable from KMTTUnweightedInput alone nor valid∀arbitraryp. SourceL5.1 says chooseκ sufficientlysmall; can chooseκ≤τmax fixedbeforeN,Q, then5.2 givesratio r>0. Select0<c1≤r/4 (and≤sourceL5.1constant) so mass≥4c1 fullsum. P5.2 proof usesc1only asfixedpositive target/errorbudget, its5.8Kbold^-η/10≤const*c1, laterenlargements; rerunning proof withsmallerfixedc1validafterenlargingC1K1,N0. Its theoremstatement alone is NOT monotoneinsmaller c1 (weakerdiscrepancyhyp), so this proof-reparametrization is an UNFORMALIZED external source-to-interface bridge.
+
+Independent second KM-J review, message from math_review:
+Independent KM-J review passed after reading raw source2997–3907. Smaller fixed c1 qualifies for Lem5.1; rerunning P5.2 needs K1^-η/10≤const*c1 and larger thresholds to absorb exp errors relative c1δ^k; C1 density threshold may be strengthened. The τ claim uses τ≫δ^k with fixed coefficient including chosen c1; no lower c1 bound independent fixed data. Last Cramér error is explicitly made ≤const*c1δ^k by increasing K1. Hence your four-step bridge is mathematically supported, but not old statement monotonicity, and remains unformalized. Added compiled actual name KMTTCompatibleInput with τmax>0 quantified BEFORE p, so catalogue can record general fixed-τmax dependencies (application τmax=f(C,d)).

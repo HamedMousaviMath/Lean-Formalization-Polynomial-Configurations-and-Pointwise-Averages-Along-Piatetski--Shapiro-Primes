@@ -1,0 +1,674 @@
+Rc files read:
+  /etc/LatexMk
+Latexmk: This is Latexmk, John Collins, 31 Jan. 2024. Version 4.83.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="PSPrimes/manuscript/original"  "PSPrimes/manuscript/original/Draft1.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./PSPrimes/manuscript/original/Draft1.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(PSPrimes/manuscript/original/Draft1.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+
+LaTeX Warning: Citation `BergelsonLeibman' on page 1 undefined on input line 48
+.
+
+
+LaTeX Warning: Citation `SarkozySquares' on page 1 undefined on input line 49.
+
+
+LaTeX Warning: Citation `WooleyZiegler' on page 1 undefined on input line 52.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+
+LaTeX Warning: Citation `KMTT' on page 1 undefined on input line 55.
+
+
+LaTeX Warning: Citation `MirekPS' on page 1 undefined on input line 61.
+
+
+LaTeX Warning: Citation `LiPanPS' on page 1 undefined on input line 61.
+
+
+LaTeX Warning: Citation `ShaoSun' on page 1 undefined on input line 61.
+
+
+LaTeX Warning: Citation `MaynardDigits' on page 1 undefined on input line 62.
+
+
+LaTeX Warning: Citation `BurginDigits' on page 1 undefined on input line 63.
+
+
+LaTeX Warning: Citation `PiatetskiShapiro' on page 1 undefined on input line 79
+.
+
+
+LaTeX Warning: Citation `ShaoWang' on page 1 undefined on input line 89.
+
+
+LaTeX Warning: Citation `KMTT' on page 1 undefined on input line 91.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 1 undefined on input line 138.
+
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Warning: Citation `BourgainPrimes' on page 2 undefined on input line 161.
+
+
+
+LaTeX Warning: Citation `WierdlPrimes' on page 2 undefined on input line 161.
+
+
+LaTeX Warning: Citation `WooleyZiegler' on page 2 undefined on input line 163.
+
+
+LaTeX Warning: Citation `KMTTPointwise' on page 2 undefined on input line 166.
+
+
+LaTeX Warning: Citation `MirekWanWright' on page 2 undefined on input line 167.
+
+
+
+LaTeX Warning: Citation `MirekThinPrimes' on page 2 undefined on input line 171
+.
+
+
+LaTeX Warning: Citation `FornalKrause' on page 2 undefined on input line 173.
+
+
+LaTeX Warning: Citation `mousavisolo' on page 2 undefined on input line 175.
+
+
+LaTeX Warning: Reference `e:PS-average' on page 2 undefined on input line 194.
+
+[2]
+
+LaTeX Warning: Citation `Teravainen' on page 3 undefined on input line 246.
+
+
+LaTeX Warning: Citation `ShaoSun' on page 3 undefined on input line 268.
+
+
+LaTeX Warning: Reference `t:szemeredi' on page 3 undefined on input line 275.
+
+
+LaTeX Warning: Citation `KMTT' on page 3 undefined on input line 276.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 3 undefined on input line 284.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 3 undefined on input line 291.
+
+
+LaTeX Warning: Reference `t:pointwise' on page 3 undefined on input line 295.
+
+
+LaTeX Warning: Citation `MirekWanWright' on page 3 undefined on input line 298.
+
+
+
+LaTeX Warning: Citation `KMTT' on page 3 undefined on input line 305.
+
+
+LaTeX Warning: Reference `t:pointwise' on page 3 undefined on input line 305.
+
+
+LaTeX Warning: Reference `e:weights' on page 3 undefined on input line 309.
+
+[3]
+
+LaTeX Warning: Citation `BalogFriedlander' on page 4 undefined on input line 32
+6.
+
+
+LaTeX Warning: Citation `AkbalGuloglu' on page 4 undefined on input line 328.
+
+
+LaTeX Warning: Reference `e:shao-sun' on page 4 undefined on input line 329.
+
+
+LaTeX Warning: Citation `ShaoSun' on page 4 undefined on input line 330.
+
+
+LaTeX Warning: Citation `ShaoSun' on page 4 undefined on input line 347.
+
+
+LaTeX Warning: Citation `ShaoSun' on page 4 undefined on input line 352.
+
+
+LaTeX Warning: Reference `e:shao-sun' on page 4 undefined on input line 365.
+
+[4]
+
+LaTeX Warning: Reference `t:shao-sun' on page 5 undefined on input line 400.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 5 undefined on input line 413.
+
+
+
+LaTeX Warning: Reference `e:rescaled-polynomial' on page 5 undefined on input l
+ine 414.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 5 undefined on input line 427.
+
+
+
+LaTeX Warning: Reference `l:progression-phase' on page 5 undefined on input lin
+e 467.
+
+
+LaTeX Warning: Reference `e:lift-identity' on page 5 undefined on input line 47
+8.
+
+
+LaTeX Warning: Reference `e:theta-u' on page 5 undefined on input line 478.
+
+
+LaTeX Warning: Reference `t:teravainen' on page 5 undefined on input line 479.
+
+[5]
+
+LaTeX Warning: Reference `p:comparison' on page 6 undefined on input line 517.
+
+
+LaTeX Warning: Citation `KMTT' on page 6 undefined on input line 518.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 6 undefined on input line 531.
+
+
+
+LaTeX Warning: Citation `KMTT' on page 6 undefined on input line 544.
+
+[6]
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 589.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 590.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 591.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 592.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 593.
+
+
+LaTeX Warning: Reference `e:prime-discrepancy' on page 7 undefined on input lin
+e 594.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 607.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 610.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 613.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 621.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 629.
+
+
+LaTeX Warning: Reference `e:unweighteddisc' on page 7 undefined on input line 6
+29.
+
+
+LaTeX Warning: Citation `KMTT' on page 7 undefined on input line 640.
+
+
+LaTeX Warning: Reference `e:localfactorforms' on page 7 undefined on input line
+ 647.
+
+
+LaTeX Warning: Reference `e:density-increment' on page 7 undefined on input lin
+e 657.
+
+[7]
+
+LaTeX Warning: Reference `e:resbound' on page 8 undefined on input line 659.
+
+
+LaTeX Warning: Reference `e:m0' on page 8 undefined on input line 661.
+
+
+LaTeX Warning: Reference `e:increment-length' on page 8 undefined on input line
+ 662.
+
+
+LaTeX Warning: Reference `e:polynomials' on page 8 undefined on input line 671.
+
+
+
+LaTeX Warning: Reference `p:KMTT' on page 8 undefined on input line 674.
+
+
+LaTeX Warning: Reference `e:rescaled-polynomial' on page 8 undefined on input l
+ine 676.
+
+
+LaTeX Warning: Reference `e:prime-discrepancy' on page 8 undefined on input lin
+e 698.
+
+
+LaTeX Warning: Citation `KMTT' on page 8 undefined on input line 725.
+
+
+LaTeX Warning: Reference `p:comparison' on page 8 undefined on input line 729.
+
+
+LaTeX Warning: Reference `e:forbidencond' on page 8 undefined on input line 738
+.
+
+[8]
+
+LaTeX Warning: Reference `e:collisionterms' on page 9 undefined on input line 7
+61.
+
+
+LaTeX Warning: Reference `e:prime-powers' on page 9 undefined on input line 762
+.
+
+
+LaTeX Warning: Reference `e:comparisonterms' on page 9 undefined on input line 
+762.
+
+
+LaTeX Warning: Citation `GreenNoSiegel' on page 9 undefined on input line 772.
+
+
+LaTeX Warning: Citation `TaoNoSiegel' on page 9 undefined on input line 772.
+
+
+pdfTeX warning (font expansion): font should be expanded before its first use
+
+LaTeX Warning: Citation `KMTT' on page 9 undefined on input line 772.
+
+
+LaTeX Warning: Reference `e:model-lower' on page 9 undefined on input line 778.
+
+
+
+LaTeX Warning: Reference `p:KMTT' on page 9 undefined on input line 779.
+
+
+LaTeX Warning: Citation `KMTT' on page 9 undefined on input line 780.
+
+
+LaTeX Warning: Reference `e:model-lower' on page 9 undefined on input line 781.
+
+
+
+LaTeX Warning: Reference `e:model-lower' on page 9 undefined on input line 785.
+
+
+
+LaTeX Warning: Reference `e:prime-discrepancy' on page 9 undefined on input lin
+e 794.
+
+
+LaTeX Warning: Reference `t:szemeredi' on page 9 undefined on input line 797.
+
+
+LaTeX Warning: Reference `e:pattern' on page 9 undefined on input line 799.
+
+
+LaTeX Warning: Reference `p:KMTT' on page 9 undefined on input line 800.
+
+[9]
+
+LaTeX Warning: Reference `e:pattern' on page 10 undefined on input line 830.
+
+
+LaTeX Warning: Reference `e:pattern' on page 10 undefined on input line 844.
+
+
+LaTeX Warning: Reference `l:PS-discrepancy' on page 10 undefined on input line 
+847.
+
+
+LaTeX Warning: Reference `p:KMTT' on page 10 undefined on input line 848.
+
+
+LaTeX Warning: Reference `e:pattern' on page 10 undefined on input line 870.
+
+
+LaTeX Warning: Reference `p:KMTT' on page 10 undefined on input line 881.
+
+
+LaTeX Warning: Citation `KMTT' on page 10 undefined on input line 897.
+
+
+LaTeX Warning: Reference `e:increment-length' on page 10 undefined on input lin
+e 902.
+
+[10]
+
+LaTeX Warning: Citation `KMTT' on page 11 undefined on input line 908.
+
+
+LaTeX Warning: Reference `e:initial-scale' on page 11 undefined on input line 9
+09.
+
+
+LaTeX Warning: Reference `e:modulus-control' on page 11 undefined on input line
+ 909.
+
+
+LaTeX Warning: Citation `KMTT' on page 11 undefined on input line 917.
+
+
+LaTeX Warning: Reference `e:length-control' on page 11 undefined on input line 
+919.
+
+
+LaTeX Warning: Reference `e:modulus-control' on page 11 undefined on input line
+ 921.
+
+
+LaTeX Warning: Reference `e:length-control' on page 11 undefined on input line 
+922.
+
+
+LaTeX Warning: Reference `p:KMTT' on page 11 undefined on input line 931.
+
+
+LaTeX Warning: Reference `p:comparison' on page 11 undefined on input line 932.
+
+
+
+LaTeX Warning: Reference `t:shao-sun' on page 11 undefined on input line 952.
+
+
+LaTeX Warning: Citation `mousavisolo' on page 11 undefined on input line 968.
+
+
+LaTeX Warning: Reference `t:shao-sun' on page 11 undefined on input line 981.
+
+
+LaTeX Warning: Reference `e:L1-comparison' on page 11 undefined on input line 1
+021.
+
+[11]
+
+LaTeX Warning: Reference `e:weight-mass' on page 12 undefined on input line 103
+4.
+
+
+LaTeX Warning: Reference `t:pointwise' on page 12 undefined on input line 1039.
+
+
+
+LaTeX Warning: Citation `MirekWanWright' on page 12 undefined on input line 104
+0.
+
+
+LaTeX Warning: Reference `p:pointwise-comparison' on page 12 undefined on input
+ line 1042.
+
+
+LaTeX Warning: Reference `e:primepowers' on page 12 undefined on input line 106
+0.
+
+
+LaTeX Warning: Reference `e:weight-mass' on page 12 undefined on input line 107
+0.
+
+[12]
+
+LaTeX Warning: Reference `e:prime-average' on page 13 undefined on input line 1
+123.
+
+[13] [14] (PSPrimes/manuscript/original/Draft1.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `Draft1.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on PSPrimes/manuscript/original/Draft1.pdf (14 pages, 387695 byt
+es).
+Transcript written on PSPrimes/manuscript/original/Draft1.log.
+Latexmk: Getting log file 'PSPrimes/manuscript/original/Draft1.log'
+Latexmk: Examining 'PSPrimes/manuscript/original/Draft1.fls'
+Latexmk: Examining 'PSPrimes/manuscript/original/Draft1.log'
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: Log file says output to 'PSPrimes/manuscript/original/Draft1.pdf'
+Latexmk: Log file says output to 'PSPrimes/manuscript/original/Draft1.pdf'
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Changed files or newly in use/created:
+  PSPrimes/manuscript/original/Draft1.aux
+  PSPrimes/manuscript/original/Draft1.out
+
+------------
+Run number 2 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -interaction=nonstopmode -halt-on-error -recorder -output-directory="PSPrimes/manuscript/original"  "PSPrimes/manuscript/original/Draft1.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./PSPrimes/manuscript/original/Draft1.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/amscls/amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mathtools.sty
+(/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/mathtools/mhsetup.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(PSPrimes/manuscript/original/Draft1.aux)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+))) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(PSPrimes/manuscript/original/Draft1.out)
+(PSPrimes/manuscript/original/Draft1.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8]
+pdfTeX warning (font expansion): font should be expanded before its first use
+[9] [10] [11] [12] [13] [14] (PSPrimes/manuscript/original/Draft1.aux) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx6.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+mi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on PSPrimes/manuscript/original/Draft1.pdf (14 pages, 391677 byt
+es).
+Transcript written on PSPrimes/manuscript/original/Draft1.log.
+Latexmk: Getting log file 'PSPrimes/manuscript/original/Draft1.log'
+Latexmk: Examining 'PSPrimes/manuscript/original/Draft1.fls'
+Latexmk: Examining 'PSPrimes/manuscript/original/Draft1.log'
+Latexmk: Log file says output to 'PSPrimes/manuscript/original/Draft1.pdf'
+Latexmk: Log file says output to 'PSPrimes/manuscript/original/Draft1.pdf'
+Latexmk: All targets (PSPrimes/manuscript/original/Draft1.pdf) are up-to-date
+

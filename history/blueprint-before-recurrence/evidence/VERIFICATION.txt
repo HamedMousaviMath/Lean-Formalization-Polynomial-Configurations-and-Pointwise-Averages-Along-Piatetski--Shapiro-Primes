@@ -1,0 +1,22 @@
+Blueprint verification — 30 October 2026, restored final-status checkpoint
+
+Compact PDF: 8 pages. Full expository PDF: 15 pages.
+17 labelled dependency nodes; nine numbered manuscript statements; 45 uses targets in 22 uses tags; 7 proves tags; eight leanok tags (statement/proof pairs for four conditional results).
+All uses/proves targets resolve. Native leanblueprint exported 23 distinct declaration names in blueprint/lean_decls.
+Conditional checked manuscript nodes: Theorem1.2, Lemma2.2, Proposition2.3, Proposition4.1.
+Original arguments open: Theorem1.1, Proposition3.1, Lemma3.2. External quoted nodes: Theorem1.3, Theorem2.1.
+Five implemented external input predicates remain uninstantiated. TV-B, OR-B and MW-B formulation bridges remain external. The u-supremum itself and its PhaseBound equivalence are unformalized.
+These statuses reflect prior actually checked Lean proofs confirmed by the parent; PDF compilation does not itself validate Lean or mathematical correspondence. Fresh project build evidence is maintained separately by the parent.
+
+Actual commands, from blueprint/src:
+latexmk -pdf -interaction=nonstopmode -halt-on-error compact.tex full.tex
+PATH=/root/.local/bin:$PATH plastex --config=plastex.cfg web.tex
+Both commands completed successfully; PDFs and native HTML/dependency graph generated. PDF logs contain no overfull boxes, undefined references or TeX errors. Native web generation warns only about optional vector imagers dvisvgm/pdf2svg; graph/MathJax generation succeeds.
+
+leanblueprint 0.0.20
+plasTeX 3.1
+plastexdepgraph 0.0.5
+pdfTeX 1.40.25 (TeX Live 2022/Debian).
+
+Visual QA: rendered compact pages1 and8 and full pages13 and15 after final status restoration; inspected for clipping, overlaps, mathematical layout and final status boundaries. Earlier intermediate rendered pages remain in this folder. Initial sources retained in history/blueprint-initial.
+Source hashes and final PDF hashes recorded separately in source-hashes.txt.

@@ -1,0 +1,6 @@
+import PSPrimes.MainPointwise
+#print axioms PSPrimes.pointwiseErgodicTheorem_of_external_inputs
+#print axioms PSPrimes.ps_orbit_comparison
+#print axioms PSPrimes.ps_orbit_discrepancy_L1_gamma
+#print axioms PSPrimes.selectedAverage_tendsto_of_weighted_limits
+#print axioms PSPrimes.ae_weightedAverage_comparison_of_L1_decay

@@ -1,9 +1,0 @@
-import PSPrimes.DensityIncrement
-#print axioms PSPrimes.realConfigurationForm_sub_model
-#print axioms PSPrimes.dense_progression_of_local_discrepancy
-#print axioms PSPrimes.regularity_cutoff_le
-#print axioms PSPrimes.regularity_divisibility
-#print axioms PSPrimes.regularity_resolution_lower
-#print axioms PSPrimes.densityIncrement_of_unweighted_discrepancy
-#print axioms PSPrimes.kmtt_density_increment_of_witnesses
-#print axioms PSPrimes.kmtt_density_increment

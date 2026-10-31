@@ -1,0 +1,24 @@
+\ifdefined\WebVersion
+\subsection*{Shared manuscript correspondence}
+The nine manuscript nodes are Thms. 1.1, 1.2, 1.3 and 2.1, Lemmas 2.2 and 3.2, and Propositions 2.3, 3.1 and 4.1. Theorem 1.2, Lemma 2.2 and Propositions 2.3 and 4.1 are conditionally checked. Theorems 1.3 and 2.1 are external. Only Theorem 1.1, Proposition 3.1 and Lemma 3.2 remain open. The exact source-label/declaration table is in the two PDFs and in this shared correspondence.tex source. Main-conclusion definitions are specifications, not proofs.
+\else
+\subsection*{Shared manuscript correspondence}
+This table is identical in the two blueprints. A specification is a proposition-valued definition, not a theorem establishing that proposition. A quoted mathematical input is not a Lean axiom. The declaration catalogue and actual build evidence in the repository determine the checked status of auxiliary declarations.
+\small
+\begin{longtable}{@{}p{18mm}p{41mm}p{86mm}@{}}
+\toprule Paper & Source label & Implementation boundary\\\midrule\endhead
+Thm. 1.1 & \texttt{t:szemeredi} & \texttt{PSPrimes.QuantitativeRecurrence}: faithful specification; theorem proof open.\\
+Thm. 1.2 & \texttt{t:pointwise} & \texttt{pointwiseErgodicTheorem\_of\_external\_inputs}: checked full uniform specification from SS, OR, PNT and MW.\\
+Thm. 1.3 & \texttt{t:teravainen} & External finite generalized von Neumann estimate (TV); no project proof.\\
+Thm. 2.1 & \texttt{t:shao-sun} & External directly quoted polynomial-phase input SS; integer and small-scale translation included externally.\\
+Lemma 2.2 & \texttt{l:progression-phase} & Checked conditional theorem \texttt{progressionPhase\_of\_shaoSun}; no additional arithmetic input beyond SS specialization.\\
+Prop. 2.3 & \texttt{p:comparison} & \texttt{ps\_counting\_comparison}: exact original finite estimate checked conditionally on SS and TV; TV-B external.\\
+Prop. 3.1 & \texttt{p:KMTT} & Composite deduction from two distinct KMTT inputs; local-factor/density algebra auxiliary, complete proposition open.\\
+Lemma 3.2 & \texttt{l:PS-discrepancy} & Original discrepancy deduction; collision and higher-prime-power estimates checked; discrepancy assembly open.\\
+Prop. 4.1 & \texttt{p:pointwise-comparison} & \texttt{ps\_orbit\_comparison}: exact original comparison checked from SS, OR and PNT.\\
+\bottomrule
+\end{longtable}
+\normalsize
+The nine numbered statements above are all the numbered theorem-like environments in the manuscript. The numbering is taken from the actual compiled source, including its global equation numbers (1)--(39). The auxiliary names mentioned here do not claim completion of any manuscript statement.
+
+\fi

@@ -1,0 +1,154 @@
+PSPrimes.PolynomialFamily (ℓ : ℕ) : Type
+PSPrimes.IsPS (c : ℝ) (n : ℕ) : Prop
+PSPrimes.IsPSPrime (c : ℝ) (p : ℕ) : Prop
+PSPrimes.sparseMangoldt (γ : ℝ) (n : ℕ) : ℝ
+PSPrimes.discrepancyWeight (γ : ℝ) (n : ℕ) : ℝ
+PSPrimes.QuantitativeRecurrence {ℓ : ℕ} (P : PSPrimes.PolynomialFamily ℓ) : Prop
+PSPrimes.quantitative_recurrence (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput)
+  (hReg : PSPrimes.KMTTRegularityInput) (hJoint : PSPrimes.KMTTCompatibleInput) {ℓ : ℕ}
+  (P : PSPrimes.PolynomialFamily ℓ) : PSPrimes.QuantitativeRecurrence P
+PSPrimes.PointwiseErgodicTheorem.{u} {ℓ : ℕ} (P : PSPrimes.PolynomialFamily ℓ) : Prop
+PSPrimes.PointwiseConclusion.{u_1} {ℓ : ℕ} {X : Type u_1} [MeasurableSpace X] {μ : MeasureTheory.Measure X}
+  (P : Fin ℓ → Polynomial ℤ) (c : ℝ) (T : PSPrimes.IntegerAction X μ) (f : Fin ℓ → X → ℂ) : Prop
+PSPrimes.pointwiseErgodicTheorem_of_external_inputs.{u} (hSS : PSPrimes.ShaoSunPhaseInput)
+  (hVN : PSPrimes.FiniteVNInput) (hPNT : PSPrimes.PrimeNumberTheoremInput) (hMW : PSPrimes.OrdinaryPrimePointwiseInput)
+  {ℓ : ℕ} (P : PSPrimes.PolynomialFamily ℓ) : PSPrimes.PointwiseErgodicTheorem P
+PSPrimes.FiniteVNInput : Prop
+PSPrimes.ShaoSunPhaseInput : Prop
+PSPrimes.progressionPhase_of_shaoSun (hSS : PSPrimes.ShaoSunPhaseInput) (r : ℕ) :
+  1 ≤ r →
+    ∃ ε,
+      0 < ε ∧
+        ε < 1 ∧
+          ∃ σ,
+            0 < σ ∧
+              ∀ (γ : ℝ),
+                1 - ε < γ →
+                  γ < 1 →
+                    ∃ C,
+                      0 < C ∧
+                        ∀ (Q M : ℕ),
+                          1 ≤ Q →
+                            1 ≤ M →
+                              PSPrimes.PhaseBound r M (fun y => ↑(PSPrimes.discrepancyWeight γ (Q * y + 1)))
+                                (C * ↑(Q * M) ^ (1 - σ))
+PSPrimes.rescale (P : Polynomial ℤ) (q : ℤ) : Polynomial ℤ
+PSPrimes.countingForm {ℓ : ℕ} (N M Q : ℕ) (R : Fin ℓ → Polynomial ℤ) (w : ℕ → ℂ) (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ) : ℂ
+PSPrimes.ps_counting_comparison (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput) (d : ℕ) (hd : 1 ≤ d) :
+  ∃ cstar,
+    1 < cstar ∧
+      ∃ ξ,
+        0 < ξ ∧
+          ∀ (ℓ : ℕ) (P : PSPrimes.PolynomialFamily ℓ),
+            (∀ (i : Fin ℓ), (P.polynomials i).natDegree ≤ d) →
+              (∃ i, (P.polynomials i).natDegree = d) →
+                ∀ (C₀ : ℝ),
+                  1 ≤ C₀ →
+                    ∀ (c : ℝ),
+                      1 < c →
+                        c < cstar →
+                          ∃ C,
+                            0 < C ∧
+                              ∀ (a : ℝ),
+                                0 < a →
+                                  a < 1 →
+                                    ∃ M₀,
+                                      ∀ (N Q : ℕ),
+                                        1 ≤ N →
+                                          1 ≤ Q →
+                                            ↑Q ≤ Real.exp (Real.log ↑N ^ a) →
+                                              M₀ ≤ PSPrimes.floorScale N Q d →
+                                                ∀ (f₀ : ℤ →₀ ℂ) (f : Fin ℓ → ℤ → ℂ),
+                                                  (∀ (x : ℤ), ‖f₀ x‖ ≤ 1) →
+                                                    (∀ (i : Fin ℓ) (x : ℤ), ‖f i x‖ ≤ 1) →
+                                                      (∀ (x : ℤ), C₀ * ↑N < |↑x| → f₀ x = 0) →
+                                                        (∀ (i : Fin ℓ) (x : ℤ), C₀ * ↑N < |↑x| → f i x = 0) →
+                                                          ‖PSPrimes.countingForm N (PSPrimes.floorScale N Q d) Q
+                                                                (fun i => PSPrimes.rescale (P.polynomials i) ↑Q)
+                                                                (fun n => ↑(PSPrimes.discrepancyWeight (1 / c) n)) f₀
+                                                                f‖ ≤
+                                                            C * ↑N ^ (-ξ)
+PSPrimes.HasCQCoefficients (C : ℝ) (Q : ℕ) (P : Polynomial ℤ) : Prop
+PSPrimes.smoothModulus (s : ℕ) : ℕ
+PSPrimes.SmoothUpTo (s Q : ℕ) : Prop
+PSPrimes.kmtt_density_increment_normalized (hUW : PSPrimes.KMTTUnweightedInput) (hReg : PSPrimes.KMTTRegularityInput)
+  (d : ℕ) :
+  1 ≤ d →
+    ∃ Bmax,
+      1 ≤ Bmax ∧
+        ∀ (ℓ : ℕ),
+          1 ≤ ℓ →
+            ∃ Aq Aδ,
+              1 ≤ Aq ∧
+                1 ≤ Aδ ∧
+                  ∀ (C : ℝ),
+                    1 ≤ C → ∃ Adiv p c₂, 0 < c₂ ∧ PSPrimes.KMTTDensityIncrementWitness C d ℓ Adiv Bmax Aq Aδ p c₂ 1
+PSPrimes.ArithmeticLocalFactor (N q : ℕ) : Type
+PSPrimes.IsLocalProjection {N q : ℕ} (B : PSPrimes.ArithmeticLocalFactor N q) (f F : ℤ → ℝ) : Prop
+PSPrimes.ps_prime_discrepancy (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput) (d : ℕ) (hd : 1 ≤ d) :
+  ∃ cstar,
+    1 < cstar ∧
+      ∀ (ℓ : ℕ) (P : PSPrimes.PolynomialFamily ℓ),
+        (∀ (i : Fin ℓ), (P.polynomials i).natDegree ≤ d) →
+          (∃ i, (P.polynomials i).natDegree = d) →
+            ∀ (C : ℝ),
+              1 ≤ C →
+                (∀ (i : Fin ℓ), ∀ j ≤ d, |↑((P.polynomials i).coeff j)| ≤ C) →
+                  ∀ (Adiv : ℕ) (p : PSPrimes.KMTTComparisonParameters ℓ Adiv),
+                    PSPrimes.PrimeProgressionMassWitness p d (1 / (10 * C * ↑(d + 1))) →
+                      ∀ (c : ℝ),
+                        1 < c →
+                          c < cstar →
+                            ∃ N₀,
+                              ∀ (N : ℕ),
+                                N₀ ≤ N →
+                                  ∀ (Q s : ℕ) (δ : ℝ),
+                                    PSPrimes.KMTTAdmissible p N Q s δ →
+                                      ∀ A ⊆ PSPrimes.integerInterval N,
+                                        ↑A.card = δ * ↑N →
+                                          PSPrimes.NoRescaledConfiguration P.polynomials Q c A →
+                                            p.c₁ * δ ^ (ℓ + 1) *
+                                                PSPrimes.primeProgressionMass Q (PSPrimes.floorScale N Q d) ≤
+                                              |PSPrimes.realSetCount N (PSPrimes.floorScale N Q d) Q
+                                                    (fun j => PSPrimes.rescale (P.polynomials j) ↑Q)
+                                                    (⇑ArithmeticFunction.vonMangoldt) A -
+                                                  PSPrimes.realModelCount N (PSPrimes.floorScale N Q d) Q
+                                                    (fun j => PSPrimes.rescale (P.polynomials j) ↑Q)
+                                                    (⇑ArithmeticFunction.vonMangoldt) δ|
+PSPrimes.IntegerAction.{u_1} (X : Type u_1) [MeasurableSpace X] (μ : MeasureTheory.Measure X) : Type u_1
+PSPrimes.orbitProduct.{u_1} {ℓ : ℕ} {X : Type u_1} [MeasurableSpace X] {μ : MeasureTheory.Measure X}
+  (P : Fin ℓ → Polynomial ℤ) (T : PSPrimes.IntegerAction X μ) (f : Fin ℓ → X → ℂ) (n : ℕ) (x : X) : ℂ
+PSPrimes.weightedAverage (w : ℕ → ℝ) (z : ℕ → ℂ) (N : ℕ) : ℂ
+PSPrimes.selectedAverage (S : ℕ → Prop) [DecidablePred S] (z : ℕ → ℂ) (N : ℕ) : ℂ
+PSPrimes.OrbitVNInput.{u} : Prop
+PSPrimes.orbitVNInput_of_finiteVNInput.{u} (hVN : PSPrimes.FiniteVNInput) : PSPrimes.OrbitVNInput
+PSPrimes.ps_orbit_comparison.{u} (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput)
+  (hPNT : PSPrimes.PrimeNumberTheoremInput) (d : ℕ) (hd : 1 ≤ d) :
+  ∃ cstar,
+    1 < cstar ∧
+      ∀ (ℓ : ℕ) (P : PSPrimes.PolynomialFamily ℓ),
+        (∀ (i : Fin ℓ), (P.polynomials i).natDegree ≤ d) →
+          (∃ i, (P.polynomials i).natDegree = d) →
+            ∀ (c : ℝ),
+              1 < c →
+                c < cstar →
+                  ∀ (X : Type u) [inst : MeasurableSpace X] (μ : MeasureTheory.Measure X),
+                    MeasureTheory.IsProbabilityMeasure μ →
+                      ∀ (T : PSPrimes.IntegerAction X μ) (f : Fin ℓ → X → ℂ),
+                        (∀ (i : Fin ℓ), MeasureTheory.AEStronglyMeasurable (f i) μ) →
+                          (∀ (i : Fin ℓ), ∀ᵐ (x : X) ∂μ, ‖f i x‖ ≤ 1) →
+                            ∀ᵐ (x : X) ∂μ,
+                              Filter.Tendsto
+                                (fun N =>
+                                  PSPrimes.weightedAverage (PSPrimes.sparseMangoldt (1 / c))
+                                      (fun n => PSPrimes.orbitProduct P.polynomials T f n x) N -
+                                    PSPrimes.weightedAverage (⇑ArithmeticFunction.vonMangoldt)
+                                      (fun n => PSPrimes.orbitProduct P.polynomials T f n x) N)
+                                Filter.atTop (nhds 0)
+PSPrimes.KMTTUnweightedInput : Prop
+PSPrimes.KMTTRegularityInput : Prop
+PSPrimes.KMTTCompatibleInput : Prop
+PSPrimes.PrimeProgressionMassWitness {ℓ Adiv : ℕ} (p : PSPrimes.KMTTComparisonParameters ℓ Adiv) (d : ℕ) (τmax : ℝ) :
+  Type
+PSPrimes.OrdinaryPrimePointwiseInput.{u} : Prop
+PSPrimes.PrimeNumberTheoremInput : Prop

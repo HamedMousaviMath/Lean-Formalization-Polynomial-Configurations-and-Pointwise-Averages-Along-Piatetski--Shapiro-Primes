@@ -1,0 +1,62 @@
+# Mathlib results reused
+
+The project pins Lean **4.19.0** and Mathlib commit
+`c44e0c8ee63ca166450922a373c7409c5d26b00b`. The declarations below were
+checked against the actual source at that revision and against their uses in
+the project. Links are permanent links to that pinned source. This is a
+selection of substantial reused infrastructure, not an inventory of every
+rewrite or tactic.
+
+## Arithmetic and finite algebra
+
+| Reused declarations | Pinned Mathlib source | Application in this project |
+|---|---|---|
+| `ArithmeticFunction.vonMangoldt`, `vonMangoldt_nonneg`, `vonMangoldt_apply_prime`, `vonMangoldt_eq_zero_iff`, `vonMangoldt_le_log` | [Mathlib/NumberTheory/VonMangoldt.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/VonMangoldt.lean#L61) | [Definitions](../PSPrimes/Definitions.lean), [ExceptionalTerms](../PSPrimes/ExceptionalTerms.lean), [PrimePowers](../PSPrimes/PrimePowers.lean): the actual von Mangoldt function, its support, prime values and elementary magnitude bounds. These are not a prime number theorem. |
+| `isPrimePow_nat_iff`, `Nat.le_sqrt'`, `Nat.le_log_of_pow_le` | [Algebra/IsPrimePow.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/IsPrimePow.lean#L64), [Data/Nat/Sqrt.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Nat/Sqrt.lean#L126), [Data/Nat/Log.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Nat/Log.lean#L102) | `PrimePowers`: represent each nonprime prime power by a base at most √N and an exponent at most log₂N, then prove the finite rectangular-cover estimate. |
+| `Polynomial.eq_zero_of_natDegree_lt_card_of_eval_eq_zero'` | [Algebra/Polynomial/Roots.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/Polynomial/Roots.lean#L600) | `ExceptionalTerms`: a nonzero integer polynomial has at most its degree many roots in a finite set. The project applies this separately to the actual collision polynomials. |
+| `Polynomial.natDegree_comp`, `Polynomial.natDegree_X_sub_C`, `Polynomial.eval_eq_sum_range'` | [Polynomial/Degree/Lemmas.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/Polynomial/Degree/Lemmas.lean), [Degree/Operations.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/Polynomial/Degree/Operations.lean), [Polynomial/Eval/Degree.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/Polynomial/Eval/Degree.lean) | `OrbitPolynomials`: exact evaluation and degree preservation for P(X−1), then an explicit coefficient-sum support bound uniform before the scale/system. |
+| `ZMod.stdAddChar`, `ZMod.stdAddChar_coe`, `ZMod.isPrimitive_stdAddChar` | [Analysis/SpecialFunctions/Complex/CircleAddChar.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Complex/CircleAddChar.lean#L70) | [Progressions](../PSPrimes/Progressions.lean): the standard primitive character for a nonzero modulus and its exact exponential formula. |
+| `AddChar.sum_mulShift` | [NumberTheory/LegendreSymbol/AddCharacter.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/NumberTheory/LegendreSymbol/AddCharacter.lean#L253) | `Progressions`: finite character orthogonality. The reindexing, phase-degree calculation, omission of n=1 and absence of a factor Q in the restricted bound are proved in the project. |
+| `Finsupp.embDomain`, `support_embDomain`, `embDomain_apply`, `embDomain_notin_range` | [Data/Finsupp/Defs.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Finsupp/Defs.lean#L367) | [Lifting](../PSPrimes/Lifting.lean): transport finite support through x↦Qx. The zero-extension description and the two-variable counting identity are project proofs. |
+| `Nat.factorial_le_pow`; `Finset.lcm`, `Finset.dvd_lcm`, `Finset.lcm_dvd` | [Data/Nat/Factorial/Basic.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Nat/Factorial/Basic.lean#L177), [Algebra/GCDMonoid/Finset.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/GCDMonoid/Finset.lean#L43) | [SmoothModuli](../PSPrimes/SmoothModuli.lean): prove that the initial lcm divides s!, is positive and s-smooth, and has logarithm at most s log s. |
+
+## Real estimates and asymptotics
+
+| Reused declarations | Pinned Mathlib source | Application in this project |
+|---|---|---|
+| `Nat.floor_le`, `Nat.lt_floor_add_one`, `Nat.ceil_le_ceil`, `Nat.ceil_lt_add_one` | [Algebra/Order/Floor/Semiring.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Algebra/Order/Floor/Semiring.lean#L44) | [Scales](../PSPrimes/Scales.lean), [InitialProgression](../PSPrimes/InitialProgression.lean), [FiniteIterationBounds](../PSPrimes/FiniteIterationBounds.lean): exact natural floors, full residue-class lengths, initial smoothness and the finite density horizon. |
+| `Real.rpow_add`, `Real.rpow_neg`, `Real.rpow_mul`, `Real.rpow_le_rpow`, `Real.rpow_le_rpow_of_nonpos`, `Real.pow_rpow_inv_natCast`, `Real.rpow_inv_natCast_pow` | [Analysis/SpecialFunctions/Pow/Real.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Pow/Real.lean#L182) | Exact scale identities, reciprocal-density powers, preservation of exponent signs, and conversion of lifted-scale decay back to N. Positivity hypotheses are supplied explicitly in the proofs. |
+| `Real.rpow_add_le_add_rpow` | [Analysis/MeanInequalitiesPow.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/MeanInequalitiesPow.lean#L208) | [PowerSaving](../PSPrimes/PowerSaving.lean): split the exponent 1/K, with 0≤1/K≤1, before absorbing the magnitude of the discrepancy weight. |
+| `Real.log_le_sub_one_of_pos`, `Real.log_le_rpow_div` | [Analysis/SpecialFunctions/Log/Basic.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean#L288), [Pow/Real.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Pow/Real.lean#L878) | Absorb logarithmic factors with explicit constants; derive log(α⁻¹)+1≤α⁻¹ in finite iteration bookkeeping. |
+| `Real.tendsto_log_atTop`, `tendsto_rpow_atTop`, `tendsto_rpow_neg_atTop`, `isLittleO_log_rpow_rpow_atTop` | [Log/Basic.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Log/Basic.lean#L322), [Pow/Asymptotics.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/SpecialFunctions/Pow/Asymptotics.lean#L32) | Project proofs of uniform subpower-modulus absorption, large floor scales, density-independent iteration thresholds, and vanishing higher-prime-power mass. The last three listed names are unqualified declarations at this pin. |
+
+## Measure theory, subsequences and enumeration
+
+| Reused declarations | Pinned Mathlib source | Application in this project |
+|---|---|---|
+| `MeasureTheory.ae_all_iff`; `MeasureTheory.Measure.QuasiMeasurePreserving.ae`, `.ae_eq` | [OuterMeasure/AE.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/OuterMeasure/AE.lean#L93), [Measure/QuasiMeasurePreserving.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Measure/QuasiMeasurePreserving.lean#L93) | [Representatives](../PSPrimes/Representatives.lean): essential bounds and a.e. equalities hold simultaneously along all integer iterates. This justifies replacing L∞ representatives without strengthening the main hypotheses. |
+| `Finset.aestronglyMeasurable_prod`, `AEStronglyMeasurable.comp_quasiMeasurePreserving`; `integrable_finset_sum`, `Integrable.mono'`; `integral_map`, `integral_finset_sum`, `norm_integral_le_of_norm_le_const` | [StronglyMeasurable/AEStronglyMeasurable.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Function/StronglyMeasurable/AEStronglyMeasurable.lean), [Integral/Bochner/Basic.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Integral/Bochner/Basic.lean), [Function/L1Space/Integrable.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Function/L1Space/Integrable.lean) | `OrbitMeasureHelpers` and `OrbitTransference`: finite weighted orbit integrability, invariance of the explicit dual pairing, and integration of the exact spatial finite-VN bound. No independent orbit estimate is imported. |
+| `MeasureTheory.lintegral_tsum`, `MeasureTheory.ae_lt_top'`, `AEMeasurable.ennreal_tsum` | [Integral/Lebesgue/Add.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Integral/Lebesgue/Add.lean#L329), [Lebesgue/Markov.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Integral/Lebesgue/Markov.lean#L151), [Constructions/BorelSpace/Real.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/MeasureTheory/Constructions/BorelSpace/Real.lean#L370) | [Pointwise](../PSPrimes/Pointwise.lean): the Tonelli passage from summable L1 norms to pointwise convergence along the selected subsequence. The arithmetic L1 estimate and full-sequence interpolation are separate project deductions. |
+| `ENNReal.tsum_coe_ne_top_iff_summable_coe`; `Real.summable_nat_rpow` | [Topology/Instances/ENNReal/Lemmas.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Topology/Instances/ENNReal/Lemmas.lean#L839), [Analysis/PSeries.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Analysis/PSeries.lean#L291) | `Pointwise`: finite a.e. norm sums and summability of the integer-power cutoff error. |
+| `Nat.nth`, `Nat.nth_strictMono`, `Nat.nth_mem_of_infinite`, `Nat.range_nth_of_infinite` | [Data/Nat/Nth.lean](https://github.com/leanprover-community/mathlib4/blob/c44e0c8ee63ca166450922a373c7409c5d26b00b/Mathlib/Data/Nat/Nth.lean#L133) | `Pointwise`: enumerate the actual infinite selected prime set. The project proves count divergence and the cutoff/enumeration correspondence before applying its discrete unweighting theorem. |
+
+## Boundary of reuse
+
+The normalized ordinary PNT limit used here is an explicit
+`PrimeNumberTheoremInput` in [OrbitInputs](../PSPrimes/OrbitInputs.lean).
+The project does not derive that limit from a Mathlib prime-count theorem.
+Its ordinary number-theory reuse above is elementary von Mangoldt and
+prime-power infrastructure; no reuse of Chebyshev functions is claimed.
+
+The Shao–Sun estimate, finite von Neumann estimate, KMTT source inputs and
+ordinary-prime multiple pointwise theorem remain the explicitly documented
+hypotheses in [ASSUMPTIONS.md](ASSUMPTIONS.md). Generic character,
+asymptotic and measure-theory lemmas do not prove those analytic inputs or
+their unformalized source-to-interface translations. The orbit VN estimate
+is now derived from the finite estimate inside `OrbitTransference.lean`;
+it is not an independent external hypothesis.
+
+Mathlib tactics such as `ring`, `norm_num`, `linarith`, `nlinarith`, `omega`
+and `positivity` discharge routine obligations inside the checked proofs.
+The project build and audit evidence records kernel checking of the project
+sources separately from reuse of Mathlib's compiled dependency artifacts.

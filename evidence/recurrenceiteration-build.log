@@ -1,0 +1,14 @@
+PSPrimes/RecurrenceIteration.lean:196:44: error: unsolved goals
+A b H C Hq Hs c₀ ν : ℝ
+hA : 0 < A
+hb : 0 < b
+hH : 0 ≤ H
+hC : 0 ≤ C
+hHq : 0 ≤ Hq
+hHs : 0 ≤ Hs
+hc₀ : 0 < c₀
+hν : 0 < ν
+κ : ℝ := min (1 / (8 * A)) (min (c₀ / (4 * A)) (ν / 2))
+hκ : 0 < κ
+h : κ * A ≤ 1 / (8 * A) * A
+⊢ A * 8 = 8 * A

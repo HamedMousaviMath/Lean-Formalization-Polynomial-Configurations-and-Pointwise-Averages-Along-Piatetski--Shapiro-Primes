@@ -1,0 +1,14 @@
+{
+  "labelled_nodes": 17,
+  "numbered_manuscript_statements": 9,
+  "uses_tags": 24,
+  "uses_targets": 52,
+  "proves_tags": 9,
+  "leanok_tags": 16,
+  "exported_declarations": 36,
+  "all_targets_resolve": true,
+  "pages": {
+    "compact": 9,
+    "full": 18
+  }
+}
