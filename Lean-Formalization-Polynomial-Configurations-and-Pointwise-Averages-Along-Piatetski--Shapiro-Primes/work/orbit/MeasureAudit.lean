@@ -1,0 +1,11 @@
+import PSPrimes.OrbitMeasureHelpers
+
+#print axioms PSPrimes.orbitProduct_aestronglyMeasurable
+#print axioms PSPrimes.weighted_orbitAverage_integrable
+#print axioms PSPrimes.orbitDualMultiplier
+#print axioms PSPrimes.norm_orbitDualMultiplier_le
+#print axioms PSPrimes.orbitDualMultiplier_mul
+#print axioms PSPrimes.aestronglyMeasurable_orbitDualMultiplier
+#print axioms PSPrimes.orbitDualPair_integrable
+#print axioms PSPrimes.integral_orbitDualPair
+#print axioms PSPrimes.integerAction_integral_comp
