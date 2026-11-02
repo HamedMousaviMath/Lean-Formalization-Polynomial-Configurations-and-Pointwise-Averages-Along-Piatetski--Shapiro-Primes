@@ -116,6 +116,31 @@ def PSPrimes.OrdinaryPrimePointwiseInput.{u} : Prop :=
                           PSPrimes.weightedAverage (⇑ArithmeticFunction.vonMangoldt)
                             (fun n => PSPrimes.orbitProduct.{u} P T f n x) N)
                         Filter.atTop.{0} (nhds.{0} (L x))
+def PSPrimes.OrdinaryPrimeVariationInput.{u} : Prop :=
+∀ (ℓ : Nat) (P : Fin ℓ → Polynomial.{0} Int),
+  LT.lt.{0} 0 ℓ →
+    (StrictMono.{0, 0} fun i => Polynomial.natDegree.{0} (P i)) →
+      (∀ (i : Fin ℓ), LE.le.{0} 1 (Polynomial.natDegree.{0} (P i))) →
+        ∀ (r : Real),
+          LT.lt.{0} 2 r →
+            ∀ (rho : Real),
+              LT.lt.{0} 1 rho →
+                ∃ C,
+                  And (LT.lt.{0} 0 C)
+                    (∀ (N : Nat → Nat),
+                      LE.le.{0} 1 (N 0) →
+                        (∀ (j : Nat), LE.le.{0} (HMul.hMul.{0, 0, 0} rho ↑(N j)) ↑(N (HAdd.hAdd.{0, 0, 0} j 1))) →
+                          ∀ (X : Type u) [inst : MeasurableSpace.{u} X] (μ : MeasureTheory.Measure.{u} X),
+                            MeasureTheory.IsProbabilityMeasure.{u} μ →
+                              ∀ (T : PSPrimes.IntegerAction.{u} X μ) (f : Fin ℓ → X → Complex),
+                                (∀ (i : Fin ℓ), MeasureTheory.AEStronglyMeasurable.{u, 0} (f i) μ) →
+                                  (∀ (i : Fin ℓ), ∀ᵐ (x : X) ∂μ, LE.le.{0} (norm.{0} (f i x)) 1) →
+                                    LE.le.{0}
+                                      (∫⁻ (x : X),
+                                        PSPrimes.rVariation r fun j =>
+                                          PSPrimes.weightedAverage (⇑ArithmeticFunction.vonMangoldt)
+                                            (fun n => PSPrimes.orbitProduct.{u} P T f n x) (N j) ∂μ)
+                                      (ENNReal.ofReal C))
 def PSPrimes.KMTTUnweightedInput : Prop :=
 ∀ (C : Real),
   LE.le.{0} 1 C →
@@ -333,3 +358,554 @@ PSPrimes.ps_orbit_comparison.{u} (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPri
                                       N))
                                 Filter.atTop.{0} (nhds.{0} 0))
 PSPrimes.orbitVNInput_of_finiteVNInput.{u} (hVN : PSPrimes.FiniteVNInput) : PSPrimes.OrbitVNInput.{u}
+theorem PSPrimes.lacunary_variation_of_external_inputs.{u} : PSPrimes.ShaoSunPhaseInput →
+  PSPrimes.FiniteVNInput →
+    PSPrimes.OrdinaryPrimeVariationInput.{u} →
+      ∀ {ℓ : Nat} (P : PSPrimes.PolynomialFamily ℓ),
+        ∃ cstar,
+          And (LT.lt.{0} 1 cstar)
+            (∀ (c : Real),
+              LT.lt.{0} 1 c →
+                LT.lt.{0} c cstar →
+                  ∀ (r : Real),
+                    LT.lt.{0} 2 r →
+                      ∀ (rho : Real),
+                        LT.lt.{0} 1 rho →
+                          ∃ C,
+                            And (LT.lt.{0} 0 C)
+                              (∀ (N : Nat → Nat),
+                                LE.le.{0} 1 (N 0) →
+                                  (∀ (j : Nat),
+                                      LE.le.{0} (HMul.hMul.{0, 0, 0} rho ↑(N j)) ↑(N (HAdd.hAdd.{0, 0, 0} j 1))) →
+                                    ∀ (X : Type u) [inst : MeasurableSpace.{u} X] (μ : MeasureTheory.Measure.{u} X),
+                                      MeasureTheory.IsProbabilityMeasure.{u} μ →
+                                        ∀ (T : PSPrimes.IntegerAction.{u} X μ) (f : Fin ℓ → X → Complex),
+                                          (∀ (i : Fin ℓ), MeasureTheory.MemLp.{0, u} (f i) Top.top.{0} μ) →
+                                            LE.le.{0}
+                                              (∫⁻ (x : X),
+                                                PSPrimes.rVariation r fun j =>
+                                                  PSPrimes.weightedAverage
+                                                    (PSPrimes.sparseMangoldt (HDiv.hDiv.{0, 0, 0} 1 c))
+                                                    (fun n =>
+                                                      PSPrimes.orbitProduct.{u}
+                                                        (PSPrimes.PolynomialFamily.polynomials P) T f n x)
+                                                    (N j) ∂μ)
+                                              (HMul.hMul.{0, 0, 0} (ENNReal.ofReal C)
+                                                (∏ i, MeasureTheory.eLpNorm.{u, 0} (f i) Top.top.{0} μ)))) :=
+fun hSS hVN hMW {ℓ} P =>
+  let iTop :=
+    ⟨HSub.hSub.{0, 0, 0} ℓ 1,
+      let_fun this := PSPrimes.PolynomialFamily.nonempty P;
+      Decidable.byContradiction fun a => PSPrimes.lacunary_variation_of_external_inputs._proof_2 this a⟩;
+  let d := Polynomial.natDegree.{0} (PSPrimes.PolynomialFamily.polynomials P iTop);
+  let_fun hd := PSPrimes.PolynomialFamily.positive_degree P iTop;
+  let_fun hmax := fun i =>
+    StrictMono.monotone.{0, 0} (PSPrimes.PolynomialFamily.increasing_degrees P)
+      (id.{0}
+        (let_fun this := Fin.isLt i;
+        Decidable.byContradiction fun a => PSPrimes.lacunary_variation_of_external_inputs._proof_3 P i this a));
+  let_fun htop := Exists.intro.{1} iTop rfl.{1};
+  Exists.casesOn.{1} (PSPrimes.ps_lacunary_variation_gamma.{u} hSS hVN hMW d hd) fun ε h =>
+    And.casesOn.{0} h fun hε right =>
+      And.casesOn.{0} right fun hε₁ hgamma =>
+        let_fun hden := Iff.mpr sub_pos.{0} hε₁;
+        Exists.intro.{1} (HDiv.hDiv.{0, 0, 0} 1 (HSub.hSub.{0, 0, 0} 1 ε))
+          ⟨Iff.mpr (lt_div_iff₀.{0} hden)
+              (lt_of_not_ge.{0} fun a =>
+                Linarith.lt_irrefl.{0}
+                  (Eq.mp.{0}
+                    (congrArg.{1, 1} (fun _a => LT.lt.{0} _a 0)
+                      (Mathlib.Tactic.Ring.of_eq.{1}
+                        (Mathlib.Tactic.Ring.add_congr.{0}
+                          (Mathlib.Tactic.Ring.sub_congr.{0}
+                            (Mathlib.Tactic.Ring.cast_zero.{0}
+                              (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))
+                            (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                            (Mathlib.Tactic.Ring.sub_pf.{0}
+                              (Mathlib.Tactic.Ring.neg_add.{0}
+                                (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                  (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                    (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                      (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                        (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                        (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                          (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                        (Eq.refl.{1} (Int.negOfNat 1))))))
+                                Mathlib.Tactic.Ring.neg_zero.{0})
+                              (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                (HAdd.hAdd.{0, 0, 0}
+                                  (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                    (Int.rawCast.{0} (Int.negOfNat 1)))
+                                  0))))
+                          (Mathlib.Tactic.Ring.sub_congr.{0}
+                            (Mathlib.Tactic.Ring.cast_pos.{0}
+                              (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                            (Mathlib.Tactic.Ring.mul_congr.{0}
+                              (Mathlib.Tactic.Ring.cast_pos.{0}
+                                (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                              (Mathlib.Tactic.Ring.sub_congr.{0}
+                                (Mathlib.Tactic.Ring.cast_pos.{0}
+                                  (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                                (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                                (Mathlib.Tactic.Ring.sub_pf.{0}
+                                  (Mathlib.Tactic.Ring.neg_add.{0}
+                                    (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                        (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                          (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                            (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                            (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                              (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                            (Eq.refl.{1} (Int.negOfNat 1))))))
+                                    Mathlib.Tactic.Ring.neg_zero.{0})
+                                  (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Int.rawCast.{0} (Int.negOfNat 1)))
+                                        0)))))
+                              (Mathlib.Tactic.Ring.add_mul.{0}
+                                (Mathlib.Tactic.Ring.mul_add.{0} (Mathlib.Tactic.Ring.one_mul.{0} (Nat.rawCast.{0} 1))
+                                  (Mathlib.Tactic.Ring.mul_add.{0}
+                                    (Mathlib.Tactic.Ring.mul_pf_right.{0} ε (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.one_mul.{0} (Int.rawCast.{0} (Int.negOfNat 1))))
+                                    (Mathlib.Tactic.Ring.mul_zero.{0} (Nat.rawCast.{0} 1))
+                                    (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Int.rawCast.{0} (Int.negOfNat 1)))
+                                        0)))
+                                  (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Int.rawCast.{0} (Int.negOfNat 1)))
+                                        0))))
+                                (Mathlib.Tactic.Ring.zero_mul.{0}
+                                  (HAdd.hAdd.{0, 0, 0} (Nat.rawCast.{0} 1)
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                        (Int.rawCast.{0} (Int.negOfNat 1)))
+                                      0)))
+                                (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                  (HAdd.hAdd.{0, 0, 0} (Nat.rawCast.{0} 1)
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                        (Int.rawCast.{0} (Int.negOfNat 1)))
+                                      0)))))
+                            (Mathlib.Tactic.Ring.sub_pf.{0}
+                              (Mathlib.Tactic.Ring.neg_add.{0}
+                                (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                  (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                    (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                      (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                      (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                        (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                      (Eq.refl.{1} (Int.negOfNat 1)))))
+                                (Mathlib.Tactic.Ring.neg_add.{0}
+                                  (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                      (Mathlib.Meta.NormNum.IsNat.to_raw_eq.{0}
+                                        (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                          (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                            (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                            (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                            (Eq.refl.{1} (Int.ofNat 1)))))))
+                                  Mathlib.Tactic.Ring.neg_zero.{0}))
+                              (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                                (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                  (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                    (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                      (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                    (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                    (Eq.refl.{1} (Int.ofNat 0))))
+                                (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                  (HAdd.hAdd.{0, 0, 0}
+                                    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                      (Nat.rawCast.{0} 1))
+                                    0)))))
+                          (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                            (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} ε (Nat.rawCast.{0} 1)
+                              (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                  (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                  (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                    (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                  (Eq.refl.{1} (Int.ofNat 0)))))
+                            (Mathlib.Tactic.Ring.add_pf_zero_add.{0} 0)))
+                        (Mathlib.Tactic.Ring.cast_zero.{0}
+                          (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))))
+                    (Linarith.add_lt_of_neg_of_le.{0} (Linarith.sub_neg_of_lt.{0} hε)
+                      (Linarith.sub_nonpos_of_le.{0} a)))),
+            fun c hc hcup r hr rho hrho =>
+            let_fun hc₀ :=
+              lt_of_not_ge.{0} fun a =>
+                Linarith.lt_irrefl.{0}
+                  (Eq.mp.{0}
+                    (congrArg.{1, 1} (fun _a => LT.lt.{0} _a 0)
+                      (Mathlib.Tactic.Ring.of_eq.{1}
+                        (Mathlib.Tactic.Ring.add_congr.{0}
+                          (Mathlib.Tactic.Ring.add_congr.{0}
+                            (Mathlib.Tactic.Ring.add_congr.{0}
+                              (Mathlib.Tactic.Ring.sub_congr.{0}
+                                (Mathlib.Tactic.Ring.cast_zero.{0}
+                                  (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))
+                                (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                                (Mathlib.Tactic.Ring.sub_pf.{0}
+                                  (Mathlib.Tactic.Ring.neg_add.{0}
+                                    (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                        (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                          (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                            (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                            (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                              (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                            (Eq.refl.{1} (Int.negOfNat 1))))))
+                                    Mathlib.Tactic.Ring.neg_zero.{0})
+                                  (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                        (Int.rawCast.{0} (Int.negOfNat 1)))
+                                      0))))
+                              (Mathlib.Tactic.Ring.sub_congr.{0} (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                                (Mathlib.Tactic.Ring.cast_pos.{0}
+                                  (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                                (Mathlib.Tactic.Ring.sub_pf.{0}
+                                  (Mathlib.Tactic.Ring.neg_add.{0}
+                                    (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                      (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                        (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                          (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                          (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                            (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                          (Eq.refl.{1} (Int.negOfNat 1)))))
+                                    Mathlib.Tactic.Ring.neg_zero.{0})
+                                  (Mathlib.Tactic.Ring.add_pf_add_gt.{0} (Int.rawCast.{0} (Int.negOfNat 1))
+                                    (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Nat.rawCast.{0} 1))
+                                        0)))))
+                              (Mathlib.Tactic.Ring.add_pf_add_gt.{0} (Int.rawCast.{0} (Int.negOfNat 1))
+                                (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                                  (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} ε (Nat.rawCast.{0} 1)
+                                    (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                      (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                        (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                        (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                          (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                        (Eq.refl.{1} (Int.ofNat 0)))))
+                                  (Mathlib.Tactic.Ring.add_pf_zero_add.{0} 0))))
+                            (Mathlib.Tactic.Ring.sub_congr.{0}
+                              (Mathlib.Tactic.Ring.cast_pos.{0}
+                                (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                              (Mathlib.Tactic.Ring.atom_pf.{0} c)
+                              (Mathlib.Tactic.Ring.sub_pf.{0}
+                                (Mathlib.Tactic.Ring.neg_add.{0}
+                                  (Mathlib.Tactic.Ring.neg_mul.{0} c (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                      (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                        (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                          (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                          (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                            (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                          (Eq.refl.{1} (Int.negOfNat 1))))))
+                                  Mathlib.Tactic.Ring.neg_zero.{0})
+                                (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                  (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                        (Int.rawCast.{0} (Int.negOfNat 1)))
+                                      0)))))
+                            (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                              (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                  (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                  (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                    (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                  (Eq.refl.{1} (Int.ofNat 0))))
+                              (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                (HAdd.hAdd.{0, 0, 0}
+                                  (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                    (Int.rawCast.{0} (Int.negOfNat 1)))
+                                  0))))
+                          (Mathlib.Tactic.Ring.sub_congr.{0} (Mathlib.Tactic.Ring.atom_pf.{0} c)
+                            (Mathlib.Tactic.Ring.cast_zero.{0}
+                              (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))
+                            (Mathlib.Tactic.Ring.sub_pf.{0} Mathlib.Tactic.Ring.neg_zero.{0}
+                              (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                (HAdd.hAdd.{0, 0, 0}
+                                  (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1)) (Nat.rawCast.{0} 1))
+                                  0))))
+                          (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                            (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} c (Nat.rawCast.{0} 1)
+                              (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                  (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                  (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                    (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                  (Eq.refl.{1} (Int.ofNat 0)))))
+                            (Mathlib.Tactic.Ring.add_pf_zero_add.{0} 0)))
+                        (Mathlib.Tactic.Ring.cast_zero.{0}
+                          (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))))
+                    (Linarith.add_lt_of_neg_of_le.{0}
+                      (Linarith.add_neg.{0}
+                        (Linarith.add_neg.{0} (Linarith.sub_neg_of_lt.{0} hε) (Linarith.sub_neg_of_lt.{0} hε₁))
+                        (Linarith.sub_neg_of_lt.{0} hc))
+                      (Linarith.sub_nonpos_of_le.{0} a)));
+            let_fun hγ :=
+              Iff.mpr (lt_div_iff₀.{0} hc₀)
+                (let_fun this := Iff.mp (lt_div_iff₀.{0} hden) hcup;
+                lt_of_not_ge.{0} fun a =>
+                  Linarith.lt_irrefl.{0}
+                    (Eq.mp.{0}
+                      (congrArg.{1, 1} (fun _a => LT.lt.{0} _a 0)
+                        (Mathlib.Tactic.Ring.of_eq.{1}
+                          (Mathlib.Tactic.Ring.add_congr.{0}
+                            (Mathlib.Tactic.Ring.sub_congr.{0}
+                              (Mathlib.Tactic.Ring.mul_congr.{0} (Mathlib.Tactic.Ring.atom_pf.{0} c)
+                                (Mathlib.Tactic.Ring.sub_congr.{0}
+                                  (Mathlib.Tactic.Ring.cast_pos.{0}
+                                    (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                                  (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                                  (Mathlib.Tactic.Ring.sub_pf.{0}
+                                    (Mathlib.Tactic.Ring.neg_add.{0}
+                                      (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                        (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                          (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                            (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                              (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                              (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                                (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                              (Eq.refl.{1} (Int.negOfNat 1))))))
+                                      Mathlib.Tactic.Ring.neg_zero.{0})
+                                    (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                        (HAdd.hAdd.{0, 0, 0}
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1)))
+                                          0)))))
+                                (Mathlib.Tactic.Ring.add_mul.{0}
+                                  (Mathlib.Tactic.Ring.mul_add.{0}
+                                    (Mathlib.Tactic.Ring.mul_pf_left.{0} c (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.one_mul.{0} (Nat.rawCast.{0} 1)))
+                                    (Mathlib.Tactic.Ring.mul_add.{0}
+                                      (Mathlib.Tactic.Ring.mul_pf_left.{0} c (Nat.rawCast.{0} 1)
+                                        (Mathlib.Tactic.Ring.mul_pf_right.{0} ε (Nat.rawCast.{0} 1)
+                                          (Mathlib.Tactic.Ring.one_mul.{0} (Int.rawCast.{0} (Int.negOfNat 1)))))
+                                      (Mathlib.Tactic.Ring.mul_zero.{0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (Nat.rawCast.{0} 1)))
+                                      (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                        (HAdd.hAdd.{0, 0, 0}
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                            (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                              (Int.rawCast.{0} (Int.negOfNat 1))))
+                                          0)))
+                                    (Mathlib.Tactic.Ring.add_pf_add_lt.{0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                        (Nat.rawCast.{0} 1))
+                                      (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                        (HAdd.hAdd.{0, 0, 0}
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                            (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                              (Int.rawCast.{0} (Int.negOfNat 1))))
+                                          0))))
+                                  (Mathlib.Tactic.Ring.zero_mul.{0}
+                                    (HAdd.hAdd.{0, 0, 0} (Nat.rawCast.{0} 1)
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Int.rawCast.{0} (Int.negOfNat 1)))
+                                        0)))
+                                  (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                        (Nat.rawCast.{0} 1))
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1))))
+                                        0)))))
+                              (Mathlib.Tactic.Ring.cast_pos.{0}
+                                (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                              (Mathlib.Tactic.Ring.sub_pf.{0}
+                                (Mathlib.Tactic.Ring.neg_add.{0}
+                                  (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                    (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                      (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                        (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                        (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                          (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                        (Eq.refl.{1} (Int.negOfNat 1)))))
+                                  Mathlib.Tactic.Ring.neg_zero.{0})
+                                (Mathlib.Tactic.Ring.add_pf_add_gt.{0} (Int.rawCast.{0} (Int.negOfNat 1))
+                                  (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                        (Nat.rawCast.{0} 1))
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1))))
+                                        0))))))
+                            (Mathlib.Tactic.Ring.sub_congr.{0}
+                              (Mathlib.Tactic.Ring.cast_pos.{0}
+                                (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                              (Mathlib.Tactic.Ring.mul_congr.{0}
+                                (Mathlib.Tactic.Ring.sub_congr.{0}
+                                  (Mathlib.Tactic.Ring.cast_pos.{0}
+                                    (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_one.{0}))
+                                  (Mathlib.Tactic.Ring.atom_pf.{0} ε)
+                                  (Mathlib.Tactic.Ring.sub_pf.{0}
+                                    (Mathlib.Tactic.Ring.neg_add.{0}
+                                      (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                        (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                          (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                            (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                              (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                              (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                                (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                              (Eq.refl.{1} (Int.negOfNat 1))))))
+                                      Mathlib.Tactic.Ring.neg_zero.{0})
+                                    (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                        (HAdd.hAdd.{0, 0, 0}
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1)))
+                                          0)))))
+                                (Mathlib.Tactic.Ring.atom_pf.{0} c)
+                                (Mathlib.Tactic.Ring.add_mul.{0}
+                                  (Mathlib.Tactic.Ring.mul_add.{0}
+                                    (Mathlib.Tactic.Ring.mul_pf_right.{0} c (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.one_mul.{0} (Nat.rawCast.{0} 1)))
+                                    (Mathlib.Tactic.Ring.mul_zero.{0} (Nat.rawCast.{0} 1))
+                                    (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (Nat.rawCast.{0} 1))
+                                        0)))
+                                  (Mathlib.Tactic.Ring.add_mul.{0}
+                                    (Mathlib.Tactic.Ring.mul_add.{0}
+                                      (Mathlib.Tactic.Ring.mul_pf_right.{0} c (Nat.rawCast.{0} 1)
+                                        (Mathlib.Tactic.Ring.mul_pf_left.{0} ε (Nat.rawCast.{0} 1)
+                                          (Mathlib.Tactic.Ring.mul_one.{0} (Int.rawCast.{0} (Int.negOfNat 1)))))
+                                      (Mathlib.Tactic.Ring.mul_zero.{0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                          (Int.rawCast.{0} (Int.negOfNat 1))))
+                                      (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                        (HAdd.hAdd.{0, 0, 0}
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                            (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                              (Int.rawCast.{0} (Int.negOfNat 1))))
+                                          0)))
+                                    (Mathlib.Tactic.Ring.zero_mul.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (Nat.rawCast.{0} 1))
+                                        0))
+                                    (Mathlib.Tactic.Ring.add_pf_add_zero.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1))))
+                                        0)))
+                                  (Mathlib.Tactic.Ring.add_pf_add_lt.{0}
+                                    (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                      (Nat.rawCast.{0} 1))
+                                    (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Int.rawCast.{0} (Int.negOfNat 1))))
+                                        0)))))
+                              (Mathlib.Tactic.Ring.sub_pf.{0}
+                                (Mathlib.Tactic.Ring.neg_add.{0}
+                                  (Mathlib.Tactic.Ring.neg_mul.{0} c (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                      (Mathlib.Meta.NormNum.IsInt.to_raw_eq.{0}
+                                        (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                          (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                          (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                            (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                          (Eq.refl.{1} (Int.negOfNat 1))))))
+                                  (Mathlib.Tactic.Ring.neg_add.{0}
+                                    (Mathlib.Tactic.Ring.neg_mul.{0} c (Nat.rawCast.{0} 1)
+                                      (Mathlib.Tactic.Ring.neg_mul.{0} ε (Nat.rawCast.{0} 1)
+                                        (Mathlib.Tactic.Ring.neg_one_mul.{0}
+                                          (Mathlib.Meta.NormNum.IsNat.to_raw_eq.{0}
+                                            (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                              (Mathlib.Meta.NormNum.isInt_mul.{0} (Eq.refl.{1} HMul.hMul.{0, 0, 0})
+                                                (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                                (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                                (Eq.refl.{1} (Int.ofNat 1))))))))
+                                    Mathlib.Tactic.Ring.neg_zero.{0}))
+                                (Mathlib.Tactic.Ring.add_pf_add_lt.{0} (Nat.rawCast.{0} 1)
+                                  (Mathlib.Tactic.Ring.add_pf_zero_add.{0}
+                                    (HAdd.hAdd.{0, 0, 0}
+                                      (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                        (Int.rawCast.{0} (Int.negOfNat 1)))
+                                      (HAdd.hAdd.{0, 0, 0}
+                                        (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} c (Nat.rawCast.{0} 1))
+                                          (HMul.hMul.{0, 0, 0} (HPow.hPow.{0, 0, 0} ε (Nat.rawCast.{0} 1))
+                                            (Nat.rawCast.{0} 1)))
+                                        0))))))
+                            (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                              (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                  (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                  (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                    (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                  (Eq.refl.{1} (Int.ofNat 0))))
+                              (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                                (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} c (Nat.rawCast.{0} 1)
+                                  (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                    (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                      (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                        (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                      (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                      (Eq.refl.{1} (Int.ofNat 0)))))
+                                (Mathlib.Tactic.Ring.add_pf_add_overlap_zero.{0}
+                                  (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} c (Nat.rawCast.{0} 1)
+                                    (Mathlib.Tactic.Ring.add_overlap_pf_zero.{0} ε (Nat.rawCast.{0} 1)
+                                      (Mathlib.Meta.NormNum.IsInt.to_isNat.{0}
+                                        (Mathlib.Meta.NormNum.isInt_add.{0} (Eq.refl.{1} HAdd.hAdd.{0, 0, 0})
+                                          (Mathlib.Meta.NormNum.IsInt.of_raw.{0} Real (Int.negOfNat 1))
+                                          (Mathlib.Meta.NormNum.IsNat.to_isInt.{0}
+                                            (Mathlib.Meta.NormNum.IsNat.of_raw.{0} Real 1))
+                                          (Eq.refl.{1} (Int.ofNat 0))))))
+                                  (Mathlib.Tactic.Ring.add_pf_zero_add.{0} 0)))))
+                          (Mathlib.Tactic.Ring.cast_zero.{0}
+                            (Mathlib.Meta.NormNum.isNat_ofNat.{0} Real Nat.cast_zero.{0}))))
+                      (Linarith.add_lt_of_neg_of_le.{0} (Linarith.sub_neg_of_lt.{0} this)
+                        (Linarith.sub_nonpos_of_le.{0} a))));
+            let_fun hγ₁ := Iff.mpr (div_lt_one.{0} hc₀) hc;
+            Exists.casesOn.{1} (hgamma ℓ P hmax htop (HDiv.hDiv.{0, 0, 0} 1 c) hγ hγ₁ r hr rho hrho) fun C h =>
+              And.casesOn.{0} h fun hC hunit =>
+                Exists.intro.{1} C
+                  ⟨hC, fun N hN hstep X [MeasurableSpace.{u} X] μ hprob T f hf =>
+                    PSPrimes.orbit_variation_bound_eLpNorm_of_oneBounded.{u} (PSPrimes.PolynomialFamily.polynomials P) T
+                      (PSPrimes.sparseMangoldt (HDiv.hDiv.{0, 0, 0} 1 c)) N ⋯ (ENNReal.ofReal C)
+                      (hunit N hN hstep X μ hprob T) f hf⟩⟩
+PSPrimes.variationChain_eq_ofReal {r : Real} (hr : LE.le.{0} 0 r) (a : Nat → Complex) (J : Nat)
+  (j : Fin (HAdd.hAdd.{0, 0, 0} J 1) → Nat) :
+  Eq.{1} (PSPrimes.variationChain r a J j)
+    (ENNReal.ofReal
+      (HPow.hPow.{0, 0, 0}
+        (∑ h, HPow.hPow.{0, 0, 0} (norm.{0} (HSub.hSub.{0, 0, 0} (a (j (Fin.succ h))) (a (j (Fin.castSucc h))))) r)
+        (HDiv.hDiv.{0, 0, 0} 1 r)))
+PSPrimes.lacunary_variation_perturbation_bound.{u_1} {X : Type u_1} [MeasurableSpace.{u_1} X]
+  (μ : MeasureTheory.Measure.{u_1} X) {r rho η D : Real} (hr : LE.le.{0} 1 r) (hrho : LT.lt.{0} 1 rho)
+  (hη : LT.lt.{0} 0 η) (hD : LE.le.{0} 0 D) (N : Nat → Nat) (hN : LE.le.{0} 1 (N 0))
+  (hstep : ∀ (j : Nat), LE.le.{0} (HMul.hMul.{0, 0, 0} rho ↑(N j)) ↑(N (HAdd.hAdd.{0, 0, 0} j 1)))
+  (a b : Nat → X → Complex)
+  (hint :
+    ∀ (n : Nat), LE.le.{0} 1 n → MeasureTheory.Integrable.{0, u_1} (fun x => HSub.hSub.{0, 0, 0} (a n x) (b n x)) μ)
+  (hdecay :
+    ∀ (n : Nat),
+      LE.le.{0} 1 n →
+        LE.le.{0} (∫ (x : X), norm.{0} (HSub.hSub.{0, 0, 0} (a n x) (b n x)) ∂μ)
+          (HMul.hMul.{0, 0, 0} D (HPow.hPow.{0, 0, 0} (↑n) (Neg.neg.{0} η)))) :
+  LE.le.{0} (∫⁻ (x : X), PSPrimes.rVariation r fun j => HSub.hSub.{0, 0, 0} (a (N j) x) (b (N j) x) ∂μ)
+    (ENNReal.ofReal
+      (HMul.hMul.{0, 0, 0} (HMul.hMul.{0, 0, 0} 2 D)
+        (Inv.inv.{0} (HSub.hSub.{0, 0, 0} 1 (HPow.hPow.{0, 0, 0} rho (Neg.neg.{0} η))))))

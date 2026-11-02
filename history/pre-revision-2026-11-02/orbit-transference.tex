@@ -1,0 +1,90 @@
+\begin{auxlemma}[Orbit transference from the finite estimate]\label{l:orbit-transference}
+\uses{t:teravainen,def:averages}
+\lean{PSPrimes.OrbitVNInput, PSPrimes.orbitVNInput_of_finiteVNInput}\leanok
+Assume TV. For each maximum degree $d\geq1$, the same degree-only exponent
+$K\geq1$ works as follows. Fix integer polynomials $P_i$ of distinct positive
+increasing degrees, largest degree $d$. There is $C_{\mathbf P}>0$, chosen
+before the system, its functions and $N$, such that every invertible probability
+system, essentially $1$-bounded a.e. strongly measurable $f_i$, $N\geq1$, and
+real weight $g$ satisfying $|g(n)|\leq B$, $B>0$, and
+\[
+ \left|\sum_{n=1}^N g(n)\ee(\phi(n))\right|\leq NE
+ \quad(\deg\phi\leq d),\qquad E\geq0,
+\]
+satisfy integrability and the bound
+\[
+ \int_X\left|\frac1N\sum_{n=1}^N g(n)
+     \prod_i f_i(T^{P_i(n-1)}x)\right|\,d\nu(x)
+ \leq C_{\mathbf P}B\bigl(N^{-1}+E/B\bigr)^{1/K}.
+\]
+\end{auxlemma}
+\Status{checked derivation from TV of the required real-weight specialization of the related manuscript's Proposition 1.4; no independent own-paper premise}
+\begin{proof}[Duality, exact spatial averaging and finite cutoffs]
+\proves{l:orbit-transference}\uses{t:teravainen,def:averages}\leanok
+For exposition first suppose $|f_i|\leq1$ everywhere and put
+\[
+ A(x)=N^{-1}\sum_{n=1}^N g(n)\prod_i f_i(T^{P_i(n-1)}x),\qquad
+ h(x)=\begin{cases}\overline{A(x)}/|A(x)|,&A(x)\ne0,\\0,&A(x)=0.\end{cases}
+\]
+Then $|h|\leq1$ and $hA=|A|$. Let $L=N^d$ and $R_i(y)=P_i(y-1)$.
+Measure preservation gives
+\[
+ \int_X hA\,d\nu
+ =\int_X\frac1L\sum_{a=1}^L h(T^ax)
+          \frac1N\sum_{n=1}^N g(n)
+          \prod_i f_i(T^{a+R_i(n)}x)\,d\nu(x).
+\]
+For fixed $x$, use $F_0(a)=h(T^ax)\1_{[L]}(a)$ and restrict each
+$F_i(b)=f_i(T^bx)$ to a fixed multiple of $[-N^d,N^d]$, extending it by zero.
+A coefficient-sum bound chooses that multiple from $\mathbf P$ alone and
+contains every $a+R_i(n)$ used in the sum. The finite expression has exactly
+the normalization $L^{-1}N^{-1}=N^{-d-1}$. Apply the proved homogeneity form
+of TV and integrate the uniform bound on the probability space. For the
+original essentially bounded functions, the same pointwise estimate holds
+on the conull set where every integer iterate is bounded.
+\end{proof}
+\ifDetailed
+\subsection*{The precise transference obligations}
+The checked declaration is \texttt{orbitVNInput\_\allowbreak{}of\_\allowbreak{}finiteVNInput}.
+This is the part of the related sequences paper that is needed by the prime
+paper. The other paper's main recurrence and pointwise theorems are not inputs.
+The preserved source is \texttt{manuscript/}\allowbreak\texttt{related-original/}\allowbreak\texttt{PSSequences.tex};
+its label \texttt{p:orbit} is Proposition 1.4. The Lean target is the real-weight,
+essentially $1$-bounded specialization required here, rather than a claim to
+formalize all variants of that proposition or the entire related paper.
+
+Translation $y\mapsto y-1$ preserves the natural degree of every nonconstant
+integer polynomial, including those with nonzero constant term. It therefore
+preserves strict degree increase, positive degree and the same maximum degree.
+For $1\leq n\leq N$ and $1\leq a\leq N^d$, the elementary coefficient bound
+\[
+ |a+R_i(n)|\leq C_0(\mathbf P)N^d
+\]
+holds with $C_0\geq1$ independent of $N$. This is a genuine bound for the
+integer support scale used by TV, not an asymptotic support assertion. The
+spatial cutoff for $F_0$ is an exact finite interval. Its actual support can
+be smaller when the multiplier vanishes; omitted terms are zero, so the
+unrestricted integer sum still equals the complete interval average.
+
+The implementation keeps the original representatives throughout. The
+weighted orbit average is a finite sum of a.e. strongly measurable functions.
+A single conull set controls all integer iterates of all the inputs, so at
+each point of that set the entire spatial sample is $1$-bounded. This gives
+the finite-form estimate almost everywhere. The same essential bound proves
+integrability on a probability space; no representative-change assumption is
+needed in the transference theorem. The
+explicit multiplier is measurable in the required a.e. sense, bounded by one,
+and is set to zero on the zero set of $A$. Thus no measurable-selection theorem
+or unproved duality witness is required. The products in the invariant integral
+are integrable, and finite summation commutes with integration. The action law
+identifies $T^{R_i(n)}T^a$ with $T^{a+R_i(n)}$, also for negative shifts.
+
+The same exponent $K$ selected from $d$ by TV is used throughout. The support
+constant is selected from the fixed polynomial family, and TV's bound constant
+is then selected before the probability space, action, inputs, weight,
+$N,B,E$. No assumption of a discrepancy-specific power saving, an ergodic
+limit, or a uniform theorem over changing coefficient families is introduced.
+The every-phase formulation is already the interface of TV; its published
+supremum translation TV-B remains external, while no separate orbit supremum
+bridge is needed for this deduction.
+\fi

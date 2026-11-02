@@ -140,6 +140,9 @@ Build completed successfully.
 $ lake build PSPrimes.KMTTNormalization
 ✔ [6660/6660] Built PSPrimes.KMTTNormalization
 Build completed successfully.
+$ lake build PSPrimes.Lacunary
+✔ [6653/6653] Built PSPrimes.Lacunary
+Build completed successfully.
 $ lake build PSPrimes.LogScales
 ⚠ [6667/6667] Built PSPrimes.LogScales
 warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
@@ -167,6 +170,18 @@ $ lake build PSPrimes.OrbitComparison
 ⚠ [6672/6672] Built PSPrimes.OrbitComparison
 warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
 note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+Build completed successfully.
+$ lake build PSPrimes.Variation
+✔ [6654/6654] Built PSPrimes.Variation
+Build completed successfully.
+$ lake build PSPrimes.VariationHomogeneity
+✔ [6656/6656] Built PSPrimes.VariationHomogeneity
+Build completed successfully.
+$ lake build PSPrimes.LongVariation
+⚠ [6672/6676] Replayed PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [6676/6676] Built PSPrimes.LongVariation
 Build completed successfully.
 $ lake build PSPrimes.MainPointwise
 ⚠ [6672/6674] Replayed PSPrimes.OrbitComparison
@@ -214,7 +229,7 @@ $ lake build PSPrimes.NormalizedDensityIncrement
 ✔ [6675/6675] Built PSPrimes.NormalizedDensityIncrement
 Build completed successfully.
 $ lake build PSPrimes
-⚠ [6675/6702] Replayed PSPrimes.PrimeDiscrepancy
+⚠ [6675/6706] Replayed PSPrimes.PrimeDiscrepancy
 warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
 warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
@@ -223,15 +238,15 @@ warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` whe
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
 warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [6681/6702] Replayed PSPrimes.FinalPrimeDiscrepancy
+⚠ [6681/6706] Replayed PSPrimes.FinalPrimeDiscrepancy
 warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
 note: this linter can be disabled with `set_option linter.unusedVariables false`
-⚠ [6688/6702] Replayed PSPrimes.LogScales
+⚠ [6689/6706] Replayed PSPrimes.LogScales
 warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-⚠ [6695/6702] Replayed PSPrimes.OrbitComparison
+⚠ [6696/6706] Replayed PSPrimes.OrbitComparison
 warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
 note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
-✔ [6701/6702] Built PSPrimes
+✔ [6705/6706] Built PSPrimes
 Build completed successfully.
-Serialized project build passed: 49 modules including entry point.
+Serialized project build passed: 53 modules including entry point.

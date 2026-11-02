@@ -1,5 +1,25 @@
 # Manuscript review and corrections
 
+## Current revision supplied 2 November 2026
+
+The author's revised source is preserved unchanged in
+`manuscript/revised-2026-11-02/Draft.tex`, SHA256
+`1b471706e66ddad262f9e7b3d3954336710112b9f962a07831b7b681df1c9fdd`.
+Its locally compiled PDF has 15 pages. Corollary 4.2 adds the weighted
+lacunary r-variation estimate; Remark 1.3 records a conjectural finite-Lp
+extension and endpoint background. The two main theorems retain their
+hypotheses and conclusions. No mathematical counterexample or necessary
+change to the new corollary has been identified.
+
+Two short expository updates are needed in the revised manuscript: restore
+the sentence introducing η after the shortened prime-power bound, and
+change the acknowledgement count from seven to eight for this extended
+Lean development. The exact replacements, their rationale and the new
+formalization boundary are in [REVISION_2026_11_02.md](REVISION_2026_11_02.md).
+The supplied source is not edited in place.
+
+## Historical review of the original 30 October source
+
 No necessary mathematical replacement has been demonstrated. The preserved
 `manuscript/original/Draft1.tex` is unchanged. No separate author-supplied PDF
 was attached; the generated 14-page PDF agrees with the source numbering.

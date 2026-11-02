@@ -1,134 +1,107 @@
-# Final verification after the orbit extension — 30 October 2026
+# Verification after the manuscript revision — 2 November 2026
 
-The production library consists of **48 modules** in `PSPrimes/` and the
-`PSPrimes.lean` entry point. Historical drafts under `work/` are excluded.
-All seven original numbered prime-paper deductions have checked conditional
-proofs. The required orbit estimate from the related sequences paper is now
-proved from finite VN; no independent own-paper premise remains.
+The production project now has **52 modules and its entry point**, including
+four added modules: Variation, Lacunary, VariationHomogeneity and LongVariation.
+The old 48 modules are byte-for-byte unchanged from repository base commit
+`d523ab623a07a1969cae0f6386d08a7e28f09c28`; only the entry imports were extended.
+See `revision-correspondence-check.json`.
 
-## Pinned environment and build provenance
+## Actual clean build and audit: passed
 
-Lean `leanprover/lean4:v4.19.0`, official commit `6caaee842e94`; Lake
-`5.0.0-6caaee8`; Mathlib `c44e0c8ee63ca166450922a373c7409c5d26b00b`.
-`lake-manifest.json` pins the transitive dependencies.
-
-The 6,641 official Mathlib dependency artifacts were downloaded and reused.
-This is a fresh build of all project sources, not a fresh dependency rebuild.
-`ENVIRONMENT.txt`, `mathlib-cache.log` and `build-environment.txt` record the
-actual setup and version evidence. This sandbox required the executable-path
-compatibility shim in `scripts/environment/`; neither the Lean binary nor its
-kernel was modified. Ordinary installations do not need the shim.
-
-## Complete clean build and audit: passed
-
-After freezing the production proof sources, the actual environment command
-was:
+The actual command, from the project root, was:
 
 ```sh
-source ../tooling/env.sh && flock /tmp/psprimes-orbit-lean.lock bash scripts/check.sh > evidence/orbit-extension-check.log 2>&1
+env PATH=/workspace/scratch/c84b5d813ddd/lean-environment/lean-4.19.0-linux/bin:$PATH LD_PRELOAD=/workspace/scratch/c84b5d813ddd/lean-environment/proc_exe_compat.so bash scripts/check.sh > evidence/revision-extension-check.log 2>&1
 ```
 
-It exited **0**. The environment file selects the official Lean release and
-sandbox shim; the lock serializes compiler jobs. On an ordinary installation,
-install the pinned toolchain, run `lake exe cache get`, then run
-`bash scripts/check.sh`.
+It exited **0**. The script removed only this project's `.lake/build` and
+freshly compiled all 53 targets in dependency order. Every target exited 0;
+total target invocation time was **340.932 seconds**. The manifest records each
+command, source SHA256, duration and exit code in `project-build-manifest.json`.
+The complete output is `clean-build.log` and `revision-extension-check.log`.
+Nonfatal tactic-style/unused-variable suggestions remain in older modules;
+the four new modules have no linter warnings.
 
-The check removed only `.lake/build` and invoked the serial dependency-order
-builder. All **49 target commands** (48 modules plus entry point) exited 0,
-with total invocation time **391.937 seconds**. The actual command, source
-hash, result and duration for each target are in `project-build-manifest.json`.
-`clean-build.log` records the complete build output. The only warnings were
-nonfatal tactic-style and unused-variable linter suggestions.
+`python3 scripts/audit.py`, invoked by that same check, generated
+`AxiomAudit.lean` and ran `lake env lean evidence/AxiomAudit.lean` successfully.
+It audited **508 named declarations**, reporting only `propext`,
+`Classical.choice` and `Quot.sound`. No additional mathematical axiom appeared.
+The production forbidden-token scan passed for sorry, admit, axiom, unsafe
+and native_decide outside comments. The script also checked the original,
+related and revised manuscript SHA256 manifests; all passed.
 
-The generated `lake env lean evidence/AxiomAudit.lean` audited **481 named
-production declarations** and exited 0. Only `Classical.choice`, `Quot.sound`
-and `propext` appeared. The production scan for `sorry`, `admit`, `axiom`,
-`unsafe` and `native_decide` outside comments passed. Evidence:
-`AxiomAudit.lean`, `axiom-audit.log`, `audit-summary.txt`.
+The axiom audit does not prove external predicates true or establish faithful
+manuscript correspondence. Those distinct obligations were reviewed separately.
 
-The original prime manuscript hash passed within the check. These additional
-actual checks also passed:
+## Pinned environment and provenance
+
+Lean 4.19.0 (official commit 6caaee842e94); Lake 5.0.0-6caaee8; Mathlib
+`c44e0c8ee63ca166450922a373c7409c5d26b00b`. All nine dependency heads match
+`lake-manifest.json`. The **6641 official dependency artifacts were reused**;
+Mathlib was not freshly rebuilt. Project sources were freshly compiled.
+`revision-environment.txt` records the actual restoration, official binary hash,
+dependency revisions and successful cache download. This sandbox uses the
+existing executable-path compatibility shim in `scripts/environment/`; the
+Lean executable and kernel are unmodified. Ordinary installations need no shim:
 
 ```sh
-sha256sum -c manuscript/related-original/SHA256SUMS
-sha256sum -c evidence/source-sha256.txt
-sha256sum -c history/orbit-transference-reviewed-sources.sha256
-sha256sum -c evidence/blueprint/source-hashes.txt
+lake exe cache get
+bash scripts/check.sh
 ```
 
-The first two outputs are retained in `related-manuscript-integrity.log` and
-`final-source-integrity.log`. The original source hash is
-`3876857aaa7855cc791df0be3b7b60bfbe0be249df013465dd50f72d1566a701`;
-the related source hash is
-`a172126d8d75e2032dd9da685cc848f8f76967b2f69c84066d87c0815a5d6a6e`.
+Before the extension, a separate fresh build of the original 48 modules and
+entry point also passed (49 commands, 302.852 seconds), recorded in
+`revision-base-build.log` and `revision-base-build-manifest.json`. The final
+53-target clean build supersedes intermediate module builds. An initially
+failed concurrent development build is retained under
+`history/revision-2026-11-02/initial-concurrent-build.log`; it is not counted
+as a successful verification.
 
-## The removed assumption and correspondence review
+## Public interfaces and blueprints: passed
 
-The actual new theorem is:
-
-```lean
-orbitVNInput_of_finiteVNInput
-  (hVN : FiniteVNInput) : OrbitVNInput.{u}
-```
-
-It proves the arbitrary-real-weight, essentially 1-bounded specialization of
-the supplied related paper's Proposition 1.4 needed by the prime paper. The
-proof checks degree-preserving translation by −1, one fixed spatial support
-constant, exact finite sums and normalization, explicit complex duality,
-measure preservation, integrability and a common conull set controlling all
-integer iterates. It retains exactly finite VN's degree-only exponent.
-`OrbitVNInput` is a derived specification; its former OR-B bridge is discharged.
-
-All three public `ps_orbit_*` declarations and Theorem 1.2 now take finite VN
-directly. The main specifications and finite VN input were not strengthened or
-changed to obtain this result. Theorem 1.2's exact premises are Shao–Sun,
-finite Teräväinen VN, PNT and MWW. The recurrence premises are unchanged.
-Independent mathematical and integration review passed; the signed review
-and six current source hashes are under `history/orbit-transference-*`.
-
-Seven independent external predicates remain, six used jointly by the mains.
-The published deep estimates and bridges SS-finiteX, TV-B, MW-B, KM-U-B,
-KM-R-B and KM-J remain unformalized. Their exact interfaces and scope are in
-`docs/ASSUMPTIONS.md`. Axiom audits do not prove those predicates true or
-establish manuscript correspondence; these obligations are separately recorded.
-The other arguments and main results of the related paper are not claimed
-formalized. No necessary prime-manuscript correction was demonstrated.
-
-## Public interfaces and documents: passed
-
-Both additional actual Lean commands exited 0:
+Both commands actually ran and exited 0:
 
 ```sh
 lake env lean evidence/PublicInterfaces.lean > evidence/public-interfaces.log 2>&1
 lake env lean evidence/BlueprintDeclarations.lean > evidence/blueprint-declarations.log 2>&1
 ```
 
-The first prints all seven external predicates, the derived orbit specification
-and both main specifications, then checks all seven manuscript deductions and
-the new transfer theorem. The second checks all **36** native-blueprint exported
-names against the compiled project.
+The first prints the eight external interfaces, derived orbit specification,
+original main specifications and full new corollary. The second checks all
+**46** names exported by native leanblueprint, including the new variation
+chain, summation and normalization declarations.
 
-Both revised PDFs compiled: compact **9 pages**, full expository **18 pages**.
-Their logs contain no overfull boxes, undefined references or TeX errors.
-Native leanblueprint generation succeeded; all dependency tags resolve.
-All 27 pages were rendered and visually checked. The native optional vector
-imagers were unavailable; dependency-graph and MathJax output were generated.
-Commands, metadata validation, QA and source/PDF hashes are in
-`blueprint/VERIFICATION.txt`, `blueprint/source-hashes.txt` and associated logs.
+Both updated LaTeX documents compiled: compact **10 pages**, full **20 pages**.
+Native leanblueprint graph generation also exited 0; all uses/proves targets
+resolve. The 30 pages were rendered and visually reviewed, with changed pages
+checked individually. No overfull boxes, undefined references or TeX errors.
+Optional vector-imager warnings are documented; the graph and MathJax output
+were produced. Actual commands, logs, metadata and QA are in
+`blueprint/VERIFICATION.txt` and the revision-prefixed files alongside it.
 
-The prime-manuscript map still covers all 48 original labels exactly once:
-nine numbered statements and 39 equations, plus substantial unnumbered steps.
-The new related-paper deduction has a separate correspondence entry.
-The preserved related source compiled to 11 pages, confirming Proposition 1.4,
-equation (10), on page 3; its build log is `related-manuscript-build.log`.
+The revised manuscript was compiled twice by pdflatex with halt-on-error,
+producing 15 pages. Its 49 unique labels cover 10 labelled statements and 39 equations;
+the extra unlabelled Remark 1.3 is explicitly conjectural. Teräväinen is now
+Theorem 1.4, and the new corollary is 4.2. No separately supplied PDF was available.
 
-## Historical evidence
+## Verified scope and remaining external boundary
 
-The earlier 45-module/455-declaration verification and documents are retained
-under `history/before-orbit-verification/` and `history/blueprint-before-orbit/`.
-Earlier source-review hashes refer to their historical versions and need not
-match the subsequently revised pointwise chain or map. The current orbit
-review hashes do match. An earlier cancelled concurrent clean build remains
-explicitly recorded as cancelled and is not counted as successful evidence.
-Dependency and generated web caches are omitted from the distributable archive;
-the native web output is reproducible from packaged source and requirements.
+All seven earlier deductions and new Corollary 4.2 have checked conditional
+proofs. The two quoted statements remain external. The endpoint remark is
+not asserted as a theorem. New `lacunary_variation_of_external_inputs` uses
+SS, TV and MW-V only, with true infinite variation and exact essential-norm
+product, including zero factors. Its constants have the manuscript's uniformity.
+The two earlier main theorems retain their previous premises. No independent
+result from the author's other paper is added.
+
+MW-V quotes MWW Theorem 1.1(iv), equation (1.5), via the separately documented
+unformalized bridge MW-V-B. All eight interfaces and other remaining bridges
+are precisely catalogued in `docs/ASSUMPTIONS.md`. Mathematical review was by
+AI collaborators and the primary agent, not independent human experts.
+The two expository manuscript replacements are in `docs/REVISION_2026_11_02.md`.
+The supplied revised source is unedited, hash
+`1b471706e66ddad262f9e7b3d3954336710112b9f962a07831b7b681df1c9fdd`.
+
+Earlier verification, blueprints, documentation and raw notes are retained
+under `history/`. They refer to their historical versions. Only the current
+revision evidence should be used for counts and current status.

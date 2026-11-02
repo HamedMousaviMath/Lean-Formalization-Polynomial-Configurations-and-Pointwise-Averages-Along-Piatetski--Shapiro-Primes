@@ -19,7 +19,9 @@ import PSPrimes.Iteration
 import PSPrimes.KMTTInterfaces
 import PSPrimes.KMTTNormalization
 import PSPrimes.Lifting
+import PSPrimes.Lacunary
 import PSPrimes.LogScales
+import PSPrimes.LongVariation
 import PSPrimes.MainPointwise
 import PSPrimes.MainRecurrence
 import PSPrimes.ModelOverlap
@@ -46,4 +48,6 @@ import PSPrimes.Rescaling
 import PSPrimes.Scales
 import PSPrimes.SmallScale
 import PSPrimes.SmoothModuli
+import PSPrimes.Variation
+import PSPrimes.VariationHomogeneity
 /-! The authoritative manuscript is preserved unchanged. Main results are conditional on the explicit external input catalogue. -/

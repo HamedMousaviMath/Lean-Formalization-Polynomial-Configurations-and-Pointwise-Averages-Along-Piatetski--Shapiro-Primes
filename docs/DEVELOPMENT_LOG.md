@@ -230,3 +230,27 @@ independent result from the author's other paper as a premise. Seven
 independent deep external interfaces and the remaining named source bridges
 are retained in the catalogue. The final downloadable archive and both PDFs
 are updated versions of the existing deliverables.
+
+
+## 2 November 2026 — revised manuscript and lacunary variation
+
+Read the complete revised source and compared it with repository commit
+d523ab6. Main theorems are unchanged; Corollary 4.2 is the new mathematical
+conclusion. The endpoint remark remains conjectural. Restored the same pinned
+Lean/Mathlib environment and freshly built the original library before adding
+four modules. Proved the exact infinite variation seminorm and real finite-chain
+correspondence, measurability, Minkowski/perturbation bounds, arbitrary lacunary
+geometric summation, and exact essential-norm homogeneity including zero factors.
+Transferred the existing all-N discrepancy rate using separately documented
+MWW variational input MW-V. No own-paper assumption was added. An intermediate
+concurrent build failed during development; its unedited output is historical.
+
+Final clean check passed: 53 target commands, 340.932 seconds, 508 declarations
+in the axiom audit, only the three standard axioms. All three manuscript hashes
+passed, and 46 blueprint names checked. Both updated blueprints compile (10/20
+pages), with native dependency metadata and rendered visual QA. AI mathematical
+review found no serious correspondence issue; independent human review remains
+outstanding. Preserved original and revised manuscripts and earlier documentation.
+The η sentence and eight-interface acknowledgement replacements are documented.
+Prepared an additive ZIP overlay and the updated complete project for download;
+the author will upload to GitHub. No remote push was performed.

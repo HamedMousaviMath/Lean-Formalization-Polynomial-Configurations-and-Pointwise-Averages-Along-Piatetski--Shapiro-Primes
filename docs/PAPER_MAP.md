@@ -1,16 +1,24 @@
 # Manuscript-to-Lean map
 
-The authoritative source is the unchanged `manuscript/original/Draft1.tex`.
-Its generated PDF has 14 pages; no separate author-supplied PDF was attached.
-The numbering below follows the compiled manuscript, including its original
-labels. All Lean names are in namespace `PSPrimes`.
+The current authoritative source is the author's unedited revision supplied
+on 2 November 2026, preserved as
+[`manuscript/revised-2026-11-02/Draft.tex`](../manuscript/revised-2026-11-02/Draft.tex).
+The earlier unchanged `manuscript/original/Draft1.tex` and its 14-page generated
+PDF remain available. No independently supplied PDF accompanied either source.
 
-This map covers **all 48 source labels: nine numbered statements and 39
-numbered equations**. Seven numbered statements have checked conditional
-proofs; two are quoted external inputs. No original numbered conclusion is
-assumed to prove another conclusion. The substantive unformalized work is
-the external theorems and their explicitly recorded source-to-interface
-translations, listed in [ASSUMPTIONS.md](ASSUMPTIONS.md).
+The revision preserves all 48 earlier labels and adds `c:long-variation`: **49
+labels, comprising ten labelled theorem-like statements and 39 equations**.
+Its generated PDF has 15 pages. It also adds an unlabelled numbered endpoint Remark 1.3. This moves the quoted
+Teräväinen theorem from 1.3 to 1.4; every other earlier statement and equation
+keeps its number. The seven earlier deductions remain checked conditionally.
+The new Corollary 4.2 also has a checked conditional proof, recorded below.
+Two labelled statements quote external theorems; the endpoint remark is an
+explicit expectation and background discussion, not a claimed theorem.
+
+No manuscript conclusion is assumed to establish another conclusion. External
+theorems and source-to-interface translations are catalogued in
+[ASSUMPTIONS.md](ASSUMPTIONS.md). The previous map is retained in
+[history](../history/pre-revision-2026-11-02/docs/PAPER_MAP.md).
 
 “Checked” refers to the indicated implementation and its module compilation.
 It does not assert that an external hypothesis has been proved. The final
@@ -23,13 +31,15 @@ this map is not a substitute for those command logs.
 |---|---|---|---|
 | Theorem 1.1 | `t:szemeredi` | `quantitative_recurrence` in `MainRecurrence.lean` | **Conditional checked:** `ShaoSunPhaseInput`, `FiniteVNInput`, `KMTTRegularityInput`, `KMTTCompatibleInput`. Actual finite sets and PS primes; c* and κ precede c, and N₀(c) precedes N and A. The original iteration is constructed. |
 | Theorem 1.2 | `t:pointwise` | `pointwiseErgodicTheorem_of_external_inputs` | **Conditional checked:** SS, `FiniteVNInput`, `PrimeNumberTheoremInput`, `OrdinaryPrimePointwiseInput`. The orbit estimate is proved from finite VN; no own-paper result is an independent input. Actual count-normalized averages, probability systems, essential L∞ bounds, and one common a.e. limit. |
-| Theorem 1.3 | `t:teravainen` | `FiniteVNInput` | **Quoted external:** fixed-family finite generalized von Neumann estimate. Positive-degree specialization and the supremum-to-every-phase interface are explicit external translations. |
+| Remark 1.3 | unlabelled | No Lean theorem | Conjectural finite-Lp extension and endpoint background; not an assertion proved by this development. |
+| Theorem 1.4 (previously 1.3) | `t:teravainen` | `FiniteVNInput` | **Quoted external:** fixed-family finite generalized von Neumann estimate. Positive-degree specialization and the supremum-to-every-phase interface are explicit external translations. |
 | Theorem 2.1 | `t:shao-sun` | `ShaoSunPhaseInput` | **Quoted external:** coefficient-uniform polynomial-phase consequence of Shao–Sun. The circle/binomial nilsequence specialization is explained but not formalized. |
 | Lemma 2.2 | `l:progression-phase` | `progressionPhase_of_shaoSun` | **Conditional checked on SS:** exact character projection, progression reindexing, n=1 cancellation, and QM+1 endpoint absorption. The saving is chosen before γ. |
 | Proposition 2.3 | `p:comparison` | `ps_counting_comparison` | **Conditional checked on SS and finite VN:** degree-only c* and saving; the bound constant precedes a, while the large-M threshold may depend on a. The original floor scale, support, and normalization are retained. |
 | Proposition 3.1 | `p:KMTT` | `kmtt_density_increment_normalized` | **Conditional checked on `KMTTUnweightedInput` and `KMTTRegularityInput`:** the original local-factor deduction, small-scale exclusion, divisibility, actual progression, and literal coefficient-one length bound are proved. The useful prefactor version is `kmtt_density_increment`. |
 | Lemma 3.2 | `l:PS-discrepancy` | `ps_prime_discrepancy` | **Conditional checked on SS, finite VN, and `PrimeProgressionMassWitness` for the same comparison parameters:** actual forbidden configurations, collisions, prime powers, model overlap, and uniform error absorption. `KMTTCompatibleInput` supplies compatible data in Theorem 1.1. |
 | Proposition 4.1 | `p:pointwise-comparison` | `ps_orbit_comparison` | **Conditional checked on SS, finite VN, and PNT:** the L1 power saving, summable-subsequence passage, and full-sequence a.e. comparison are proved. MW is needed only for the subsequent common-limit theorem. |
+| Corollary 4.2 | `c:long-variation` | `lacunary_variation_of_external_inputs` in `LongVariation.lean` (**conditional checked**) | SS, finite VN, and the newly documented `OrdinaryPrimeVariationInput` (MW-V). Infinite r-variation of actual weighted sparse averages; r>2, λ>1; c* before r, λ, with the norm bound uniform over positive λ-lacunary sequences and systems. No PNT or ordinary pointwise-convergence premise is required. |
 
 ## Definitions and numbered equations
 
@@ -113,8 +123,31 @@ PS-prime and ordinary-prime cardinality denominators, and one common a.e.
 limit. Its four external premises are SS, finite VN, PNT and ordinary-prime weighted convergence; the required own-paper orbit argument is proved internally. It does not strengthen essential bounds to everywhere bounds in the
 final statement or restrict to finite systems.
 
-The seven conditional statements contain no remaining open original proof
-obligation. The two quoted statements and the listed external translations
+The seven earlier conditional statements contain no remaining open original
+proof obligation. The revision adds Corollary 4.2; its implementation/build
+status is recorded above and in the revision notes. The two quoted statements and the listed external translations
 remain unformalized. Standard foundational axiom lists certify neither those
 analytic inputs nor manuscript correspondence; the assumption catalogue and
-signed independent reviews address these separate questions.
+mathematical reviews address these separate questions; no independent human expert review is claimed.
+
+## Changes introduced in the 2 November revision
+
+The primary addition is the infinite lacunary r-variation seminorm and
+Corollary 4.2. Its proof uses the already checked all-N L1 power saving, a
+uniform geometric series bound, the variation triangle inequality, and the
+MWW variational estimate. This requires the extra MW-V input; the existing
+MW pointwise-convergence interface alone does not assert a variation bound.
+
+The endpoint Remark 1.3 makes an expectation explicit and cites counterexample
+background. The introductory relative-density discussion, revised literature
+review, and shorter prime-power exposition do not change the hypotheses or
+conclusions of the two main theorems. The cited optional no-Siegel observation
+remains unused. See [REVISION_2026_11_02.md](REVISION_2026_11_02.md) for proof
+architecture and exact source/correction notes.
+
+The new `variationChain_eq_ofReal` theorem identifies every finite-chain
+ENNReal expression with the nonnegative real formula printed in the paper.
+`rVariation` then takes the genuine countable infinite supremum. The output
+uses a nonnegative extended integral and the exact `eLpNorm f ∞ μ` product,
+so neither divergent variation nor zero essential norms are hidden by a
+real-integral convention.

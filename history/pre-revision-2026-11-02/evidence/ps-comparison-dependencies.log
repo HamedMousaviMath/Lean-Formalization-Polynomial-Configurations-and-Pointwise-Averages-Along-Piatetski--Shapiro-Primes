@@ -1,0 +1,25 @@
+✖ [6657/6658] Building PSPrimes.ExceptionalTerms
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /workspace/scratch/c84b5d813ddd/tooling/lean-4.19.0-linux/bin/lean ././././PSPrimes/ExceptionalTerms.lean -R ./././. -o ././.lake/build/lib/lean/PSPrimes/ExceptionalTerms.olean -i ././.lake/build/lib/lean/PSPrimes/ExceptionalTerms.ilean -c ././.lake/build/ir/PSPrimes/ExceptionalTerms.c --json
+error: ././././PSPrimes/ExceptionalTerms.lean:269:46: unsolved goals
+k d N M : ℕ
+hN : 1 ≤ N
+hM : 1 ≤ M
+R : Fin k → Polynomial ℤ
+hR : Function.Injective R
+hdeg : ∀ (i : Fin k), (R i).natDegree ≤ d
+spatial parameters : Finset ℤ
+hspatial : spatial.card ≤ N
+term : ℤ → ℤ → ℂ
+B : ℝ
+hB : 0 ≤ B
+hterm : ∀ x ∈ spatial, ∀ y ∈ collisionParameters R parameters, ‖term x y‖ ≤ B
+hinner : ∀ x ∈ spatial, ‖∑ y ∈ collisionParameters R parameters, term x y‖ ≤ ↑(d * k.choose 2) * B
+hsum : ‖∑ x ∈ spatial, ∑ y ∈ collisionParameters R parameters, term x y‖ ≤ ↑N * (↑(d * k.choose 2) * B)
+hn : ↑N ≠ 0
+hm : ↑M ≠ 0
+⊢ ↑N * (↑d * ↑(k.choose 2) * B) * ↑M = ↑d * ↑(k.choose 2) * B * (↑N * ↑M)
+error: Lean exited with code 1
+✔ [6658/6658] Built PSPrimes.Progressions
+Some required builds logged failures:
+- PSPrimes.ExceptionalTerms
+error: build failed

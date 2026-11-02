@@ -1,0 +1,6 @@
+'PSPrimes.sparseErrorLiftConstant_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.sparse_error_numerator_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.sparseCountError_le_lifted_power' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_sparseCountError_power_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_scaled_exp_log_subpower_le_rpow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.eventually_powerSaving_le_density_mass' depends on axioms: [propext, Classical.choice, Quot.sound]

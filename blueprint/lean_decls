@@ -28,6 +28,16 @@ PSPrimes.selectedAverage
 PSPrimes.OrbitVNInput
 PSPrimes.orbitVNInput_of_finiteVNInput
 PSPrimes.ps_orbit_comparison
+PSPrimes.variationChain
+PSPrimes.variationChain_eq_ofReal
+PSPrimes.rVariation
+PSPrimes.rVariation_add_le
+PSPrimes.rVariation_le_two_tsum
+PSPrimes.lintegral_rVariation_le_two_tsum
+PSPrimes.lacunary_rpow_tsum_ennreal_le
+PSPrimes.OrdinaryPrimeVariationInput
+PSPrimes.lacunary_variation_of_external_inputs
+PSPrimes.orbit_variation_bound_eLpNorm_of_oneBounded
 PSPrimes.KMTTUnweightedInput
 PSPrimes.KMTTRegularityInput
 PSPrimes.KMTTCompatibleInput

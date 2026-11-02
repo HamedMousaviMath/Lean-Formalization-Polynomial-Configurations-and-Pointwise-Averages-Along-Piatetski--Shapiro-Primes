@@ -1,0 +1,16 @@
+Try this: ring_nf
+work/recurrence/DensityIncrement.lean:409:40: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  g ≥ 1
+  f ≥ 1
+  e ≥ 1
+  c ≥ 1
+  b ≥ 1
+  a ≥ 1
+where
+ a := ↑d
+ b := ↑Bmax
+ c := ↑ℓ
+ e := ↑Aq
+ f := ↑Aε
+ g := ↑T

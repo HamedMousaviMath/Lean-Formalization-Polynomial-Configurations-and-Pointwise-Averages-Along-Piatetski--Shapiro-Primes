@@ -1,21 +1,56 @@
-Orbit-extension blueprint verification — 30 October 2026
+Revision blueprint verification — 2 November 2026
 
-Compact PDF: 9 pages. Full expository PDF: 18 pages.
-Actual PDF command from project root:
-latexmk -pdf -interaction=nonstopmode -halt-on-error -cd blueprint/src/compact.tex blueprint/src/full.tex
-Actual native command from blueprint/src:
-PATH=/root/.local/bin:$PATH plastex --config=plastex.cfg web.tex
-Both final commands completed successfully (exit 0). PDF logs contain no overfull boxes, undefined references or TeX errors. Native graph/MathJax generation succeeds; optional dvisvgm/pdf2svg discovery warns because those vector imagers are absent.
+Compact PDF: 10 pages. Full expository PDF: 20 pages.
+Actual successful command from blueprint/src (exit 0):
+latexmk -pdf -interaction=nonstopmode -halt-on-error compact.tex full.tex
+Actual successful native command from blueprint/src (exit 0):
+/root/.local/bin/plastex --config=plastex.cfg web.tex
 
-The new auxiliary orbit node replaces the former independently quoted OR node. Metadata: 17 labelled nodes; nine numbered prime-manuscript statements; 52 dependency targets in 24 uses tags; 9 proves tags; 16 leanok tags (the seven conditional manuscript statement/proof pairs plus the derived orbit statement/proof pair). All uses/proves targets resolve without duplicate labels. Native leanblueprint exported 36 distinct actual project declaration names, including orbitVNInput_of_finiteVNInput, to blueprint/lean_decls. Native web theorem registration includes auxlemma, so the new node appears in the graph.
+Logs: revision-pdf-build.log, revision-web-build.log.
+Both final TeX logs contain no overfull boxes, undefined references or TeX
+errors. Native leanblueprint graph/MathJax generation succeeds. Optional
+vector-imager discovery warns because dvisvgm/pdf2svg are absent; graph
+registration and declaration export still succeeded. Native graph contains
+the new variation, perturbation, MW-V and Corollary 4.2 nodes.
 
-Theorem 1.2 now takes SS, TV, PNT and MW; Proposition 4.1 takes SS, TV and PNT. OrbitVNInput is derived from FiniteVNInput, preserving exactly its degree-only exponent. The original functions retain essential bounds; one conull set controls all integer iterates. The earlier independent OR premise and its OR-B translation are removed. Seven independent external predicates remain; six occur jointly in the two mains because KM-Compatible subsumes standalone KM-U. SS-finiteX, TV-B, MW-B, KM-U-B, KM-R-B and KM-J remain external. No full formalization of the related paper is claimed: the implemented target is the real-weight, essentially 1-bounded specialization of its Proposition 1.4 needed here.
+The explicit metadata check (revision-metadata.json) found 21 labelled nodes,
+29 uses tags containing 67 dependency targets, 11 proves tags and 21 leanok
+tags. No duplicate labels or unresolved uses/proves targets. The native
+export lists 46 actual declaration names; their separate Lean name check
+is a project evidence task, not implied by PDF compilation. Quoted MW-V
+has no leanok tag. The compact and full documents share their mathematical
+content, statement correspondence and external catalogue.
 
-The unchanged related source is manuscript/related-original/PSSequences.tex. Its generated numbering confirms p:orbit = Proposition 1.4, e:orbit-transfer = (10), on page 3. The prime manuscript's 48-label map was checked again: every original label occurs once.
+The revision adds the actual infinite r-variation seminorm, finite-chain
+correspondence with the paper's real formula, countable-supremum
+measurability, summable perturbation proof, uniform infinite geometric sum,
+and essential-norm homogeneity including zero factors. Corollary 4.2 is
+marked conditionally checked only after the implementation modules compiled
+successfully. Its external premises are SS, TV and MW-V; neither PNT nor
+ordinary pointwise convergence is a premise. The original two main theorems
+retain their premises. Eight external interfaces remain uninstantiated,
+with the new MW-V-B source translation explicit.
 
-leanblueprint 0.0.20; plasTeX 3.1; plastexdepgraph 0.0.5; pdfTeX 1.40.25 (TeX Live 2022/Debian).
-All 27 final PDF pages rendered at 65 dpi after the final caption polish and visually inspected in contact sheets. The full transference detail page was additionally inspected at 110 dpi; the compact manual DAG at 100 dpi. No clipping, overlaps or broken table rows observed. The manual graph shows TV→orbit transference→Proposition 4.1, as well as PNT→Proposition 4.1 and MW→Theorem 1.2.
+Visual QA: all 30 pages were rendered at scale-to 1100 and inspected in six
+contact sheets. After the final proof-metadata/exposition polish, affected
+introductory and variation/table pages were re-rendered at scale-to
+1200/1300 and inspected individually (compact 1,8,9,10; full 1,2,16,17).
+No clipping, overlap or broken table rows observed. Representative final
+changed-page images are included alongside this record. Full-page contact
+sheets remain intermediate workspace files; final PDFs are the deliverables.
 
-Pre-extension source/PDF/document state is preserved under history/blueprint-before-orbit, with its SHA256SUMS. Previous recurrence-stage history is also retained. Current PDFs, sources, native declaration list, README, ASSUMPTIONS, REFERENCES, PAPER_MAP, MODULES and MATHLIB_REUSE are hashed in source-hashes.txt.
+Current tools: leanblueprint 0.0.20; plasTeX 3.1; plastexdepgraph 0.0.5;
+pdfTeX 1.40.25 (TeX Live 2023/Debian); latexmk 4.83.
+The supplied revised source compiles to 15 pages, with c:long-variation=4.2
+and t:teravainen=1.4. All 39 equation numbers remain unchanged.
+The 49-label manuscript map additionally records unlabelled endpoint
+Remark 1.3 as conjectural/background, not a formalized claim.
 
-Separate Lean evidence: parent reported actual successful builds of all three new orbit modules and the revised MainPointwise/OrbitComparison modules; the aggregate theorem and its reviewed-source hash are recorded in the project evidence and history. The final project-wide clean build and declaration audit are a separate command. See evidence/VERIFICATION.md for their actual current outcome; no pending final check is presumed successful here. Document compilation does not prove the remaining external input predicates or their source-formulation bridges.
+Earlier blueprint sources/PDFs and selected documentation/evidence are
+preserved under history/pre-revision-2026-11-02. Neither authoritative
+manuscript source has been edited. The exact two small expository
+replacements are recorded in docs/REVISION_2026_11_02.md.
+
+Lean clean-build and axiom-audit evidence are separate project commands.
+This document does not presume their final outcome or prove the external
+theorems/source bridges true.

@@ -1,0 +1,42 @@
+2026-11-02T12:25:46.295135+00:00
+Runtime restoration for November manuscript extension.
+Official Lean release: https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst
+Release SHA256: 6fe3ce97a58f44e2b3567d455b994eacec5bfe9ae7774f2a573444480ba813fe
+
+Actual runtime checks:
+$ lean --version
+Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release)
+exit_code=0
+$ lake --version
+Lake version 5.0.0-6caaee8 (Lean version 4.19.0)
+exit_code=0
+
+Per-command sandbox environment:
+PATH=/workspace/scratch/c84b5d813ddd/lean-environment/lean-4.19.0-linux/bin:$PATH
+LD_PRELOAD=/workspace/scratch/c84b5d813ddd/lean-environment/proc_exe_compat.so
+Shim compiled from unchanged scripts/environment/proc_exe_compat.c:
+gcc -shared -fPIC -O2 -o /workspace/scratch/c84b5d813ddd/lean-environment/proc_exe_compat.so scripts/environment/proc_exe_compat.c -ldl
+Only redirects numeric /proc/<pid>/exe readlink to /proc/self/exe; does not alter kernel proof checking.
+
+Dependency heads verified against lake-manifest.json:
+plausible 77e08eddc486491d7b9e470926b3dbe50319451a matches_manifest=True
+LeanSearchClient 25078369972d295301f5a1e53c3e5850cf6d9d4c matches_manifest=True
+importGraph e6a9f0f5ee3ccf7443a0070f92b62f8db12ae82b matches_manifest=True
+proofwidgets c4919189477c3221e6a204008998b0d724f49904 matches_manifest=True
+aesop 5d50b08dedd7d69b3d9b3176e0d58a23af228884 matches_manifest=True
+Qq fa4f7f15d97591a9cf3aa7724ba371c7fc6dda02 matches_manifest=True
+batteries f5d04a9c4973d401c8c92500711518f7c656f034 matches_manifest=True
+Cli 02dbd02bc00ec4916e99b04b2245b30200e200d0 matches_manifest=True
+mathlib c44e0c8ee63ca166450922a373c7409c5d26b00b matches_manifest=True
+
+Actual dependency cache command (exit0):
+TAR_OPTIONS=--no-same-owner lake exe cache get
+Downloaded 6641/6641 files (100% success).
+Decompressing 6641 files; Unpacked in 8800 ms; Completed successfully.
+These are reused official dependency artifacts, not newly compiled Mathlib proof sources.
+Cache bootstrap executable sources were freshly built.
+Initial runtime invocation failed to locate application until existing compatibility shim applied.
+Initial tar extraction reported sandbox uid mapping ownership errors; re-extracted unchanged archive with --no-same-owner.
+Initial leantar installer similarly extracted file but ownership returned error; renamed actual extracted leantar to versioned cache location and reran successfully.
+
+Fresh compilation and audits of project sources are recorded separately.

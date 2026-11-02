@@ -1,0 +1,21 @@
+Orbit-extension blueprint verification — 30 October 2026
+
+Compact PDF: 9 pages. Full expository PDF: 18 pages.
+Actual PDF command from project root:
+latexmk -pdf -interaction=nonstopmode -halt-on-error -cd blueprint/src/compact.tex blueprint/src/full.tex
+Actual native command from blueprint/src:
+PATH=/root/.local/bin:$PATH plastex --config=plastex.cfg web.tex
+Both final commands completed successfully (exit 0). PDF logs contain no overfull boxes, undefined references or TeX errors. Native graph/MathJax generation succeeds; optional dvisvgm/pdf2svg discovery warns because those vector imagers are absent.
+
+The new auxiliary orbit node replaces the former independently quoted OR node. Metadata: 17 labelled nodes; nine numbered prime-manuscript statements; 52 dependency targets in 24 uses tags; 9 proves tags; 16 leanok tags (the seven conditional manuscript statement/proof pairs plus the derived orbit statement/proof pair). All uses/proves targets resolve without duplicate labels. Native leanblueprint exported 36 distinct actual project declaration names, including orbitVNInput_of_finiteVNInput, to blueprint/lean_decls. Native web theorem registration includes auxlemma, so the new node appears in the graph.
+
+Theorem 1.2 now takes SS, TV, PNT and MW; Proposition 4.1 takes SS, TV and PNT. OrbitVNInput is derived from FiniteVNInput, preserving exactly its degree-only exponent. The original functions retain essential bounds; one conull set controls all integer iterates. The earlier independent OR premise and its OR-B translation are removed. Seven independent external predicates remain; six occur jointly in the two mains because KM-Compatible subsumes standalone KM-U. SS-finiteX, TV-B, MW-B, KM-U-B, KM-R-B and KM-J remain external. No full formalization of the related paper is claimed: the implemented target is the real-weight, essentially 1-bounded specialization of its Proposition 1.4 needed here.
+
+The unchanged related source is manuscript/related-original/PSSequences.tex. Its generated numbering confirms p:orbit = Proposition 1.4, e:orbit-transfer = (10), on page 3. The prime manuscript's 48-label map was checked again: every original label occurs once.
+
+leanblueprint 0.0.20; plasTeX 3.1; plastexdepgraph 0.0.5; pdfTeX 1.40.25 (TeX Live 2022/Debian).
+All 27 final PDF pages rendered at 65 dpi after the final caption polish and visually inspected in contact sheets. The full transference detail page was additionally inspected at 110 dpi; the compact manual DAG at 100 dpi. No clipping, overlaps or broken table rows observed. The manual graph shows TV→orbit transference→Proposition 4.1, as well as PNT→Proposition 4.1 and MW→Theorem 1.2.
+
+Pre-extension source/PDF/document state is preserved under history/blueprint-before-orbit, with its SHA256SUMS. Previous recurrence-stage history is also retained. Current PDFs, sources, native declaration list, README, ASSUMPTIONS, REFERENCES, PAPER_MAP, MODULES and MATHLIB_REUSE are hashed in source-hashes.txt.
+
+Separate Lean evidence: parent reported actual successful builds of all three new orbit modules and the revised MainPointwise/OrbitComparison modules; the aggregate theorem and its reviewed-source hash are recorded in the project evidence and history. The final project-wide clean build and declaration audit are a separate command. See evidence/VERIFICATION.md for their actual current outcome; no pending final check is presumed successful here. Document compilation does not prove the remaining external input predicates or their source-formulation bridges.

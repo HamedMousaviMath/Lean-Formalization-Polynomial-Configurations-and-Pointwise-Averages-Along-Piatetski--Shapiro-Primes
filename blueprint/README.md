@@ -7,9 +7,30 @@
 - `src/correspondence.tex` and `src/catalogue.tex`: common manuscript map and external-input catalogue.
 - `src/web.tex`: native leanblueprint web entry point, with a dependency graph generated from the metadata.
 
-The manuscript's nine statement numbers and source labels are retained. All seven original numbered deductions have checked conditional proofs. Theorems 1.3 and 2.1 are quoted externally. Seven independent external predicates are uninstantiated; the two main theorems jointly use six, because the compatible KMTT selector subsumes standalone KM-U. The needed orbit transference from the author's related sequences paper is proved from finite VN, including its former OR-B translation. The remaining source-formulation bridges SS-finiteX, TV-B, MW-B, KM-U-B, KM-R-B and KM-J remain external. Four milestones match the project map: objects/algebra, finite comparison, recurrence, pointwise convergence. Earlier checkpoint sources and PDFs are preserved under history/.
+The current manuscript is the unedited revision supplied on 2 November 2026,
+preserved in `manuscript/revised-2026-11-02/Draft.tex`. Its generated PDF has
+15 pages. It retains the 48 earlier labels and adds `c:long-variation`;
+there are ten labelled theorem-like statements, 39 labelled equations and
+one unlabelled numbered endpoint Remark 1.3. That remark shifts the quoted
+Teräväinen theorem from 1.3 to 1.4.
 
-The original manuscript was compiled to 14 pages. No separately supplied PDF was available. The blueprint sources never modify the preserved manuscript. No demonstrated mathematical error requiring a replacement was found at this checkpoint.
+All seven earlier deductions and new Corollary 4.2 have checked conditional
+proofs. Theorems 1.4 and 2.1 are quoted externally. Eight explicit external
+input interfaces remain uninstantiated, including the new MW-V variation
+specialization of MWW Theorem 1.1(iv). The original two main theorems still
+jointly use six interfaces. The required orbit transference from the
+author's related sequences paper remains proved from finite VN. The new
+variation proof uses SS, TV and MW-V; its geometric summation, infinite
+supremum, measurability and exact essential-norm product are proved
+internally. See `src/revision-variation.tex` for the extension and
+`docs/ASSUMPTIONS.md` for the precise external bridges.
+
+Both versions share the statement map, catalogue and revision section.
+Earlier source/PDF/document checkpoints are preserved under `history/`,
+including `pre-revision-2026-11-02/`. Neither supplied manuscript is edited
+by the blueprint. Two small expository manuscript replacements (the missing
+η introduction and the updated acknowledgement count) are in
+`docs/REVISION_2026_11_02.md`. No theorem correction has been identified.
 
 ## Build
 

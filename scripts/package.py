@@ -17,7 +17,7 @@ with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_DEFLATED, compressleve
         relative = path.relative_to(root)
         if any(part in excluded_dirs for part in relative.parts) or path.suffix in excluded_suffixes:
             continue
-        info = zipfile.ZipInfo(str(Path('PSPrimes') / relative), (2026, 10, 30, 0, 0, 0))
+        info = zipfile.ZipInfo(str(Path('PSPrimes') / relative), (2026, 11, 2, 0, 0, 0))
         info.compress_type = zipfile.ZIP_DEFLATED
         info.external_attr = (path.stat().st_mode & 0o777) << 16
         archive.writestr(info, path.read_bytes())

@@ -1,0 +1,7 @@
+✔ [6671/6674] Built PSPrimes.OrbitInputs
+✔ [6672/6674] Built PSPrimes.OrbitTransference
+⚠ [6673/6674] Built PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [6674/6674] Built PSPrimes.MainPointwise
+Build completed successfully.

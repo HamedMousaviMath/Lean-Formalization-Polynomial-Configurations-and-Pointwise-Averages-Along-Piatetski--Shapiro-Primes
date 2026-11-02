@@ -1,0 +1,590 @@
+[
+  {
+    "module": "PSPrimes.Scales",
+    "source": "PSPrimes/Scales.lean",
+    "sha256": "8a781bb888dd76ca131676b785bd8eba914f357652e67982205c27f99ca7d575",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Scales"
+    ],
+    "exit_code": 0,
+    "seconds": 9.334
+  },
+  {
+    "module": "PSPrimes.Asymptotics",
+    "source": "PSPrimes/Asymptotics.lean",
+    "sha256": "2322d85f4e8ebb58465f62be1bd2fc6a4e54fd1021bde8fd279ad384e9ce2dce",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Asymptotics"
+    ],
+    "exit_code": 0,
+    "seconds": 6.619
+  },
+  {
+    "module": "PSPrimes.Definitions",
+    "source": "PSPrimes/Definitions.lean",
+    "sha256": "4ddc346487e2f76cd5e3d55c72066d15a2f92e41ee01d187403b4460b7b1d02f",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Definitions"
+    ],
+    "exit_code": 0,
+    "seconds": 6.48
+  },
+  {
+    "module": "PSPrimes.PhaseBounds",
+    "source": "PSPrimes/PhaseBounds.lean",
+    "sha256": "b4014e677340aad9eaa15a76ea089e92e381653b93978fd41f690d8030349b81",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PhaseBounds"
+    ],
+    "exit_code": 0,
+    "seconds": 5.98
+  },
+  {
+    "module": "PSPrimes.ExternalInputs",
+    "source": "PSPrimes/ExternalInputs.lean",
+    "sha256": "3ecaad2ad77bc5efd1adf2f3165ce22f77d9feb6d8273efc536f5a3226b13560",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.ExternalInputs"
+    ],
+    "exit_code": 0,
+    "seconds": 5.332
+  },
+  {
+    "module": "PSPrimes.Homogeneity",
+    "source": "PSPrimes/Homogeneity.lean",
+    "sha256": "75578d528721e670ff7cfa023ef54035723221b10ac8becd22a7d287728fadcb",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Homogeneity"
+    ],
+    "exit_code": 0,
+    "seconds": 5.546
+  },
+  {
+    "module": "PSPrimes.Rescaling",
+    "source": "PSPrimes/Rescaling.lean",
+    "sha256": "af58818d815f58c5c6b0403f8ee88b8b23f9a7ab640e23e23e2a3b5fc033fdac",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Rescaling"
+    ],
+    "exit_code": 0,
+    "seconds": 5.35
+  },
+  {
+    "module": "PSPrimes.Counting",
+    "source": "PSPrimes/Counting.lean",
+    "sha256": "a453c8925bf9cd033895cd9e89b1f0ed62a7050241c1e6c2f2da6ef5b9f33f04",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Counting"
+    ],
+    "exit_code": 0,
+    "seconds": 5.856
+  },
+  {
+    "module": "PSPrimes.Lifting",
+    "source": "PSPrimes/Lifting.lean",
+    "sha256": "df02851aff60df8218d7be5f7925654c1509de125d6c38b088413ce2188161b8",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Lifting"
+    ],
+    "exit_code": 0,
+    "seconds": 5.366
+  },
+  {
+    "module": "PSPrimes.Progressions",
+    "source": "PSPrimes/Progressions.lean",
+    "sha256": "a8166421efbd823d417501dc4753d42036626c1a849870502b6515ed314e1b0d",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Progressions"
+    ],
+    "exit_code": 0,
+    "seconds": 6.02
+  },
+  {
+    "module": "PSPrimes.ExceptionalTerms",
+    "source": "PSPrimes/ExceptionalTerms.lean",
+    "sha256": "b8e54529436a71a0892ef33a36a8688dc5cb0cb31e7da5c8a8868eaa1c2622d9",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.ExceptionalTerms"
+    ],
+    "exit_code": 0,
+    "seconds": 5.724
+  },
+  {
+    "module": "PSPrimes.Comparison",
+    "source": "PSPrimes/Comparison.lean",
+    "sha256": "de0ad49329efeafc9bfacb9cb12e30789a09b6f10e4e1323eec29d2b3b47a1a9",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Comparison"
+    ],
+    "exit_code": 0,
+    "seconds": 5.985
+  },
+  {
+    "module": "PSPrimes.PowerSaving",
+    "source": "PSPrimes/PowerSaving.lean",
+    "sha256": "6722ae033ea08a0b92efe5ef3162b9c728de0d47a96ba805e859499e0769e282",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PowerSaving"
+    ],
+    "exit_code": 0,
+    "seconds": 7.278
+  },
+  {
+    "module": "PSPrimes.AsymptoticScales",
+    "source": "PSPrimes/AsymptoticScales.lean",
+    "sha256": "69d7ab9ac1eb9468753b16a497d6ba48806c8fe00bde1a89c9387310d0fe3161",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.AsymptoticScales"
+    ],
+    "exit_code": 0,
+    "seconds": 5.639
+  },
+  {
+    "module": "PSPrimes.PrimePowers",
+    "source": "PSPrimes/PrimePowers.lean",
+    "sha256": "8fcb760ee7e424157cfee1c8b37130fd0043ad1eef849cfbbd56cd453a62ab9c",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PrimePowers"
+    ],
+    "exit_code": 0,
+    "seconds": 5.842
+  },
+  {
+    "module": "PSPrimes.Density",
+    "source": "PSPrimes/Density.lean",
+    "sha256": "1b9453b45240cb4ab7303c0ffe08103844f0e43f36dedd76791d94712a0f2594",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Density"
+    ],
+    "exit_code": 0,
+    "seconds": 5.936
+  },
+  {
+    "module": "PSPrimes.RecurrenceDefinitions",
+    "source": "PSPrimes/RecurrenceDefinitions.lean",
+    "sha256": "7dda17fa90c51dddb002dbaae6dde9e38bbf35958c6e43a057681b3c3e524363",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.RecurrenceDefinitions"
+    ],
+    "exit_code": 0,
+    "seconds": 5.752
+  },
+  {
+    "module": "PSPrimes.ModelOverlap",
+    "source": "PSPrimes/ModelOverlap.lean",
+    "sha256": "4ee11569470895bd7fc62ef7cf2f1cd5124198ee5bacf65b1f94e70ffe5020f3",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.ModelOverlap"
+    ],
+    "exit_code": 0,
+    "seconds": 5.579
+  },
+  {
+    "module": "PSPrimes.PolynomialBounds",
+    "source": "PSPrimes/PolynomialBounds.lean",
+    "sha256": "0fe3aea8612d5a5ae0d4e987c85e97fdf721a387adce1c2834f07c1fc5ab5fc9",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PolynomialBounds"
+    ],
+    "exit_code": 0,
+    "seconds": 7.413
+  },
+  {
+    "module": "PSPrimes.SmoothModuli",
+    "source": "PSPrimes/SmoothModuli.lean",
+    "sha256": "c149218cebe7511a3bc3aaec2fb0af28ffc953bcdccacb424a3991aeb2631819",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.SmoothModuli"
+    ],
+    "exit_code": 0,
+    "seconds": 5.123
+  },
+  {
+    "module": "PSPrimes.KMTTInterfaces",
+    "source": "PSPrimes/KMTTInterfaces.lean",
+    "sha256": "c2d40068098ee7c6196811fa55d9aca5da2b3556916ac99737e73a7ac30b103f",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.KMTTInterfaces"
+    ],
+    "exit_code": 0,
+    "seconds": 5.236
+  },
+  {
+    "module": "PSPrimes.PrimeMassInputs",
+    "source": "PSPrimes/PrimeMassInputs.lean",
+    "sha256": "b2738dd909d01f9b57a38918b0eed24254f78f697d09130f5ad508dcc63f0164",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PrimeMassInputs"
+    ],
+    "exit_code": 0,
+    "seconds": 5.776
+  },
+  {
+    "module": "PSPrimes.PrimeDiscrepancy",
+    "source": "PSPrimes/PrimeDiscrepancy.lean",
+    "sha256": "01837d48714d9f2ed60622d883621b15aaae6955bb7370242c23093b9562b9f4",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.PrimeDiscrepancy"
+    ],
+    "exit_code": 0,
+    "seconds": 9.15
+  },
+  {
+    "module": "PSPrimes.ConfigurationTransport",
+    "source": "PSPrimes/ConfigurationTransport.lean",
+    "sha256": "cfe6b32cd19a30342c2350ee6bf7345a9881f0c4cf6f6a581886f83990b3c3b0",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.ConfigurationTransport"
+    ],
+    "exit_code": 0,
+    "seconds": 5.449
+  },
+  {
+    "module": "PSPrimes.SmallScale",
+    "source": "PSPrimes/SmallScale.lean",
+    "sha256": "577e6cc1266005bc53cebaa7784940c7ac0d474f97a740d2dbbf8299b322c9e5",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.SmallScale"
+    ],
+    "exit_code": 0,
+    "seconds": 6.372
+  },
+  {
+    "module": "PSPrimes.DensityIncrement",
+    "source": "PSPrimes/DensityIncrement.lean",
+    "sha256": "a801596ec2aa00b9921bbcf7c94e05cbebb8b771522fa470376b5f5471b26f0e",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.DensityIncrement"
+    ],
+    "exit_code": 0,
+    "seconds": 8.764
+  },
+  {
+    "module": "PSPrimes.DiscrepancySaving",
+    "source": "PSPrimes/DiscrepancySaving.lean",
+    "sha256": "d0224d02472b7ff4d692790d8d571ae83a00080484d46398fe8020d20349a2bc",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.DiscrepancySaving"
+    ],
+    "exit_code": 0,
+    "seconds": 7.347
+  },
+  {
+    "module": "PSPrimes.FinalComparison",
+    "source": "PSPrimes/FinalComparison.lean",
+    "sha256": "2fd2cd12a5785b11066d143057661632a514114a5860bcbf232bcc9d927b64c3",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.FinalComparison"
+    ],
+    "exit_code": 0,
+    "seconds": 9.928
+  },
+  {
+    "module": "PSPrimes.FinalPrimeDiscrepancy",
+    "source": "PSPrimes/FinalPrimeDiscrepancy.lean",
+    "sha256": "2f1b15b9a5cde0c5812dfc39763a914750727f49fb5eac1833f9f32362f02331",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.FinalPrimeDiscrepancy"
+    ],
+    "exit_code": 0,
+    "seconds": 10.765
+  },
+  {
+    "module": "PSPrimes.FiniteConstruction",
+    "source": "PSPrimes/FiniteConstruction.lean",
+    "sha256": "28e2b2bddfc42985414a2113262fa674267457b26f575076126f9f917e0cbc98",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.FiniteConstruction"
+    ],
+    "exit_code": 0,
+    "seconds": 4.833
+  },
+  {
+    "module": "PSPrimes.Iteration",
+    "source": "PSPrimes/Iteration.lean",
+    "sha256": "df55bfcd87e4290a812fdb3c407fdc4809b58e91f58a4897c24b5a78c0d0ae88",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Iteration"
+    ],
+    "exit_code": 0,
+    "seconds": 6.146
+  },
+  {
+    "module": "PSPrimes.RecurrenceIteration",
+    "source": "PSPrimes/RecurrenceIteration.lean",
+    "sha256": "2d3783b39e18400cdcf2ba56dcb82ae286f2d0737ea2ea6421c075fee1111900",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.RecurrenceIteration"
+    ],
+    "exit_code": 0,
+    "seconds": 13.383
+  },
+  {
+    "module": "PSPrimes.FiniteIterationBounds",
+    "source": "PSPrimes/FiniteIterationBounds.lean",
+    "sha256": "9346ef5ca891ec9beebc2607fec5d08063a90301179b5631c4b1f8c1c6f76ef4",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.FiniteIterationBounds"
+    ],
+    "exit_code": 0,
+    "seconds": 7.417
+  },
+  {
+    "module": "PSPrimes.InitialProgression",
+    "source": "PSPrimes/InitialProgression.lean",
+    "sha256": "688d206b05985489bc3c2e19c9b5500bdc48268667760b2a044d537ae80e25d5",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.InitialProgression"
+    ],
+    "exit_code": 0,
+    "seconds": 8.645
+  },
+  {
+    "module": "PSPrimes.KMTTNormalization",
+    "source": "PSPrimes/KMTTNormalization.lean",
+    "sha256": "1f8ef895fbb405e09088e2973bb5d6f0072d71eb3195c7ef6d303568c7c8f021",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.KMTTNormalization"
+    ],
+    "exit_code": 0,
+    "seconds": 5.988
+  },
+  {
+    "module": "PSPrimes.LogScales",
+    "source": "PSPrimes/LogScales.lean",
+    "sha256": "26c2b9bbd00d97c682019139adb650d9f77922c063c33e9418ab02e2eb8faa3a",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.LogScales"
+    ],
+    "exit_code": 0,
+    "seconds": 10.476
+  },
+  {
+    "module": "PSPrimes.Pointwise",
+    "source": "PSPrimes/Pointwise.lean",
+    "sha256": "965fc652b47f5480fbc0c85aa6882f7807806de7231acaf256f7f24c7ba3e308",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Pointwise"
+    ],
+    "exit_code": 0,
+    "seconds": 2.022
+  },
+  {
+    "module": "PSPrimes.OrbitInputs",
+    "source": "PSPrimes/OrbitInputs.lean",
+    "sha256": "5d9156080bc959ca84974cbcc631be59e4c3c567b328496648a3d3d99042f894",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.OrbitInputs"
+    ],
+    "exit_code": 0,
+    "seconds": 2.028
+  },
+  {
+    "module": "PSPrimes.Representatives",
+    "source": "PSPrimes/Representatives.lean",
+    "sha256": "59dbb774ae5907e7da677f7c2cf4567c8fc0162405eee89a4a7ea807cd67b669",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Representatives"
+    ],
+    "exit_code": 0,
+    "seconds": 2.025
+  },
+  {
+    "module": "PSPrimes.OrbitPolynomials",
+    "source": "PSPrimes/OrbitPolynomials.lean",
+    "sha256": "f681e5c3a8870e8c8e4640e65ca294d399cbeb782841a34ba2d4ed2a90472430",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.OrbitPolynomials"
+    ],
+    "exit_code": 0,
+    "seconds": 2.346
+  },
+  {
+    "module": "PSPrimes.OrbitMeasureHelpers",
+    "source": "PSPrimes/OrbitMeasureHelpers.lean",
+    "sha256": "977009bb76aead28c8d9cbc3236b19f7861324f5833e9524c85a7b93a15de41e",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.OrbitMeasureHelpers"
+    ],
+    "exit_code": 0,
+    "seconds": 1.993
+  },
+  {
+    "module": "PSPrimes.OrbitTransference",
+    "source": "PSPrimes/OrbitTransference.lean",
+    "sha256": "cf4ff2efd8c1cf3f8d6e7806c909c080b578813de85aab1aa09beb3d90669bf0",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.OrbitTransference"
+    ],
+    "exit_code": 0,
+    "seconds": 2.146
+  },
+  {
+    "module": "PSPrimes.OrbitComparison",
+    "source": "PSPrimes/OrbitComparison.lean",
+    "sha256": "201ce8091f02331e914ac9bcee98b4ff1012000bf1a8217df3d7b5c56b9eefb5",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.OrbitComparison"
+    ],
+    "exit_code": 0,
+    "seconds": 1.909
+  },
+  {
+    "module": "PSPrimes.MainPointwise",
+    "source": "PSPrimes/MainPointwise.lean",
+    "sha256": "acceb73f7ce72636827a2417969936dcba246b09ccd7cb20abf7efc28d0fde1d",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.MainPointwise"
+    ],
+    "exit_code": 0,
+    "seconds": 6.945
+  },
+  {
+    "module": "PSPrimes.RecurrenceAlgebra",
+    "source": "PSPrimes/RecurrenceAlgebra.lean",
+    "sha256": "22e371496fa0a0903aa7ca0187645bf1e2d8b6f0055746ba771c3038c3501d8c",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.RecurrenceAlgebra"
+    ],
+    "exit_code": 0,
+    "seconds": 5.636
+  },
+  {
+    "module": "PSPrimes.RecurrenceConstruction",
+    "source": "PSPrimes/RecurrenceConstruction.lean",
+    "sha256": "aa7b6c3bebdb6efb8f86f8c2f5f961491450225fbab5f33efcb9683123dc6aea",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.RecurrenceConstruction"
+    ],
+    "exit_code": 0,
+    "seconds": 11.752
+  },
+  {
+    "module": "PSPrimes.MainRecurrence",
+    "source": "PSPrimes/MainRecurrence.lean",
+    "sha256": "b7702768ace7893f70c68508476a7c353bc3cb97f748859a2f126ce2383c7e76",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.MainRecurrence"
+    ],
+    "exit_code": 0,
+    "seconds": 5.749
+  },
+  {
+    "module": "PSPrimes.NormalizedDensityIncrement",
+    "source": "PSPrimes/NormalizedDensityIncrement.lean",
+    "sha256": "f97ffa9ada566e132a095cb60502de07f88b1ef5fee6f0b99df456c3d28197b7",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.NormalizedDensityIncrement"
+    ],
+    "exit_code": 0,
+    "seconds": 5.441
+  },
+  {
+    "module": "PSPrimes",
+    "source": "PSPrimes.lean",
+    "sha256": "0c85bd19bb1093bd1bc0aacfae482057ce2d70769f5eec6b693ee7fde4b53db4",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes"
+    ],
+    "exit_code": 0,
+    "seconds": 5.031
+  }
+]

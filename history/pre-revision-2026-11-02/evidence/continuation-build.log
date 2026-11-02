@@ -1,0 +1,20 @@
+⚠ [6675/6695] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6681/6695] Replayed PSPrimes.FinalPrimeDiscrepancy
+warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6687/6695] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6691/6695] Replayed PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:253:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [6694/6695] Built PSPrimes
+Build completed successfully.

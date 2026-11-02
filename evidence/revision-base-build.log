@@ -1,0 +1,231 @@
+$ lake build PSPrimes.Scales
+✔ [6653/6653] Built PSPrimes.Scales
+Build completed successfully.
+$ lake build PSPrimes.Asymptotics
+✔ [6653/6653] Built PSPrimes.Asymptotics
+Build completed successfully.
+$ lake build PSPrimes.Definitions
+✔ [6653/6653] Built PSPrimes.Definitions
+Build completed successfully.
+$ lake build PSPrimes.PhaseBounds
+✔ [6654/6654] Built PSPrimes.PhaseBounds
+Build completed successfully.
+$ lake build PSPrimes.ExternalInputs
+✔ [6655/6655] Built PSPrimes.ExternalInputs
+Build completed successfully.
+$ lake build PSPrimes.Homogeneity
+✔ [6656/6656] Built PSPrimes.Homogeneity
+Build completed successfully.
+$ lake build PSPrimes.Rescaling
+✔ [6653/6653] Built PSPrimes.Rescaling
+Build completed successfully.
+$ lake build PSPrimes.Counting
+✔ [6654/6654] Built PSPrimes.Counting
+Build completed successfully.
+$ lake build PSPrimes.Lifting
+✔ [6657/6657] Built PSPrimes.Lifting
+Build completed successfully.
+$ lake build PSPrimes.Progressions
+✔ [6656/6656] Built PSPrimes.Progressions
+Build completed successfully.
+$ lake build PSPrimes.ExceptionalTerms
+✔ [6655/6655] Built PSPrimes.ExceptionalTerms
+Build completed successfully.
+$ lake build PSPrimes.Comparison
+✔ [6662/6662] Built PSPrimes.Comparison
+Build completed successfully.
+$ lake build PSPrimes.PowerSaving
+✔ [6665/6665] Built PSPrimes.PowerSaving
+Build completed successfully.
+$ lake build PSPrimes.AsymptoticScales
+✔ [6666/6666] Built PSPrimes.AsymptoticScales
+Build completed successfully.
+$ lake build PSPrimes.PrimePowers
+✔ [6656/6656] Built PSPrimes.PrimePowers
+Build completed successfully.
+$ lake build PSPrimes.Density
+✔ [6653/6653] Built PSPrimes.Density
+Build completed successfully.
+$ lake build PSPrimes.RecurrenceDefinitions
+✔ [6656/6656] Built PSPrimes.RecurrenceDefinitions
+Build completed successfully.
+$ lake build PSPrimes.ModelOverlap
+✔ [6654/6654] Built PSPrimes.ModelOverlap
+Build completed successfully.
+$ lake build PSPrimes.PolynomialBounds
+✔ [6655/6655] Built PSPrimes.PolynomialBounds
+Build completed successfully.
+$ lake build PSPrimes.SmoothModuli
+✔ [6653/6653] Built PSPrimes.SmoothModuli
+Build completed successfully.
+$ lake build PSPrimes.KMTTInterfaces
+✔ [6658/6658] Built PSPrimes.KMTTInterfaces
+Build completed successfully.
+$ lake build PSPrimes.PrimeMassInputs
+✔ [6659/6659] Built PSPrimes.PrimeMassInputs
+Build completed successfully.
+$ lake build PSPrimes.PrimeDiscrepancy
+⚠ [6666/6666] Built PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully.
+$ lake build PSPrimes.ConfigurationTransport
+⚠ [6666/6667] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6667/6667] Built PSPrimes.ConfigurationTransport
+Build completed successfully.
+$ lake build PSPrimes.SmallScale
+✔ [6669/6669] Built PSPrimes.SmallScale
+Build completed successfully.
+$ lake build PSPrimes.DensityIncrement
+✔ [6672/6672] Built PSPrimes.DensityIncrement
+Build completed successfully.
+$ lake build PSPrimes.DiscrepancySaving
+⚠ [6666/6677] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6677/6677] Built PSPrimes.DiscrepancySaving
+Build completed successfully.
+$ lake build PSPrimes.FinalComparison
+✔ [6667/6667] Built PSPrimes.FinalComparison
+Build completed successfully.
+$ lake build PSPrimes.FinalPrimeDiscrepancy
+⚠ [6666/6679] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6679/6679] Built PSPrimes.FinalPrimeDiscrepancy
+warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.
+$ lake build PSPrimes.FiniteConstruction
+✔ [6653/6653] Built PSPrimes.FiniteConstruction
+Build completed successfully.
+$ lake build PSPrimes.Iteration
+✔ [6653/6653] Built PSPrimes.Iteration
+Build completed successfully.
+$ lake build PSPrimes.RecurrenceIteration
+✔ [6655/6655] Built PSPrimes.RecurrenceIteration
+Build completed successfully.
+$ lake build PSPrimes.FiniteIterationBounds
+✔ [6657/6657] Built PSPrimes.FiniteIterationBounds
+Build completed successfully.
+$ lake build PSPrimes.InitialProgression
+✔ [6657/6657] Built PSPrimes.InitialProgression
+Build completed successfully.
+$ lake build PSPrimes.KMTTNormalization
+✔ [6660/6660] Built PSPrimes.KMTTNormalization
+Build completed successfully.
+$ lake build PSPrimes.LogScales
+⚠ [6667/6667] Built PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+Build completed successfully.
+$ lake build PSPrimes.Pointwise
+Build completed successfully.
+$ lake build PSPrimes.OrbitInputs
+Build completed successfully.
+$ lake build PSPrimes.Representatives
+Build completed successfully.
+$ lake build PSPrimes.OrbitPolynomials
+Build completed successfully.
+$ lake build PSPrimes.OrbitMeasureHelpers
+Build completed successfully.
+$ lake build PSPrimes.OrbitTransference
+Build completed successfully.
+$ lake build PSPrimes.OrbitComparison
+⚠ [6672/6672] Replayed PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+Build completed successfully.
+$ lake build PSPrimes.MainPointwise
+⚠ [6672/6674] Replayed PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [6674/6674] Built PSPrimes.MainPointwise
+Build completed successfully.
+$ lake build PSPrimes.RecurrenceAlgebra
+✔ [6658/6658] Built PSPrimes.RecurrenceAlgebra
+Build completed successfully.
+$ lake build PSPrimes.RecurrenceConstruction
+⚠ [6666/6685] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6683/6685] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [6685/6685] Built PSPrimes.RecurrenceConstruction
+Build completed successfully.
+$ lake build PSPrimes.MainRecurrence
+⚠ [6666/6689] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6683/6689] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6688/6689] Replayed PSPrimes.FinalPrimeDiscrepancy
+warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+✔ [6689/6689] Built PSPrimes.MainRecurrence
+Build completed successfully.
+$ lake build PSPrimes.NormalizedDensityIncrement
+✔ [6675/6675] Built PSPrimes.NormalizedDensityIncrement
+Build completed successfully.
+$ lake build PSPrimes
+⚠ [6675/6702] Replayed PSPrimes.PrimeDiscrepancy
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:502:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:26: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:63: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: ././././PSPrimes/PrimeDiscrepancy.lean:545:78: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6681/6702] Replayed PSPrimes.FinalPrimeDiscrepancy
+warning: ././././PSPrimes/FinalPrimeDiscrepancy.lean:89:14: unused variable `mass`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [6688/6702] Replayed PSPrimes.LogScales
+warning: ././././PSPrimes/LogScales.lean:114:29: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [6695/6702] Replayed PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+✔ [6701/6702] Built PSPrimes
+Build completed successfully.
+Serialized BASE project build passed: 49 modules including entry point.

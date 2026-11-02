@@ -1,0 +1,9 @@
+'PSPrimes.orbitSpatialFinsupp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitSpatialFinsupp_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitSpatialCutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.polynomialForm_orbitSpatialCutoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitSpatial_normalization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitSpatial_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitProduct_act' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.orbitVNInput_of_finiteVNInput' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSPrimes.orbitVNInput_of_finiteVNInput.{u} (hVN : PSPrimes.FiniteVNInput) : PSPrimes.OrbitVNInput

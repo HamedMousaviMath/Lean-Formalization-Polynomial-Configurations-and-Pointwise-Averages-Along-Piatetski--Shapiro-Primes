@@ -5,25 +5,31 @@
  n/.style={draw,rounded corners,align=center,font=\small,inner sep=4pt},
  e/.style={draw,dashed,align=center,font=\small,inner sep=4pt}]
 \node[e] (ss) {SS: quoted phase bound};
-\node[n,right=of ss] (tv) {Thm. 1.3: TV};
+\node[n,right=of ss] (tv) {Thm. 1.4: TV};
 \node[n,right=of tv] (or) {Orbit transference\\from TV};
+\node[e,right=of or] (mwv) {MW-V: ordinary\\lacunary variation};
+\node[n,below=of or] (save) {Weighted $L^1$\\power saving};
+\node[n,below=of mwv] (var) {Cor. 4.2\\lacunary variation};
 \node[n,below=of ss] (phase) {Thm. 2.1\\polynomial phases};
 \node[n,below=of phase] (prog) {Lemma 2.2\\progression phases};
 \node[n,below=of prog] (comp) {Prop. 2.3\\finite comparison};
-\node[n,right=of prog] (ae) {Prop. 4.1\\pointwise comparison};
+\node[n,below=of save] (ae) {Prop. 4.1\\pointwise comparison};
 \node[e,right=of ae] (mw) {MW and PNT};
 \node[n,below=of comp] (disc) {Lemma 3.2\\prime discrepancy};
 \node[e,left=of disc] (km) {KM-U, KM-R\\KM-M and KM-J};
 \node[n,below=of disc] (inc) {Prop. 3.1\\density increment};
 \node[n,below=of inc] (sz) {Thm. 1.1\\recurrence};
-\node[n,right=of inc] (pt) {Thm. 1.2\\common a.e. limit};
+\node[n,below=of ae] (pt) {Thm. 1.2\\common a.e. limit};
 \draw[->] (ss)--(phase);
 \draw[->] (phase)--(prog);
 \draw[->] (prog)--(comp);
 \draw[->] (tv)--(comp);
 \draw[->] (tv)--(or);
-\draw[->] (phase)--(ae);
-\draw[->] (or)--(ae);
+\draw[->] (phase)--(save);
+\draw[->] (or)--(save);
+\draw[->] (save)--(ae);
+\draw[->] (save)--(var);
+\draw[->] (mwv)--(var);
 \draw[->] (comp)--(disc);
 \draw[->] (km)--(disc);
 \draw[->] (km)--(inc);
@@ -34,4 +40,4 @@
 \draw[->] (mw)--node[right,font=\scriptsize]{MW}(pt);
 \end{tikzpicture}}
 \end{center}
-Dashed boxes group external inputs. Solid boxes name mathematical steps. Status text distinguishes quoted results from checked conditional deductions.
+Dashed boxes group external inputs. Solid boxes name mathematical steps. Status text distinguishes quoted results and checked conditional deductions. The variation branch uses the $L^1$ saving directly and does not depend on PNT or the pointwise MW input.

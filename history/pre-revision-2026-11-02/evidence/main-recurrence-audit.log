@@ -1,0 +1,8 @@
+'PSPrimes.recurrenceState_next_of_increment' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.recurrence_prefix_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.quantitative_recurrence_from_steps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.quantitative_recurrence_of_source_witnesses' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PSPrimes.quantitative_recurrence' depends on axioms: [propext, Classical.choice, Quot.sound]
+PSPrimes.quantitative_recurrence (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput)
+  (hReg : PSPrimes.KMTTRegularityInput) (hJoint : PSPrimes.KMTTCompatibleInput) {ℓ : ℕ}
+  (P : PSPrimes.PolynomialFamily ℓ) : PSPrimes.QuantitativeRecurrence P

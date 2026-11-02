@@ -1,0 +1,29 @@
+Environment setup, 2026-10-30
+Initial PATH contained no lean/lake/elan. No cached Lean/Mathlib found in /opt /tmp /workspace /root/.cache (depth 5).
+Downloaded official Lean 4.19.0 Linux release:
+ https://github.com/leanprover/lean4/releases/download/v4.19.0/lean-4.19.0-linux.tar.zst
+Extracted using tar --no-same-owner --zstd -xf (initial ordinary tar failed only ownership restoration).
+Mathlib v4.19.0 exact revision c44e0c8ee63ca166450922a373c7409c5d26b00b.
+Lean version output: Lean (version 4.19.0, x86_64-unknown-linux-gnu, commit 6caaee842e94, Release).
+Lake version output: Lake version 5.0.0-6caaee8 (Lean version 4.19.0).
+All dependency Git revisions copied from Mathlib's lake-manifest.json and fetched exactly, recorded in project lake-manifest.json.
+
+Sandbox executable-path compatibility:
+Unmodified lean initially returned `error: failed to locate application`.
+A C diagnostic demonstrated getpid()=2, readlink('/proc/2/exe')=ENOENT, while readlink('/proc/self/exe') succeeds.
+Official src/runtime/io.cpp lines 1251-1260 uses /proc/<getpid()>/exe.
+Environment-only LD_PRELOAD shim redirects readlink paths matching /proc/[digits]/exe to /proc/self/exe.
+Source: tooling/proc_exe_compat.c; build: gcc -shared -fPIC -O2 -o tooling/proc_exe_compat.so tooling/proc_exe_compat.c -ldl.
+The shim modifies executable path lookup only; no Lean binary, kernel code, proof checking, or mathematical declarations are modified.
+With PATH and LD_PRELOAD as in tooling/env.sh, actual `lean --version` and a `#check Nat` test passed.
+
+Mathlib cache bootstrap:
+Actual command (project cwd): PATH=.../tooling/lean-4.19.0-linux/bin:$PATH LD_PRELOAD=.../tooling/proc_exe_compat.so TAR_OPTIONS=--no-same-owner lake exe cache get
+Initial attempts failed at leantar tar ownership and missing ProofWidgets release tag. Set TAR_OPTIONS and fetched exact v0.0.57 tag in pinned ProofWidgets checkout; no dependency source changes.
+Final command exit 0: Downloaded 6641/6641 files (100% success), Decompressing 6641 files, Unpacked in 8502 ms, Completed successfully.
+Dependency artifacts were downloaded from Mathlib's official cache, NOT freshly compiled.
+The cache bootstrap executable itself was freshly compiled (12 jobs).
+Actual Mathlib import test command:
+PATH=/workspace/scratch/c84b5d813ddd/tooling/lean-4.19.0-linux/bin:$PATH LD_PRELOAD=/workspace/scratch/c84b5d813ddd/tooling/proc_exe_compat.so lake env lean /tmp/mathlib-test.lean
+Exit 0. Imported Mathlib, #checked Polynomial.eval_comp and ArithmeticFunction.vonMangoldt, proved `example (n : Nat) : n + 0 = n := by omega`.
+These are environment diagnostics, not a claim about manuscript theorem completion.

@@ -6,6 +6,7 @@ set_option pp.universes true
 #print PSPrimes.OrbitVNInput
 #print PSPrimes.PrimeNumberTheoremInput
 #print PSPrimes.OrdinaryPrimePointwiseInput
+#print PSPrimes.OrdinaryPrimeVariationInput
 #print PSPrimes.KMTTUnweightedInput
 #print PSPrimes.KMTTRegularityInput
 #print PSPrimes.KMTTCompatibleInput
@@ -21,3 +22,7 @@ set_option pp.universes true
 #check PSPrimes.ps_orbit_comparison
 
 #check PSPrimes.orbitVNInput_of_finiteVNInput
+
+#print PSPrimes.lacunary_variation_of_external_inputs
+#check PSPrimes.variationChain_eq_ofReal
+#check PSPrimes.lacunary_variation_perturbation_bound

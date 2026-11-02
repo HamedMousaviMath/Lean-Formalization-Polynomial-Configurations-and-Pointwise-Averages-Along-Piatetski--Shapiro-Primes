@@ -145,6 +145,60 @@ PSPrimes.ps_orbit_comparison.{u} (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPri
                                     PSPrimes.weightedAverage (⇑ArithmeticFunction.vonMangoldt)
                                       (fun n => PSPrimes.orbitProduct P.polynomials T f n x) N)
                                 Filter.atTop (nhds 0)
+PSPrimes.variationChain (r : ℝ) (a : ℕ → ℂ) (J : ℕ) (j : Fin (J + 1) → ℕ) : ENNReal
+PSPrimes.variationChain_eq_ofReal {r : ℝ} (hr : 0 ≤ r) (a : ℕ → ℂ) (J : ℕ) (j : Fin (J + 1) → ℕ) :
+  PSPrimes.variationChain r a J j = ENNReal.ofReal ((∑ h, ‖a (j h.succ) - a (j h.castSucc)‖ ^ r) ^ (1 / r))
+PSPrimes.rVariation (r : ℝ) (a : ℕ → ℂ) : ENNReal
+PSPrimes.rVariation_add_le {r : ℝ} (hr : 1 ≤ r) (a b : ℕ → ℂ) :
+  (PSPrimes.rVariation r fun n => a n + b n) ≤ PSPrimes.rVariation r a + PSPrimes.rVariation r b
+PSPrimes.rVariation_le_two_tsum {r : ℝ} (hr : 1 ≤ r) (a : ℕ → ℂ) : PSPrimes.rVariation r a ≤ 2 * ∑' (n : ℕ), ‖a n‖ₑ
+PSPrimes.lintegral_rVariation_le_two_tsum.{u_1} {X : Type u_1} [MeasurableSpace X] (μ : MeasureTheory.Measure X) {r : ℝ}
+  (hr : 1 ≤ r) (f : ℕ → X → ℂ) (hf : ∀ (n : ℕ), MeasureTheory.AEStronglyMeasurable (f n) μ) :
+  ∫⁻ (x : X), PSPrimes.rVariation r fun n => f n x ∂μ ≤ 2 * ∑' (n : ℕ), ∫⁻ (x : X), ‖f n x‖ₑ ∂μ
+PSPrimes.lacunary_rpow_tsum_ennreal_le {rho η : ℝ} (hrho : 1 < rho) (hη : 0 < η) (N : ℕ → ℕ) (hN : 1 ≤ N 0)
+  (hstep : ∀ (j : ℕ), rho * ↑(N j) ≤ ↑(N (j + 1))) :
+  ∑' (j : ℕ), ENNReal.ofReal (↑(N j) ^ (-η)) ≤ ENNReal.ofReal (1 - rho ^ (-η))⁻¹
+PSPrimes.OrdinaryPrimeVariationInput.{u} : Prop
+PSPrimes.lacunary_variation_of_external_inputs.{u} (hSS : PSPrimes.ShaoSunPhaseInput) (hVN : PSPrimes.FiniteVNInput)
+  (hMW : PSPrimes.OrdinaryPrimeVariationInput) {ℓ : ℕ} (P : PSPrimes.PolynomialFamily ℓ) :
+  ∃ cstar,
+    1 < cstar ∧
+      ∀ (c : ℝ),
+        1 < c →
+          c < cstar →
+            ∀ (r : ℝ),
+              2 < r →
+                ∀ (rho : ℝ),
+                  1 < rho →
+                    ∃ C,
+                      0 < C ∧
+                        ∀ (N : ℕ → ℕ),
+                          1 ≤ N 0 →
+                            (∀ (j : ℕ), rho * ↑(N j) ≤ ↑(N (j + 1))) →
+                              ∀ (X : Type u) [inst : MeasurableSpace X] (μ : MeasureTheory.Measure X),
+                                MeasureTheory.IsProbabilityMeasure μ →
+                                  ∀ (T : PSPrimes.IntegerAction X μ) (f : Fin ℓ → X → ℂ),
+                                    (∀ (i : Fin ℓ), MeasureTheory.MemLp (f i) ⊤ μ) →
+                                      ∫⁻ (x : X),
+                                          PSPrimes.rVariation r fun j =>
+                                            PSPrimes.weightedAverage (PSPrimes.sparseMangoldt (1 / c))
+                                              (fun n => PSPrimes.orbitProduct P.polynomials T f n x) (N j) ∂μ ≤
+                                        ENNReal.ofReal C * ∏ i, MeasureTheory.eLpNorm (f i) ⊤ μ
+PSPrimes.orbit_variation_bound_eLpNorm_of_oneBounded.{u_1} {ℓ : ℕ} {X : Type u_1} [MeasurableSpace X]
+  {μ : MeasureTheory.Measure X} (P : Fin ℓ → Polynomial ℤ) (T : PSPrimes.IntegerAction X μ) (w : ℕ → ℝ) (N : ℕ → ℕ)
+  {r : ℝ} (hr : 0 < r) (K : ENNReal)
+  (hunit :
+    ∀ (g : Fin ℓ → X → ℂ),
+      (∀ (i : Fin ℓ), MeasureTheory.AEStronglyMeasurable (g i) μ) →
+        (∀ (i : Fin ℓ), ∀ᵐ (x : X) ∂μ, ‖g i x‖ ≤ 1) →
+          ∫⁻ (x : X),
+              PSPrimes.rVariation r fun j =>
+                PSPrimes.weightedAverage w (fun n => PSPrimes.orbitProduct P T g n x) (N j) ∂μ ≤
+            K)
+  (f : Fin ℓ → X → ℂ) (hf : ∀ (i : Fin ℓ), MeasureTheory.MemLp (f i) ⊤ μ) :
+  ∫⁻ (x : X),
+      PSPrimes.rVariation r fun j => PSPrimes.weightedAverage w (fun n => PSPrimes.orbitProduct P T f n x) (N j) ∂μ ≤
+    K * ∏ i, MeasureTheory.eLpNorm (f i) ⊤ μ
 PSPrimes.KMTTUnweightedInput : Prop
 PSPrimes.KMTTRegularityInput : Prop
 PSPrimes.KMTTCompatibleInput : Prop

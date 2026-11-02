@@ -60,3 +60,27 @@ Mathlib tactics such as `ring`, `norm_num`, `linarith`, `nlinarith`, `omega`
 and `positivity` discharge routine obligations inside the checked proofs.
 The project build and audit evidence records kernel checking of the project
 sources separately from reuse of Mathlib's compiled dependency artifacts.
+
+## Revision variation infrastructure
+
+The new module uses the pinned Mathlib's elementary real-power,
+nonnegative-infinite-sum and measure-theory infrastructure. In particular:
+
+- `ENNReal.Lp_add_le` supplies the finite-dimensional Minkowski inequality.
+- `ENNReal.rpow_add_le_add_rpow` and real-power identities prove finite
+  ℓʳ≤ℓ¹ and homogeneity; the project defines the infinite sequence
+  r-variation and proves the finite-chain correspondence explicitly.
+- `Measurable.iSup`, `AEMeasurable.iSup` and `lintegral_tsum` handle
+  measurability of the countable supremum and Tonelli summation.
+- `summable_geometric_of_lt_one` and `tsum_geometric_of_lt_one` supply the
+  exact geometric series; the project proves its uniform application to
+  every positive integer lacunary sequence.
+- `enorm_ae_le_eLpNormEssSup` and `eLpNorm_exponent_top` recover the exact
+  essential L∞ bounds for arbitrary `MemLp ... ∞` representatives.
+
+Targeted searches in `Mathlib/Analysis/BoundedVariation*` and
+`Mathlib/MeasureTheory/Function` found no suitable existing real-r sequence
+variation theorem. No Mathlib theorem in this pin supplies the MWW ordinary-prime variational
+estimate; `OrdinaryPrimeVariationInput` remains an explicit external
+specialization, with its source bridge catalogued separately. The
+perturbation transfer is a checked project proof, not an additional input.

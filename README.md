@@ -1,8 +1,9 @@
 # Polynomial configurations and pointwise averages along Piatetski–Shapiro primes
 
-Lean 4 formalization of the supplied 14-page paper by Hamed Mousavi.
-**All seven original numbered deductions, including both main theorems, have
-checked conditional proofs.** The two quoted analytic statements remain external
+Lean 4 formalization of the paper by Hamed Mousavi, including the revised
+15-page manuscript supplied on 2 November 2026.
+**All seven earlier numbered deductions and the new lacunary variation
+Corollary 4.2 have checked conditional proofs.** The two quoted analytic statements remain external
 inputs. This is a conditional formalization of the paper's deductions;
 the external inputs and their documented source-to-interface translations
 have not themselves been formalized or instantiated.
@@ -11,6 +12,14 @@ have not themselves been formalized or instantiated.
 | --- | --- | --- |
 | Theorem 1.1: configurations with pairwise distinct terms and a PS-prime parameter | `PSPrimes.quantitative_recurrence` | SS, TV, KM-R, KM-J |
 | Theorem 1.2: almost-everywhere convergence of the actual PS-prime averages, with the ordinary-prime limit | `PSPrimes.pointwiseErgodicTheorem_of_external_inputs` | SS, TV, PNT, MW |
+| Corollary 4.2: infinite lacunary r-variation of the weighted PS averages, r>2 | `PSPrimes.lacunary_variation_of_external_inputs` | SS, TV, MW-V |
+
+The [revision guide](docs/REVISION_2026_11_02.md) explains the four added
+modules, manuscript changes and exact correspondence. MW-V explicitly quotes
+Mirek–Wan–Wright Theorem 1.1(iv), distinct from the existing pointwise input.
+There are now **eight external interfaces**, from the same external sources;
+the two earlier main theorems retain their premises. The endpoint remark is
+conjectural and is not claimed as a proved finite-Lp extension.
 
 The orbit estimate needed from the author's related sequences paper,
 Proposition 1.4, is now proved in `OrbitTransference.lean` from the finite
@@ -48,10 +57,10 @@ proof placeholders and shortcuts, and runs `#print axioms` on the named project
 declarations. Mathlib dependency artifacts are reused from its official cache;
 they are not claimed to have been freshly rebuilt.
 
-The final clean build passed for all 48 project modules and the entry point.
-All 481 named project declarations passed the axiom audit, which reported only
-`propext`, `Classical.choice` and `Quot.sound`; the production placeholder scan
-and manuscript integrity check also passed. See
+The final clean revision check passed for all **52 modules plus the entry
+point**. All **508 named declarations** passed the axiom audit, reporting only
+`propext`, `Classical.choice` and `Quot.sound`. The production placeholder scan
+and all three manuscript integrity checks passed. See
 [the verification evidence](evidence/VERIFICATION.md) for actual commands,
 source hashes and outcomes. A dependency audit checks logical dependencies; it does
 not establish the truth of explicit theorem parameters or faithful manuscript
@@ -72,9 +81,13 @@ ordinary installations do not need it. Its source and explanation are in
 - `history/`: retained raw development notes, earlier blueprint state and reviews.
 - `evidence/`: build logs, generated audit source and dependency-audit output.
 
-`manuscript/original/Draft1.tex` is the unchanged authoritative source. No
-version, date or PDF was supplied; its generated PDF has 14 pages. No necessary
-manuscript correction has been demonstrated; review notes are in
+`manuscript/original/Draft1.tex` preserves the first supplied source, with its
+14-page generated PDF. The later source is preserved unchanged in
+`manuscript/revised-2026-11-02/Draft.tex`; its generated PDF has 15 pages.
+No author-supplied PDF was attached. Two small expository updates to the
+revision are recorded in the [revision guide](docs/REVISION_2026_11_02.md):
+restore the sentence introducing η after the shortened prime-power estimate,
+and change seven to eight in the acknowledgement's interface count. See also
 [MANUSCRIPT_NOTES.md](docs/MANUSCRIPT_NOTES.md).
 
 No original conclusion is assumed to complete its proof. External results are

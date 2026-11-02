@@ -1,0 +1,22 @@
+{
+  "clean_check_exit_code": 0,
+  "project_modules": 48,
+  "entry_points": 1,
+  "named_declarations_audited": 481,
+  "unexpected_axioms": [],
+  "axioms_observed": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "public_interfaces_exit_code": 0,
+  "blueprint_declarations_exit_code": 0,
+  "blueprint_declaration_count": 36,
+  "manuscript_labels": 48,
+  "blueprint_pages": {
+    "compact": 9,
+    "full": 18
+  },
+  "independent_own_paper_assumptions": [],
+  "derived_orbit_theorem": "PSPrimes.orbitVNInput_of_finiteVNInput"
+}

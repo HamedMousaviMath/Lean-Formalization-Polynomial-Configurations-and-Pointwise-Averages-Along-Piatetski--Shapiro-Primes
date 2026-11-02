@@ -1,0 +1,151 @@
+\section{Revision: lacunary variation of the weighted averages}
+The source supplied on 2 November 2026 adds Corollary 4.2, labelled
+\texttt{c:long-variation}. The averages remain the weighted averages
+$B_N^\gamma$ and $B_N$ of Section 4. No variational assertion for the
+count-normalized unweighted averages is claimed. The admissible $c_*$
+is selected before the variation exponent and the lacunarity ratio.
+
+\begin{definition}[Infinite variation seminorm]\label{def:variation}
+\lean{PSPrimes.variationChain, PSPrimes.variationChain_eq_ofReal, PSPrimes.rVariation}\leanok
+For $1\leq r<\infty$ and $a_j\in\C$, set
+\[
+ V^r(a)=\sup_{J\geq1,\;j_0<\cdots<j_J}
+ \left(\sum_{h=1}^J|a_{j_h}-a_{j_{h-1}}|^r\right)^{1/r}.
+\]
+The Lean definition takes this supremum in $[0,\infty]$, so infinite
+variation is not assigned an arbitrary real value. Sequence indices start
+at zero in Lean; shifting them by one gives exactly the manuscript's
+indexing. The extra $J=0$ term is zero and does not change the supremum.
+\end{definition}
+\Status{checked definition and finite-chain correspondence with the real manuscript formula}
+\ifDetailed
+For $j:\{0,\ldots,J\}\to\N$, \texttt{variationChain} is the direct
+extended-real expression
+\[
+ \left(\sum_{h=0}^{J-1}
+  \|a_{j(h+1)}-a_{j(h)}\|_e^r\right)^{1/r}.
+\]
+\texttt{variationChain\_eq\_ofReal} proves equality with the paper's real finite-chain formula. The supremum ranges over $J$ and all such functions, with value zero when
+$j$ is not strictly increasing. This is a countable supremum. Hence
+measurability follows from measurability of each finite expression;
+almost-everywhere measurability is obtained by choosing measurable versions
+on one common conull set. This countability is needed for a genuine
+$L^1$ statement about the supremum, rather than estimates for each fixed
+chain separately. Extended nonnegative integrals avoid the convention
+that a nonintegrable real-valued function has integral zero.
+\fi
+
+\begin{auxlemma}[Summable perturbations and lacunary scales]\label{l:variation-perturbation}
+\uses{def:variation}
+\lean{PSPrimes.rVariation_add_le, PSPrimes.rVariation_le_two_tsum, PSPrimes.lintegral_rVariation_le_two_tsum, PSPrimes.lacunary_rpow_tsum_ennreal_le}\leanok
+For $r\geq1$, complex sequences satisfy
+\[
+ V^r(a+b)\leq V^r(a)+V^r(b),\qquad
+ V^r(a)\leq2\sum_{j\geq0}|a_j|.
+\]
+If $N_j\in\N_{>0}$ and $N_{j+1}\geq\lambda N_j$ with
+$\lambda>1$, then for every $\eta>0$,
+\[
+ \sum_{j\geq0}N_j^{-\eta}
+ \leq\sum_{j\geq0}\lambda^{-j\eta}
+ =\frac1{1-\lambda^{-\eta}}.
+\]
+Consequently, for almost-everywhere measurable $E_j:X\to\C$,
+\[
+ \int_X V^r(E_j(x))\,d\nu(x)
+ \leq2\sum_{j\geq0}\int_X |E_j(x)|\,d\nu(x).
+\]
+\end{auxlemma}
+\Status{checked perturbation, measurability and infinite geometric-sum proofs}
+\begin{proof}[Perturbation and geometric summation]
+\proves{l:variation-perturbation}\uses{def:variation}\leanok
+\ifDetailed
+Minkowski's inequality for each finite chain proves the triangle
+inequality, and taking the countable supremum preserves it. For the
+second inequality, the finite $\ell^r$ norm is at most the $\ell^1$ norm
+when $r\geq1$. The triangle inequality bounds each difference by its two
+endpoint norms. Strict increase makes each left-endpoint map and each
+right-endpoint map injective, so their sums are separately at most
+$\sum_j|a_j|$. This explains the constant $2$ without imposing adjacent
+chain indices. Tonelli's theorem then moves the nonnegative infinite sum
+through the integral.
+
+For scales, induction gives $N_j\geq\lambda^jN_0\geq\lambda^j$.
+The function $t\mapsto t^{-\eta}$ is decreasing for $t>0$, and
+$0<\lambda^{-\eta}<1$. Comparison with the geometric series proves both
+summability and the displayed bound. The constant does not depend on
+$N_0$ or on any later member of the sequence. This is a bound on the
+infinite sum, not a finite-range numerical check.
+\else
+Apply finite-dimensional Minkowski, bound each chain endpoint sum by the
+full nonnegative sum, and use Tonelli. Induction gives $N_j\geq\lambda^j$;
+comparison with the geometric series gives the uniform bound.
+\fi
+\end{proof}
+
+\begin{inputthm}[Ordinary-prime lacunary variation]\label{input:MWV}
+\uses{def:averages,def:variation}
+\lean{PSPrimes.OrdinaryPrimeVariationInput}
+For each fixed distinct-degree integer polynomial family, $r>2$ and
+$\lambda>1$, there is a finite constant $C_{\mathbf P,r,\lambda}$ such
+that, uniformly over probability systems, essentially $1$-bounded inputs
+and positive $\lambda$-lacunary sequences,
+\[
+ \|V^r(B_{N_j}:j\geq0)\|_1\leq C_{\mathbf P,r,\lambda}.
+\]
+\end{inputthm}
+\Status{external MW-V, not a project proof}
+Mirek--Wan--Wright, arXiv:2505.15549v2, Theorem 1.1(iv), equation (1.5),
+provides the published estimate. Its source-to-interface translation
+MW-V-B is recorded separately in the shared catalogue. Ordinary pointwise
+convergence alone does not supply this bound.
+
+\begin{theorem}[Lacunary variation; manuscript Corollary 4.2]\label{c:long-variation}
+\uses{def:objects,def:averages,def:variation,l:variation-perturbation,input:MWV,t:shao-sun,l:orbit-transference}
+\lean{PSPrimes.lacunary_variation_of_external_inputs, PSPrimes.orbit_variation_bound_eLpNorm_of_oneBounded}\leanok
+For the fixed family $\mathbf P$, there is $c_*>1$ such that, for every
+$1<c<c_*$, $r>2$ and $\lambda>1$, every probability-preserving invertible
+system and $f_i\in L^\infty(X)$ satisfy
+\[
+ \left\|V^r(B_{N_j}^\gamma:j\geq0)\right\|_1
+ \leq C_{c,\mathbf P,r,\lambda}\prod_{i=1}^\ell\|f_i\|_\infty
+\]
+for every sequence of positive integers with
+$N_{j+1}\geq\lambda N_j$. Here $\gamma=1/c$, and the constant is chosen
+before the sequence, system and functions.
+\end{theorem}
+\Status{checked conditional proof from SS, TV and MW-V}
+\begin{proof}[Transfer argument]
+\proves{c:long-variation}\leanok
+\uses{l:variation-perturbation,input:MWV,t:shao-sun,l:orbit-transference}
+For essentially $1$-bounded inputs put $E_j=B_{N_j}^\gamma-B_{N_j}$.
+The already checked all-scale estimate
+\texttt{ps\_orbit\_discrepancy\_L1\_gamma} supplies $D>0$ and
+$\eta>0$ with $\|E_j\|_1\leq DN_j^{-\eta}$. Hence
+\[
+ \|V^r(E_j)\|_1\leq
+ \frac{2D}{1-\lambda^{-\eta}}.
+\]
+Apply MW-V to $B_{N_j}$ and use the variation triangle inequality.
+For general inputs divide each nonzero input by its essential norm and
+use multilinearity. If one essential norm is zero, that input vanishes
+almost everywhere; measure preservation and countability give vanishing
+of every sampled product on a common conull set. Thus the zero-factor
+case also satisfies the stated product bound.
+\end{proof}
+\ifDetailed
+The choice of $c_*$ and the saving $\eta$ comes from SS and TV, before
+$r$ and $\lambda$. For fixed $c,r,\lambda$, one may take the unit-input
+constant
+\[
+ C_{\mathbf P,r,\lambda}^{\rm MWV}
+ +\frac{2D_{c,\mathbf P}}{1-\lambda^{-\eta}}.
+\]
+The ordinary variational estimate is the only new substantial external
+input. No PNT, weighted mass limit, a.e. pointwise conclusion,
+subsequence interpolation, removal of higher prime powers or Abel
+unweighting is needed for this weighted corollary. It does not give a
+full-sequence variation estimate, an $r=2$ estimate, or a finite-$L^p$
+extension of the sparse-prime theorem. The new endpoint Remark 1.3 makes
+such an extension an expectation only.
+\fi

@@ -2,15 +2,16 @@
 
 All seven original numbered deductions are checked **conditionally**. Theorem 1.1 is `quantitative_recurrence`; Theorem 1.2 is `pointwiseErgodicTheorem_of_external_inputs`. The external analytic and arithmetic inputs remain unproved and uninstantiated. No mathematical axiom was added, and no input assumes an original conclusion of this manuscript.
 
-There are seven independent external predicates. The two main theorems jointly use six of them: the standalone `KMTTUnweightedInput` is replaced, in Theorem 1.1, by the stronger *explicitly catalogued joint selection* `KMTTCompatibleInput`. This distinction matters: separate existential witnesses need not have the same comparison constant. `OrbitVNInput` remains a useful specification, but is now proved from `FiniteVNInput` and is not an independent external premise or an assumption about the author's other paper.
+The revised development has eight explicit external predicates: the previous seven plus `OrdinaryPrimeVariationInput` (MW-V). These are interfaces, not a count of logically independent published theorems. MW and MW-V quote different parts of the same MWW theorem. MW-V is needed only for the new Corollary 4.2; the two original main theorems retain their previous premises. The two main theorems jointly use six of them: the standalone `KMTTUnweightedInput` is replaced, in Theorem 1.1, by the stronger *explicitly catalogued joint selection* `KMTTCompatibleInput`. This distinction matters: separate existential witnesses need not have the same comparison constant. `OrbitVNInput` remains a useful specification, but is now proved from `FiniteVNInput` and is not an independent external premise or an assumption about the author's other paper.
 
 | Catalogue entry / actual predicate | Conclusions using it |
 | --- | --- |
-| SS — `ShaoSunPhaseInput` | Lemma 2.2; Proposition 2.3; Lemma 3.2; Theorem 1.1; Proposition 4.1; Theorem 1.2 |
-| TV — `FiniteVNInput` | Proposition 2.3; Lemma 3.2; Theorem 1.1; the derived orbit bound; Proposition 4.1; Theorem 1.2 |
-| OR — `OrbitVNInput` (**derived from TV**) | Proposition 4.1; Theorem 1.2; no independent external premise |
+| SS — `ShaoSunPhaseInput` | Lemma 2.2; Proposition 2.3; Lemma 3.2; Theorem 1.1; Proposition 4.1; Theorem 1.2; Corollary 4.2 |
+| TV — `FiniteVNInput` | Proposition 2.3; Lemma 3.2; Theorem 1.1; the derived orbit bound; Proposition 4.1; Theorem 1.2; Corollary 4.2 |
+| OR — `OrbitVNInput` (**derived from TV**) | Proposition 4.1; Theorem 1.2; Corollary 4.2; no independent external premise |
 | PNT — `PrimeNumberTheoremInput` | Proposition 4.1; Theorem 1.2 |
 | MW — `OrdinaryPrimePointwiseInput` | Theorem 1.2 |
+| MW-V — `OrdinaryPrimeVariationInput` | New Corollary 4.2 only |
 | KM-U — `KMTTUnweightedInput` | Standalone Proposition 3.1; its content is supplied through KM-Compatible in Theorem 1.1 |
 | KM-R — `KMTTRegularityInput` | Proposition 3.1; Theorem 1.1 |
 | KM-Compatible — `KMTTCompatibleInput` | Theorem 1.1; supplies the same-parameter KM-M data used by Lemma 3.2 |
@@ -149,6 +150,59 @@ def OrdinaryPrimePointwiseInput : Prop :=
 **External translation MW-B:** on a probability space, bounded inputs belong to `L^(2ℓ)`; the source's finite-exponent hypothesis is not silently replaced by an unproved endpoint theorem. The source-to-integer-action application is also included externally. Constants in the polynomials are allowed by the source. The polynomial-shift degree identities themselves are now proved in `OrbitPolynomials.lean`; the full application of the published finite-exponent theorem to this interface has not separately been proved.
 
 **Checked applications:** actual prime-power residuals are removed after invoking weighted convergence; positive monotone weight conditions and mass limits are proved; discrete Abel summation, infinitude, the `Nat.nth` enumeration and transfer to actual prime cutoffs give the common limit in Theorem 1.2. Its final input functions need only be essentially bounded and almost-everywhere strongly measurable.
+
+## MW-V: ordinary weighted lacunary variation
+
+Primary reference: Mirek–Wan–Wright,
+[arXiv:2505.15549v2](https://arxiv.org/html/2505.15549v2), **Theorem 1.1(iv),
+equation (1.5)**. The exact version is cited in the revised manuscript. The
+published theorem controls the full variation norm `bold V^r` for r>2 on any
+λ-lacunary positive integer set, λ>1, uniformly in the set and system, with
+finite `1<q_i<∞` and `Σ 1/q_i=1/q≤1`. The source distinguishes the seminorm
+and full norm in definitions (2.3) and (2.4). A bound on the full norm implies
+the weaker seminorm bound needed here.
+
+`OrdinaryPrimeVariationInput` is the explicit essentially 1-bounded
+probability-space specialization for the actual von Mangoldt averages. Its
+constant is chosen after the entire fixed polynomial family, r and λ, and
+before the lacunary sequence, probability system and observables. It does
+not assume an estimate for the sparse-prime averages. The actual type in [`LongVariation.lean`](../PSPrimes/LongVariation.lean) is:
+
+```lean
+def OrdinaryPrimeVariationInput : Prop :=
+  ∀ (ℓ : ℕ) (P : Fin ℓ → Polynomial ℤ),
+    0 < ℓ → StrictMono (fun i => (P i).natDegree) →
+    (∀ i, 1 ≤ (P i).natDegree) →
+    ∀ r : ℝ, 2 < r → ∀ rho : ℝ, 1 < rho →
+      ∃ C : ℝ, 0 < C ∧
+        ∀ N : ℕ → ℕ, 1 ≤ N 0 →
+          (∀ j, rho * (N j : ℝ) ≤ (N (j + 1) : ℝ)) →
+          ∀ (X : Type u) [MeasurableSpace X] (μ : Measure X), IsProbabilityMeasure μ →
+            ∀ (T : IntegerAction X μ) (f : Fin ℓ → X → ℂ),
+              (∀ i, AEStronglyMeasurable (f i) μ) →
+              (∀ i, ∀ᵐ x ∂μ, ‖f i x‖ ≤ 1) →
+              (∫⁻ x, rVariation r (fun j =>
+                weightedAverage ArithmeticFunction.vonMangoldt
+                  (fun n => orbitProduct P T f n x) (N j)) ∂μ) ≤ ENNReal.ofReal C
+```
+
+**External translation MW-V-B:** choose `q_i=2ℓ` (ℓ≥1), hence q=2. On a
+probability space, `||f_i||_(2ℓ)≤||f_i||_∞≤1`, and Hölder gives
+`||V^r||_1≤||V^r||_2`. Use the polynomials `P_i(y−1)`, retaining their
+distinct degrees and allowing constant coefficients. The polynomial shift
+and degree preservation are already proved in `OrbitPolynomials.lean`; the
+complete application of the unformalized MWW theorem, the finite-Lq
+embeddings/Hölder step and the full-norm-to-seminorm/source-notation
+translation remain part of this separately named external bridge.
+
+**Checked internal application:** the all-N power saving
+`ps_orbit_discrepancy_L1_gamma` is proved from SS and TV. The perturbation
+argument proves `V^r(a)≤2 Σ_j |a_j|`, and positive lacunarity gives
+`Σ_j N_j^(-η)≤(1−λ^(-η))^(-1)`. The variation triangle inequality then
+transfers MW-V to the actual sparse weight. Essential-bound normalization
+and zero factors are handled internally; these are not supplied by MW-V.
+Corollary 4.2 has no PNT premise because this estimate uses no mass limit or
+full-sequence interpolation. It also has no MW pointwise-convergence premise.
 
 ## KM-U: unweighted discrepancy at a slightly shorter scale
 
@@ -298,6 +352,6 @@ The source prints no numerical value for its initial cutoff, so it is not claime
 
 ## What remains external
 
-SS, TV, PNT, MW and the KMTT finite/mass theorems have no proofs or inhabitants in this project. The formulation bridges SS-finiteX, TV-B, MW-B, KM-U-B, KM-R-B and KM-J remain external as described above. OR is derived from TV by the checked theorem above; neither an independent OR predicate nor the former OR-B translation is an additional external assumption. All seven original numbered deductions are proved under their displayed explicit premises; the two numbered quoted results remain external. No no-Siegel strengthening is used.
+SS, TV, PNT, MW, MW-V and the KMTT finite/mass theorems have no proofs or inhabitants in this project. The formulation bridges SS-finiteX, TV-B, MW-B, MW-V-B, KM-U-B, KM-R-B and KM-J remain external as described above. OR is derived from TV by the checked theorem above; neither an independent OR predicate nor the former OR-B translation is an additional external assumption. All seven original numbered deductions are proved under their displayed explicit premises; the two numbered quoted results remain external. No no-Siegel strengthening is used.
 
 An axiom audit records only standard foundational dependencies (`propext`, `Classical.choice`, `Quot.sound`). It does not prove any input predicate true, nor establish statement correspondence. Those are separate mathematical and source-review obligations, documented here and in [PAPER_MAP.md](PAPER_MAP.md). Source modules, the final clean-build record and the actual declaration audit remain the verification authority.

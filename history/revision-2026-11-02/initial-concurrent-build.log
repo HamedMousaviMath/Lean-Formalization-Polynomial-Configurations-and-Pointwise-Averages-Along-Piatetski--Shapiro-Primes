@@ -1,0 +1,23 @@
+✔ [6668/6676] Built PSPrimes.OrbitInputs
+✔ [6669/6676] Built PSPrimes.OrbitMeasureHelpers
+✔ [6670/6676] Built PSPrimes.OrbitPolynomials
+✖ [6671/6676] Building PSPrimes.Variation
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /workspace/scratch/c84b5d813ddd/lean-environment/lean-4.19.0-linux/bin/lean ././././PSPrimes/Variation.lean -R ./././. -o ././.lake/build/lib/lean/PSPrimes/Variation.olean -i ././.lake/build/lib/lean/PSPrimes/Variation.ilean -c ././.lake/build/ir/PSPrimes/Variation.c --json
+error: ././././PSPrimes/Variation.lean:32:6: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ENNReal.ofReal (∑ i ∈ ?m.1462, ‖?m.2057 i‖ ^ ?m.2058 i) ^ (1 / r)
+r : ℝ
+hr : 0 ≤ r
+a : ℕ → ℂ
+J : ℕ
+j : Fin (J + 1) → ℕ
+⊢ (∑ h, ‖a (j h.succ) - a (j h.castSucc)‖ₑ ^ r) ^ (1 / r) =
+    ENNReal.ofReal ((∑ h, ‖a (j h.succ) - a (j h.castSucc)‖ ^ r) ^ (1 / r))
+error: Lean exited with code 1
+✔ [6673/6676] Built PSPrimes.Pointwise
+✔ [6674/6676] Built PSPrimes.OrbitTransference
+⚠ [6675/6676] Built PSPrimes.OrbitComparison
+warning: ././././PSPrimes/OrbitComparison.lean:256:6: try 'simp' instead of 'simpa'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+Some required builds logged failures:
+- PSPrimes.Variation
+error: build failed

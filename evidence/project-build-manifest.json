@@ -9,7 +9,7 @@
       "PSPrimes.Scales"
     ],
     "exit_code": 0,
-    "seconds": 7.916
+    "seconds": 7.39
   },
   {
     "module": "PSPrimes.Asymptotics",
@@ -21,7 +21,7 @@
       "PSPrimes.Asymptotics"
     ],
     "exit_code": 0,
-    "seconds": 6.008
+    "seconds": 5.879
   },
   {
     "module": "PSPrimes.Definitions",
@@ -33,7 +33,7 @@
       "PSPrimes.Definitions"
     ],
     "exit_code": 0,
-    "seconds": 6.365
+    "seconds": 5.733
   },
   {
     "module": "PSPrimes.PhaseBounds",
@@ -45,7 +45,7 @@
       "PSPrimes.PhaseBounds"
     ],
     "exit_code": 0,
-    "seconds": 6.286
+    "seconds": 5.782
   },
   {
     "module": "PSPrimes.ExternalInputs",
@@ -57,7 +57,7 @@
       "PSPrimes.ExternalInputs"
     ],
     "exit_code": 0,
-    "seconds": 5.592
+    "seconds": 4.713
   },
   {
     "module": "PSPrimes.Homogeneity",
@@ -69,7 +69,7 @@
       "PSPrimes.Homogeneity"
     ],
     "exit_code": 0,
-    "seconds": 6.465
+    "seconds": 5.841
   },
   {
     "module": "PSPrimes.Rescaling",
@@ -81,7 +81,7 @@
       "PSPrimes.Rescaling"
     ],
     "exit_code": 0,
-    "seconds": 6.903
+    "seconds": 5.535
   },
   {
     "module": "PSPrimes.Counting",
@@ -93,7 +93,7 @@
       "PSPrimes.Counting"
     ],
     "exit_code": 0,
-    "seconds": 6.54
+    "seconds": 5.653
   },
   {
     "module": "PSPrimes.Lifting",
@@ -105,7 +105,7 @@
       "PSPrimes.Lifting"
     ],
     "exit_code": 0,
-    "seconds": 7.56
+    "seconds": 5.641
   },
   {
     "module": "PSPrimes.Progressions",
@@ -117,7 +117,7 @@
       "PSPrimes.Progressions"
     ],
     "exit_code": 0,
-    "seconds": 8.21
+    "seconds": 6.176
   },
   {
     "module": "PSPrimes.ExceptionalTerms",
@@ -129,7 +129,7 @@
       "PSPrimes.ExceptionalTerms"
     ],
     "exit_code": 0,
-    "seconds": 7.163
+    "seconds": 6.032
   },
   {
     "module": "PSPrimes.Comparison",
@@ -141,7 +141,7 @@
       "PSPrimes.Comparison"
     ],
     "exit_code": 0,
-    "seconds": 6.992
+    "seconds": 5.935
   },
   {
     "module": "PSPrimes.PowerSaving",
@@ -153,7 +153,7 @@
       "PSPrimes.PowerSaving"
     ],
     "exit_code": 0,
-    "seconds": 9.365
+    "seconds": 7.549
   },
   {
     "module": "PSPrimes.AsymptoticScales",
@@ -165,7 +165,7 @@
       "PSPrimes.AsymptoticScales"
     ],
     "exit_code": 0,
-    "seconds": 12.25
+    "seconds": 6.82
   },
   {
     "module": "PSPrimes.PrimePowers",
@@ -177,7 +177,7 @@
       "PSPrimes.PrimePowers"
     ],
     "exit_code": 0,
-    "seconds": 7.274
+    "seconds": 6.145
   },
   {
     "module": "PSPrimes.Density",
@@ -189,7 +189,7 @@
       "PSPrimes.Density"
     ],
     "exit_code": 0,
-    "seconds": 7.947
+    "seconds": 6.861
   },
   {
     "module": "PSPrimes.RecurrenceDefinitions",
@@ -201,7 +201,7 @@
       "PSPrimes.RecurrenceDefinitions"
     ],
     "exit_code": 0,
-    "seconds": 6.681
+    "seconds": 5.36
   },
   {
     "module": "PSPrimes.ModelOverlap",
@@ -213,7 +213,7 @@
       "PSPrimes.ModelOverlap"
     ],
     "exit_code": 0,
-    "seconds": 6.769
+    "seconds": 6.029
   },
   {
     "module": "PSPrimes.PolynomialBounds",
@@ -225,7 +225,7 @@
       "PSPrimes.PolynomialBounds"
     ],
     "exit_code": 0,
-    "seconds": 9.223
+    "seconds": 7.383
   },
   {
     "module": "PSPrimes.SmoothModuli",
@@ -237,7 +237,7 @@
       "PSPrimes.SmoothModuli"
     ],
     "exit_code": 0,
-    "seconds": 5.655
+    "seconds": 5.085
   },
   {
     "module": "PSPrimes.KMTTInterfaces",
@@ -249,7 +249,7 @@
       "PSPrimes.KMTTInterfaces"
     ],
     "exit_code": 0,
-    "seconds": 6.685
+    "seconds": 5.54
   },
   {
     "module": "PSPrimes.PrimeMassInputs",
@@ -261,7 +261,7 @@
       "PSPrimes.PrimeMassInputs"
     ],
     "exit_code": 0,
-    "seconds": 6.113
+    "seconds": 5.05
   },
   {
     "module": "PSPrimes.PrimeDiscrepancy",
@@ -273,7 +273,7 @@
       "PSPrimes.PrimeDiscrepancy"
     ],
     "exit_code": 0,
-    "seconds": 7.59
+    "seconds": 6.936
   },
   {
     "module": "PSPrimes.ConfigurationTransport",
@@ -285,7 +285,7 @@
       "PSPrimes.ConfigurationTransport"
     ],
     "exit_code": 0,
-    "seconds": 6.845
+    "seconds": 5.753
   },
   {
     "module": "PSPrimes.SmallScale",
@@ -297,7 +297,7 @@
       "PSPrimes.SmallScale"
     ],
     "exit_code": 0,
-    "seconds": 8.078
+    "seconds": 6.143
   },
   {
     "module": "PSPrimes.DensityIncrement",
@@ -309,7 +309,7 @@
       "PSPrimes.DensityIncrement"
     ],
     "exit_code": 0,
-    "seconds": 11.169
+    "seconds": 8.944
   },
   {
     "module": "PSPrimes.DiscrepancySaving",
@@ -321,7 +321,7 @@
       "PSPrimes.DiscrepancySaving"
     ],
     "exit_code": 0,
-    "seconds": 10.325
+    "seconds": 7.217
   },
   {
     "module": "PSPrimes.FinalComparison",
@@ -333,7 +333,7 @@
       "PSPrimes.FinalComparison"
     ],
     "exit_code": 0,
-    "seconds": 10.848
+    "seconds": 8.528
   },
   {
     "module": "PSPrimes.FinalPrimeDiscrepancy",
@@ -345,7 +345,7 @@
       "PSPrimes.FinalPrimeDiscrepancy"
     ],
     "exit_code": 0,
-    "seconds": 11.412
+    "seconds": 9.712
   },
   {
     "module": "PSPrimes.FiniteConstruction",
@@ -357,7 +357,7 @@
       "PSPrimes.FiniteConstruction"
     ],
     "exit_code": 0,
-    "seconds": 7.192
+    "seconds": 4.617
   },
   {
     "module": "PSPrimes.Iteration",
@@ -369,7 +369,7 @@
       "PSPrimes.Iteration"
     ],
     "exit_code": 0,
-    "seconds": 7.29
+    "seconds": 5.159
   },
   {
     "module": "PSPrimes.RecurrenceIteration",
@@ -381,7 +381,7 @@
       "PSPrimes.RecurrenceIteration"
     ],
     "exit_code": 0,
-    "seconds": 11.632
+    "seconds": 9.64
   },
   {
     "module": "PSPrimes.FiniteIterationBounds",
@@ -393,7 +393,7 @@
       "PSPrimes.FiniteIterationBounds"
     ],
     "exit_code": 0,
-    "seconds": 9.673
+    "seconds": 8.654
   },
   {
     "module": "PSPrimes.InitialProgression",
@@ -405,7 +405,7 @@
       "PSPrimes.InitialProgression"
     ],
     "exit_code": 0,
-    "seconds": 9.885
+    "seconds": 9.285
   },
   {
     "module": "PSPrimes.KMTTNormalization",
@@ -417,7 +417,19 @@
       "PSPrimes.KMTTNormalization"
     ],
     "exit_code": 0,
-    "seconds": 7.071
+    "seconds": 6.307
+  },
+  {
+    "module": "PSPrimes.Lacunary",
+    "source": "PSPrimes/Lacunary.lean",
+    "sha256": "c7315b36257e83a7e9e613fea21d81c8b97f58f2e0ef0a02dacc354d4fa3211c",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Lacunary"
+    ],
+    "exit_code": 0,
+    "seconds": 5.137
   },
   {
     "module": "PSPrimes.LogScales",
@@ -429,7 +441,7 @@
       "PSPrimes.LogScales"
     ],
     "exit_code": 0,
-    "seconds": 11.178
+    "seconds": 10.274
   },
   {
     "module": "PSPrimes.Pointwise",
@@ -441,7 +453,7 @@
       "PSPrimes.Pointwise"
     ],
     "exit_code": 0,
-    "seconds": 9.108
+    "seconds": 8.083
   },
   {
     "module": "PSPrimes.OrbitInputs",
@@ -453,7 +465,7 @@
       "PSPrimes.OrbitInputs"
     ],
     "exit_code": 0,
-    "seconds": 6.649
+    "seconds": 5.143
   },
   {
     "module": "PSPrimes.Representatives",
@@ -465,7 +477,7 @@
       "PSPrimes.Representatives"
     ],
     "exit_code": 0,
-    "seconds": 7.114
+    "seconds": 5.62
   },
   {
     "module": "PSPrimes.OrbitPolynomials",
@@ -477,7 +489,7 @@
       "PSPrimes.OrbitPolynomials"
     ],
     "exit_code": 0,
-    "seconds": 6.388
+    "seconds": 5.123
   },
   {
     "module": "PSPrimes.OrbitMeasureHelpers",
@@ -489,7 +501,7 @@
       "PSPrimes.OrbitMeasureHelpers"
     ],
     "exit_code": 0,
-    "seconds": 6.481
+    "seconds": 5.241
   },
   {
     "module": "PSPrimes.OrbitTransference",
@@ -501,7 +513,7 @@
       "PSPrimes.OrbitTransference"
     ],
     "exit_code": 0,
-    "seconds": 7.395
+    "seconds": 5.848
   },
   {
     "module": "PSPrimes.OrbitComparison",
@@ -513,7 +525,43 @@
       "PSPrimes.OrbitComparison"
     ],
     "exit_code": 0,
-    "seconds": 7.632
+    "seconds": 6.242
+  },
+  {
+    "module": "PSPrimes.Variation",
+    "source": "PSPrimes/Variation.lean",
+    "sha256": "9377a8e26184081383bae412de207862d442ac049dd353c7506269fb77466512",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.Variation"
+    ],
+    "exit_code": 0,
+    "seconds": 5.01
+  },
+  {
+    "module": "PSPrimes.VariationHomogeneity",
+    "source": "PSPrimes/VariationHomogeneity.lean",
+    "sha256": "9a56cbd6bedd1f723a510ef7ceb110e3654712e5ba919528b33ed945b73e1d82",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.VariationHomogeneity"
+    ],
+    "exit_code": 0,
+    "seconds": 5.236
+  },
+  {
+    "module": "PSPrimes.LongVariation",
+    "source": "PSPrimes/LongVariation.lean",
+    "sha256": "df2b7191721ddeecb5cf4157257bf191a5d60a8f58056717cb7e0fc685b89730",
+    "command": [
+      "lake",
+      "build",
+      "PSPrimes.LongVariation"
+    ],
+    "exit_code": 0,
+    "seconds": 6.284
   },
   {
     "module": "PSPrimes.MainPointwise",
@@ -525,7 +573,7 @@
       "PSPrimes.MainPointwise"
     ],
     "exit_code": 0,
-    "seconds": 7.79
+    "seconds": 6.867
   },
   {
     "module": "PSPrimes.RecurrenceAlgebra",
@@ -537,7 +585,7 @@
       "PSPrimes.RecurrenceAlgebra"
     ],
     "exit_code": 0,
-    "seconds": 6.561
+    "seconds": 5.535
   },
   {
     "module": "PSPrimes.RecurrenceConstruction",
@@ -549,7 +597,7 @@
       "PSPrimes.RecurrenceConstruction"
     ],
     "exit_code": 0,
-    "seconds": 17.606
+    "seconds": 11.016
   },
   {
     "module": "PSPrimes.MainRecurrence",
@@ -561,7 +609,7 @@
       "PSPrimes.MainRecurrence"
     ],
     "exit_code": 0,
-    "seconds": 7.623
+    "seconds": 5.107
   },
   {
     "module": "PSPrimes.NormalizedDensityIncrement",
@@ -573,18 +621,18 @@
       "PSPrimes.NormalizedDensityIncrement"
     ],
     "exit_code": 0,
-    "seconds": 5.992
+    "seconds": 5.202
   },
   {
     "module": "PSPrimes",
     "source": "PSPrimes.lean",
-    "sha256": "0c85bd19bb1093bd1bc0aacfae482057ce2d70769f5eec6b693ee7fde4b53db4",
+    "sha256": "874559ad602ee1da86ebbbcc719bc8453bf9a725212222da98cd4bf08b341821",
     "command": [
       "lake",
       "build",
       "PSPrimes"
     ],
     "exit_code": 0,
-    "seconds": 5.448
+    "seconds": 4.937
   }
 ]

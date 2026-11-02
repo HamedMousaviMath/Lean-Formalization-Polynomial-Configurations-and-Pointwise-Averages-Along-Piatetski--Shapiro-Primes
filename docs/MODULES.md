@@ -109,3 +109,20 @@ For reproducibility and current build evidence, use the README and
 `scripts/check.sh`. Module membership alone is not a verification claim;
 the statement map, assumption catalogue and actual audit logs record that
 distinction.
+
+## 2 November revision: lacunary variation
+
+[Variation](../PSPrimes/Variation.lean) implements the actual infinite
+seminorm, proves the finite-chain correspondence with the paper's real
+formula, triangle inequality, homogeneity, countable-supremum measurability,
+and Tonelli perturbation estimate.
+[Lacunary](../PSPrimes/Lacunary.lean) proves the uniform infinite geometric
+sum estimate for every positive integer lacunary sequence.
+[VariationHomogeneity](../PSPrimes/VariationHomogeneity.lean) restores the
+exact product of essential L∞ norms, including zero norms and arbitrary
+a.e. measurable representatives.
+[LongVariation](../PSPrimes/LongVariation.lean) catalogues the new MW-V
+external specialization and derives Corollary 4.2 from the existing actual
+discrepancy power saving. No earlier production module is replaced. Build
+status is recorded in the revision evidence rather than inferred from
+these module descriptions.

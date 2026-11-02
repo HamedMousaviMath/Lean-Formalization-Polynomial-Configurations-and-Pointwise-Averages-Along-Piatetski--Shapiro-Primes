@@ -34,7 +34,7 @@ The author subsequently supplied the complete LaTeX source, preserved unchanged 
 
 The required real-weight, essentially 1-bounded interface is now proved as `orbitVNInput_of_finiteVNInput : FiniteVNInput → OrbitVNInput`. `OrbitPolynomials` proves translation by −1, degree preservation and a scale-independent spatial support constant. `OrbitMeasureHelpers` proves finite-average integrability, the explicit dual multiplier `conj(A)/‖A‖` (zero at A=0), its norm/pairing identities and integral invariance. `OrbitTransference` proves the exact cutoff identity at spatial length N^d and the integration argument. The original functions need only satisfy essential bounds: one conull set controls all their integer iterates. No independent theorem of this related paper remains an input to the prime project. This is the needed specialization, not a formalization of all conclusions of the related paper.
 
-Depends into: p:pointwise-comparison and t:pointwise only.
+Depends into: p:pointwise-comparison, t:pointwise, and the revised c:long-variation.
 
 ## KM — KMTT
 
@@ -82,3 +82,24 @@ Green's Theorem 1.1 bounds Σ_{p≤q^C, χ(p)=−1}(log p)/p by (1/2+O(1/C))log(
 2. Verified citation means the external source states the indicated theorem. It does not mean the theorem has been formalized or independently proved here.
 3. No mathematical axiom is needed: any external estimate can be an explicit theorem parameter or a field of a narrowly named hypothesis structure.
 4. Keep external results, elementary specializations, and the current paper's original deductions separate in the statement map.
+
+## Revision reference check — 2 November 2026
+
+The revised manuscript uses MWW **Theorem 1.1(iv), equation (1.5)**, in the
+same [v2 primary source](https://arxiv.org/html/2505.15549v2) already cited
+for ordinary pointwise convergence. It gives r>2 variation estimates for
+any λ-lacunary positive integer set, λ>1, in finite-Lq Hölder ranges. The
+source defines the seminorm and full norm in (2.3)–(2.4); the full norm
+estimate dominates the manuscript's seminorm. The specialization to
+essentially bounded probability-space inputs is separately external
+MW-V-B, not claimed as a consequence of the pointwise-only MW interface.
+
+New endpoint background: LaVictoire, *Universally L1-bad arithmetic
+sequences*, [arXiv:0905.3865v2](https://arxiv.org/pdf/0905.3865v2), Theorem
+1.1 and Corollary 1.2, includes the primes; the journal bibliographic record
+is J. Anal. Math. 113 (2011), 241–263. Mirek, [arXiv:1401.1361](https://arxiv.org/pdf/1401.1361),
+page 4, discussion immediately after Theorem 1.14, explicitly raises the
+endpoint problem for thin primes. These are background citations in a
+remark, not additional Lean proof premises. No sparse-prime finite-Lp or
+L1 endpoint claim is inferred from them. The optional Green/Tao footnote
+is unchanged and unused.

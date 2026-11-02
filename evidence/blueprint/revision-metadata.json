@@ -1,0 +1,12 @@
+{
+  "labelled_nodes": 21,
+  "duplicate_labels": [],
+  "uses_tags": 29,
+  "uses_targets": 67,
+  "proves_tags": 11,
+  "leanok_tags": 21,
+  "unresolved_dependencies": [],
+  "native_exported_declarations": 46,
+  "compact_pages": 10,
+  "full_pages": 20
+}

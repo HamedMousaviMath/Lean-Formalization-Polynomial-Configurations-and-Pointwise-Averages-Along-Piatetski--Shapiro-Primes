@@ -30,6 +30,16 @@ import PSPrimes
 #check PSPrimes.OrbitVNInput
 #check PSPrimes.orbitVNInput_of_finiteVNInput
 #check PSPrimes.ps_orbit_comparison
+#check PSPrimes.variationChain
+#check PSPrimes.variationChain_eq_ofReal
+#check PSPrimes.rVariation
+#check PSPrimes.rVariation_add_le
+#check PSPrimes.rVariation_le_two_tsum
+#check PSPrimes.lintegral_rVariation_le_two_tsum
+#check PSPrimes.lacunary_rpow_tsum_ennreal_le
+#check PSPrimes.OrdinaryPrimeVariationInput
+#check PSPrimes.lacunary_variation_of_external_inputs
+#check PSPrimes.orbit_variation_bound_eLpNorm_of_oneBounded
 #check PSPrimes.KMTTUnweightedInput
 #check PSPrimes.KMTTRegularityInput
 #check PSPrimes.KMTTCompatibleInput

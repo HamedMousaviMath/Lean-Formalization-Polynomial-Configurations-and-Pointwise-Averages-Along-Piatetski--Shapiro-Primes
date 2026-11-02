@@ -1,15 +1,15 @@
 \section*{Reading and verification contract}
 \ifDetailed
-The project concerns \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}, by Hamed Mousavi. \versionnote\ The supplied source is authoritative and is preserved unchanged. Its PDF was generated locally to check the numbering; no independently supplied PDF was available for comparison.
+The project concerns \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}, by Hamed Mousavi. \versionnote\ The supplied source is authoritative and is preserved unchanged. A PDF of each source was generated locally to check numbering.
 
-\textbf{State of this blueprint.} All seven original numbered deductions have checked conditional Lean proofs: Theorems 1.1 and 1.2, Lemmas 2.2 and 3.2, and Propositions 2.3, 3.1 and 4.1. Theorems 1.3 and 2.1 are quoted externally. The substantial analytic inputs and the explicitly named source-formulation bridges remain unproved; no unconditional formalization of those ingredients is claimed. No \texttt{leanok} tag is attached to a quoted external theorem.
+\textbf{State of this blueprint.} All seven original numbered deductions have checked conditional Lean proofs: Theorems 1.1 and 1.2, Lemmas 2.2 and 3.2, and Propositions 2.3, 3.1 and 4.1. Theorems 1.4 and 2.1 are quoted externally. The substantial analytic inputs and the explicitly named source-formulation bridges remain unproved; no unconditional formalization of those ingredients is claimed. No \texttt{leanok} tag is attached to a quoted external theorem. The revised source adds Corollary 4.2, whose checked conditional implementation is described below; it requires the distinct MWW variation input MW-V.
 
 The required orbit estimate from the author's related sequences paper is now derived from TV, rather than quoted independently. Four milestones follow the actual dependencies: (i) exact objects, rescaling and Fourier restriction; (ii) the fixed-family finite comparison; (iii) discrepancy, local factors and the quantitative recurrence iteration; (iv) orbit comparison, passage to all scales and unweighting. Both branches share the first milestone. This avoids a separate blueprint node for each routine algebraic step.
 
 \else
-This is the primary reading guide for Hamed Mousavi's \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}. \versionnote\ The source is preserved unchanged; its locally compiled PDF supplies the numbering. No independent supplied PDF was available.
+This is the primary reading guide for Hamed Mousavi's \emph{Polynomial configurations and pointwise averages along Piatetski--Shapiro primes}. \versionnote\ The source is preserved unchanged; its locally compiled PDF supplies the numbering.
 
-\textbf{Verified boundary.} The seven original numbered deductions are checked conditionally. Theorems 1.3 and 2.1 remain quoted external inputs. The external predicates are uninstantiated, and their source-formulation bridges are stated explicitly. Neither an axiom audit nor this blueprint proves those premises true.
+\textbf{Verified boundary.} The seven original numbered deductions are checked conditionally. Theorems 1.4 and 2.1 remain quoted external inputs. The external predicates are uninstantiated, and their source-formulation bridges are stated explicitly. Neither an axiom audit nor this blueprint proves those premises true. The revision adds Corollary 4.2 and the separate MWW variation input MW-V; its checked conditional proof is described below.
 
 The related paper's required orbit argument is now proved from TV; its main results are not inputs. Four milestones organize the dependencies: exact objects and algebra; finite comparison; density increment and recurrence; pointwise comparison and unweighting. The longer companion explains the substantive steps and the remaining external obligations.
 \fi
@@ -99,7 +99,7 @@ A field convention at scales where the counting denominator is zero is harmless 
 The checked theorem establishes \texttt{PointwiseErgodicTheorem}, choosing a common $c_*$ before the probability system, its bounded inputs and $c$. It is not merely a fixed-$c$ conclusion specification. An invertible measure-preserving integer action encodes all $T^m$, $m\in\Z$. Its group law gives inverses for negative iterates, and measure preservation is required for every integer iterate. To connect pointwise representatives to $L^\infty$ classes, choose bounded measurable representatives. A countable union of exceptional sets over the finitely many inputs and all integer shifts is null. Outside it all orbit values satisfy the pointwise bounds used below. The checked representative lemmas in \texttt{Representatives.lean} prove simultaneous boundedness and congruence over all integer iterates and transfer the common-limit conclusion through a.e. changes. Normalization and rescaling of arbitrary essentially bounded inputs are discharged in the final assembly.
 \fi
 
-\begin{theorem}[Finite polynomial estimate; manuscript Theorem 1.3]\label{t:teravainen}
+\begin{theorem}[Finite polynomial estimate; manuscript Theorem 1.4]\label{t:teravainen}
 \uses{def:objects}\lean{PSPrimes.FiniteVNInput}
 For fixed integer polynomials $R_1,\ldots,R_\ell$ of distinct increasing degrees, largest degree $d$, and $C_0\geq1$, there are $K\geq1$, $K\ll_d1$, and a constant $C=C(C_0,\mathbf R)$ such that, for all $M\geq1$, $1$-bounded $F_i$ supported on $[-C_0M^d,C_0M^d]$ and $1$-bounded $\theta$ on $[M]$,
 \[
@@ -548,6 +548,8 @@ Center at $L(x)$ and use $a(t)=\gamma^{-1}t^{1-\gamma}\log t$. Then $W(t)=\sum_{
 \texttt{pointwiseErgodicTheorem\_\allowbreak{}of\_\allowbreak{}external\_\allowbreak{}inputs} combines the preceding arithmetic, interpolation and unweighting steps and the bounded-representative transfer. Its only substantial external premises are SS, TV, PNT and MW. The orbit bound and its former OR-B translation are derived from TV in the preceding auxiliary lemma. Only the published finite-estimate bridge TV-B and the ordinary-convergence specialization MW-B remain external at this stage.
 \end{proof}
 
+\input{revision-variation}
+
 \section*{External dependencies and manuscript correspondence}
 \begin{inputthm}[KMTT comparison and weak regularity]\label{input:KM}
 \uses{def:coefficients}\lean{PSPrimes.KMTTUnweightedInput, PSPrimes.KMTTRegularityInput, PSPrimes.KMTTCompatibleInput, PSPrimes.PrimeProgressionMassWitness}
@@ -569,9 +571,9 @@ $N^{-1}\sum_{n\leq N}\Lambda(n)\to1$. A pinned-Mathlib theorem can replace this 
 
 \subsection*{Verified scope and limitations}
 \ifDetailed
-Both main theorems and all five other original numbered deductions are proved conditionally. Theorem 1.1 uses SS, TV, KM-R and KM-Compatible; Theorem 1.2 uses SS, TV, PNT and MW. Proposition 3.1 separately uses the standalone KM-U and KM-R inputs; Lemma 3.2 takes explicit compatible prime-mass data. The seven independent external predicates are uninstantiated; OR is proved from TV and is not a separate premise. The source bridges SS-finiteX, TV-B, MW-B, KM-U-B, KM-R-B and KM-J remain external. Theorems 1.3 and 2.1 are quoted, not proved in the project. No original numbered deduction remains open under these precise premises; this does not prove every analytic ingredient or its source-to-interface formulation unconditionally.
+Both main theorems, all five other original numbered deductions, and the new Corollary 4.2 are proved conditionally. Theorem 1.1 uses SS, TV, KM-R and KM-Compatible; Theorem 1.2 uses SS, TV, PNT and MW. Corollary 4.2 uses SS, TV and MW-V; its infinite variation, geometric summation and exact essential-norm factor are proved. Proposition 3.1 separately uses the standalone KM-U and KM-R inputs; Lemma 3.2 takes explicit compatible prime-mass data. The eight explicit external predicates are uninstantiated; OR is proved from TV and is not a separate premise. The source bridges SS-finiteX, TV-B, MW-B, MW-V-B, KM-U-B, KM-R-B and KM-J remain external. Theorems 1.4 and 2.1 are quoted, not proved in the project. No original numbered deduction remains open under these precise premises; this does not prove every analytic ingredient or its source-to-interface formulation unconditionally.
 \else
-All seven original numbered deductions are checked conditionally; Theorems 1.3 and 2.1 remain external. The seven independent external predicates are uninstantiated. OR is derived from TV. The remaining source-formulation bridges, including joint KMTT parameter selection KM-J, remain external. Full unconditional formalization of the quoted analytic ingredients is outside the verified scope.
+All seven original numbered deductions and new Corollary 4.2 are checked conditionally; Theorems 1.4 and 2.1 remain external. The eight explicit external predicates are uninstantiated. OR is derived from TV. The remaining source-formulation bridges, including joint KMTT parameter selection KM-J, remain external. Full unconditional formalization of the quoted analytic ingredients is outside the verified scope.
 \fi
 
-\ifDetailed No necessary manuscript correction was identified. The preserved original is unchanged.\fi
+\ifDetailed The earlier manuscript is preserved unchanged. The revised source needs two short expository updates: restore the sentence defining the saving $\eta$ after the shortened prime-power estimate, and change the acknowledgement count from seven to eight for the extended development. Exact replacements are recorded in \texttt{docs/REVISION\_2026\_11\_02.md}.\fi

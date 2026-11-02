@@ -1,6 +1,6 @@
 \ifdefined\WebVersion
 \subsection*{Shared manuscript correspondence}
-The nine manuscript nodes retain their numbers and labels. All seven original deductions are conditionally checked; Theorems 1.3 and 2.1 are quoted external inputs. The exact source-label/declaration table is in the two PDFs and in this shared correspondence.tex source. Main-conclusion definitions are specifications, not proofs.
+All earlier labels are retained; Ter\"av\"ainen's theorem moves from 1.3 to 1.4 because the revision adds endpoint Remark 1.3. The new Corollary 4.2 is added below. All seven original deductions are conditionally checked; Theorems 1.4 and 2.1 are quoted external inputs. The exact source-label/declaration table is in the two PDFs and in this shared correspondence.tex source. Main-conclusion definitions are specifications, not proofs.
 \else
 \subsection*{Shared manuscript correspondence}
 This table is identical in the two blueprints. A specification is a proposition-valued definition, not a theorem establishing that proposition. A quoted mathematical input is not a Lean axiom. The declaration catalogue and actual build evidence in the repository determine the checked status of auxiliary declarations.
@@ -9,16 +9,18 @@ This table is identical in the two blueprints. A specification is a proposition-
 \toprule Paper & Source label & Implementation boundary\\\midrule\endhead
 Thm. 1.1 & \texttt{t:szemeredi} & \texttt{quantitative\_recurrence}: checked full specification from SS, TV, KM-R and KM-Compatible.\\
 Thm. 1.2 & \texttt{t:pointwise} & \texttt{pointwiseErgodicTheorem\_of\_external\_inputs}: checked full uniform specification from SS, TV, PNT and MW.\\
-Thm. 1.3 & \texttt{t:teravainen} & External finite generalized von Neumann estimate (TV); no project proof.\\
+Remark 1.3 & unlabelled & Conjectural finite-$L^p$ extension and endpoint background; not a theorem claimed here.\\
+Thm. 1.4 & \texttt{t:teravainen} & External finite generalized von Neumann estimate (TV); no project proof.\\
 Thm. 2.1 & \texttt{t:shao-sun} & External directly quoted polynomial-phase input SS; integer and small-scale translation included externally.\\
 Lemma 2.2 & \texttt{l:progression-phase} & Checked conditional theorem \texttt{progressionPhase\_of\_shaoSun}; no additional arithmetic input beyond SS specialization.\\
 Prop. 2.3 & \texttt{p:comparison} & \texttt{ps\_counting\_comparison}: exact original finite estimate checked conditionally on SS and TV; TV-B external.\\
 Prop. 3.1 & \texttt{p:KMTT} & \texttt{kmtt\_density\_increment\_normalized}: checked from KM-U and KM-R; literal coefficient-one length bound.\\
 Lemma 3.2 & \texttt{l:PS-discrepancy} & \texttt{ps\_prime\_discrepancy}: checked from SS, TV and compatible same-parameter prime-mass data.\\
 Prop. 4.1 & \texttt{p:pointwise-comparison} & \texttt{ps\_orbit\_comparison}: exact original comparison checked from SS, TV and PNT.\\
+Cor. 4.2 & \texttt{c:long-variation} & \texttt{lacunary\_variation\_of\_external\_inputs}: checked conditional deduction from SS, TV and MW-V; exact infinite variation and essential-norm product.\\
 \bottomrule
 \end{longtable}
 \normalsize
-The nine numbered statements above are all the numbered theorem-like environments in the manuscript. The numbering is taken from the actual compiled source, including its global equation numbers (1)--(39). The seven theorem declarations in the table establish the original numbered deductions under their explicit premises; the two quoted inputs remain external.
+The revised source has ten labelled theorem-like statements and one unlabelled numbered remark. There are 49 labels in total: ten statement labels and 39 equation labels. The numbering is taken from the actual compiled source, including its global equation numbers (1)--(39). The seven theorem declarations in the table establish the original numbered deductions under their explicit premises; the two quoted inputs remain external.
 
 \fi

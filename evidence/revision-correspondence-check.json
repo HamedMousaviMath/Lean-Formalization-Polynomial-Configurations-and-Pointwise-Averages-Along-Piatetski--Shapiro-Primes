@@ -1,0 +1,11 @@
+{
+  "base_commit": "d523ab623a07a1969cae0f6386d08a7e28f09c28",
+  "old_production_modules_unchanged": 48,
+  "old_production_modules_changed": [],
+  "new_production_modules": [
+    "PSPrimes/Lacunary.lean",
+    "PSPrimes/LongVariation.lean",
+    "PSPrimes/Variation.lean",
+    "PSPrimes/VariationHomogeneity.lean"
+  ]
+}
